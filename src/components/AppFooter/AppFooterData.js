@@ -1,0 +1,1 @@
+export const cols = {'Platform Features':['Front Desk','Channel Manager','Booking Engine','Housekeeping','Reports','Payments'],Integrations:['All Integrations','OTA Connections','Partner Programs','Find an Expert'],Resources:['Blog','Case Studies','Hotel Trends & Advice','Product Hub'],Company:['About Us','Contact','Support','Careers','Legal','Security']}

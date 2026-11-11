@@ -1,0 +1,5 @@
+.q{background:var(--navy);color:#fff;padding-block:clamp(4rem,16vh,9rem);text-align:center}
+blockquote{max-width:min(90vw,980px)}
+span{font:800 clamp(4rem,8vw,7rem)/.6 var(--head);color:var(--bright);display:block}
+p{font:800 clamp(1.6rem,3.6vw,3.2rem)/1.12 var(--head);letter-spacing:-.03em}
+footer{margin-top:clamp(1.5rem,4vh,2.5rem);opacity:.7}

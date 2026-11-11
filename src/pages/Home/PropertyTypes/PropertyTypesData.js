@@ -1,0 +1,1 @@
+export const items = [['Hotels','Everything your hotel needs to run smoothly'],['Boutique hotels','Deliver standout stays at smaller properties'],['Guest houses','Simple bookings for family-run places'],['Resorts & villas','Manage rooms, rates and extras in one place'],['Hostels','Handle beds, dorms and walk-ins fast'],['Groups & chains','Run your whole portfolio in one place']]

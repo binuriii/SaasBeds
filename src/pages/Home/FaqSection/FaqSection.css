@@ -1,0 +1,6 @@
+.wrap{max-width:min(92vw,900px)}
+ul{margin-top:clamp(1.5rem,5vh,3rem);border-top:1.5px solid var(--ink)}
+li{border-bottom:1px solid #d5dff0}
+button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;background:none;border:0;padding-block:clamp(1.1rem,3vh,1.7rem);text-align:left;font:800 clamp(1.05rem,1.7vw,1.5rem) var(--head);color:inherit}
+i{font-style:normal;display:grid;place-items:center;width:2.2rem;aspect-ratio:1;border-radius:9px;background:var(--sky);flex:none}
+p{padding-bottom:1.5rem;line-height:1.65;opacity:.75;max-width:62ch}

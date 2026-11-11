@@ -1,0 +1,4 @@
+.trust{padding-block:clamp(2.5rem,7vh,4.5rem);text-align:center}
+p{font-size:clamp(.95rem,1.1vw,1.05rem)}
+ul{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-top:clamp(1.5rem,4vh,2.5rem)}
+li{font:800 clamp(1.1rem,1.8vw,1.6rem) var(--head);letter-spacing:-.02em;opacity:.55}
