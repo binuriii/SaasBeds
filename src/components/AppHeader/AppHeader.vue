@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { announcement, languages, ctas, utilityLinks, navItems, platform, solutions, resources } from './AppHeaderData.js'
+import { logo, announcement, languages, ctas, utilityLinks, navItems, platform, solutions, resources } from './AppHeaderData.js'
 
 const open = ref(null)       // which mega menu is open
 const drawer = ref(false)    // mobile drawer
@@ -14,6 +14,7 @@ const onKey = (e) => { if (e.key === 'Escape') { open.value = null; drawer.value
 const toggle = (k) => { open.value = open.value === k ? null : k }
 const closeAll = () => { open.value = null; langOpen.value = false }
 const pick = (l) => { lang.value = l; langOpen.value = false }
+const logoFailed = ref(false)
 const flat = (k) => {
   if (k === 'platform') return platform.cols.flat().flatMap((b) => b.groups.flatMap((g) => g.items.map(lbl)))
   return (k === 'solutions' ? solutions : resources).cols.flatMap((c) => c.items)
@@ -66,7 +67,10 @@ onBeforeUnmount(() => { window.removeEventListener('keydown', onKey) })
 
   <!-- 4. main bar -->
   <nav class="mh-in mh-bar" aria-label="Main">
-    <a href="#" class="mh-logo">SaasBeds</a>
+    <a href="#" class="mh-logo" aria-label="SaaSBeds home">
+  <img v-if="!logoFailed" :src="logo.src" :alt="logo.alt" @error="logoFailed = true" />
+  <span v-else>SaasBeds</span>
+</a>
     <ul class="mh-nav">
       <li v-for="n in navItems" :key="n.label" @mouseenter="open = n.menu || null">
         <a v-if="n.menu" href="#" role="button" class="mh-link" :class="{ on: open === n.menu }" :aria-expanded="open === n.menu" @click.prevent="toggle(n.menu)">{{ n.label }}</a>

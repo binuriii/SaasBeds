@@ -4,6 +4,7 @@ export const announcement = { tag: 'NEW', text: 'SaaSBeds Channel Manager: sync 
 export const languages = ['EN', 'EN-GB', 'FR', 'DE', 'ES', 'NL', 'IT']
 export const ctas = { primary: 'Book a demo' }
 export const utilityLinks = ['Search', 'Contact us', 'Log in']
+export const logo = { src: img('cropped-Saasbeds.png'), alt: 'SaaSBeds' }
 
 export const navItems = [
   { label: 'Platform', menu: 'platform' },
