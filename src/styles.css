@@ -1,12 +1,12 @@
 
 :root {
   /* brand palette */
-  --color-blue-light: #A4DDED;
-  --color-lime: #E3F988;
-  --color-pink: #F2BDCD;
+  --color-blue-light: #D3F4FF;
+  --color-lime: #EFFD90;
+  --color-pink: #F7E1F6;
   --color-black: #000000;
   --color-blue-dark: #153C94;
-  --color-green-light: #B1F8AC;
+  --color-green-light: #D1F9D6;
   --color-white: #FFFFFF;
   --color-text: #000000;
   --color-text-muted: rgba(0, 0, 0, 0.65);
