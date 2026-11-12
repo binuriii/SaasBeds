@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import { homeMeta } from './Home.js'
-import HeroSection from './HeroSection/HeroSection.vue'
+import DashboardPreview from './DashboardPreview/DashboardPreview.vue'
 import TrustLogos from './TrustLogos/TrustLogos.vue'
 import ProductCards from './ProductCards/ProductCards.vue'
 import ChannelsReports from './ChannelsReports/ChannelsReports.vue'
@@ -15,7 +15,7 @@ onMounted(() => { document.title = homeMeta.title })
 </script>
 <template>
   <div class="home">
-    <HeroSection /><TrustLogos /><ProductCards /><ChannelsReports /><PropertyTypes />
+    <DashboardPreview /><TrustLogos /><ProductCards /><ChannelsReports /><PropertyTypes />
     <Integrations /><ImpactStats /><Testimonial /><FaqSection /><CtaBanner />
   </div>
 </template>

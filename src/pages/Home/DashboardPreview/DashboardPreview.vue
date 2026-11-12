@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { tabs } from './HeroSectionData.js'
+import { tabs } from './DashboardPreview.js'
 const tab = ref('Bookings'), rows = computed(()=>tabs[tab.value])
 </script>
 <template>
@@ -24,4 +24,4 @@ const tab = ref('Bookings'), rows = computed(()=>tabs[tab.value])
   </div>
 </section>
 </template>
-<style scoped src="./HeroSection.css"></style>
+<style scoped src="./DashboardPreview.css"></style>
