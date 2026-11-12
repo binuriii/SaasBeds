@@ -11,10 +11,12 @@ import ImpactStats from './ImpactStats/ImpactStats.vue'
 import Testimonial from './Testimonial/Testimonial.vue'
 import FaqSection from './FaqSection/FaqSection.vue'
 import CtaBanner from './CtaBanner/CtaBanner.vue'
+import HeroSection from './HeroSection/HeroSection.vue'
 onMounted(() => { document.title = homeMeta.title })
 </script>
 <template>
   <div class="home">
+    <HeroSection/>
     <DashboardPreview /><TrustLogos /><ProductCards /><ChannelsReports /><PropertyTypes />
     <Integrations /><ImpactStats /><Testimonial /><FaqSection /><CtaBanner />
   </div>
