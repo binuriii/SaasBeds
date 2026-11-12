@@ -5,7 +5,6 @@ import DashboardPreview from './DashboardPreview/DashboardPreview.vue'
 import ProductCards from './ProductCards/ProductCards.vue'
 import ChannelsReports from './ChannelsReports/ChannelsReports.vue'
 import PropertyTypes from './PropertyTypes/PropertyTypes.vue'
-import Integrations from './Integrations/Integrations.vue'
 import ImpactStats from './ImpactStats/ImpactStats.vue'
 import Testimonial from './Testimonial/Testimonial.vue'
 import FaqSection from './FaqSection/FaqSection.vue'
@@ -22,7 +21,6 @@ onMounted(() => { document.title = homeMeta.title })
     <DashboardPreview />
     <PropertyTypes />
     <ChannelsReports />
-    <Integrations />
     <ImpactStats />
     <Testimonial />
     <FaqSection /><CtaBanner />

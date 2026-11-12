@@ -24,13 +24,7 @@
 .sol__card--lime  { background: var(--color-lime); }
 .sol__card--blue  { background: var(--color-blue-light); }
 .sol__card--pink  { background: var(--color-pink); }
-.sol__card--green { background: var(--color-blue-dark); color: var(--color-white); }
-
-/* readable parts on the dark card */
-.sol__card--green .sol__cta { color: var(--color-white); border-color: rgba(255, 255, 255, 0.4); }
-.sol__card--green .sol__cta:hover { background: var(--color-white); color: var(--color-black); }
-.sol__card--green .sol__foot .label { color: rgba(255, 255, 255, 0.65); }
-.sol__card--green .sol__chip { color: var(--color-white); background: rgba(255, 255, 255, 0.15); }
+.sol__card--green { background: var(--color-green-light);}
 
 .sol__body {
   display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3);
