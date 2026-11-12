@@ -7,6 +7,7 @@ export const GUEST_PHOTO = 'https://i.pravatar.cc/120?img=47'
 
 export const brand = 'SaasBeds' // swap for your own generic brand
 export const searchPlaceholder = 'Search within Central Inn'
+export const searchTyped = 'Olivia Bennett' // 14 characters (matches steps(14) in the CSS)
 
 export const dates = [
   { day: 'Wed', label: 'Oct 3' },
@@ -15,7 +16,7 @@ export const dates = [
   { day: 'Sat', label: 'Oct 6' },
 ]
 
-// status: free (green) | soon (amber) | blocked (red)
+// status: free (blue) | soon (lime) | blocked (black)
 export const groups = [
   { name: 'Single rooms', rooms: [
     { no: 101, status: 'free' }, { no: 102, status: 'soon' },
@@ -40,10 +41,17 @@ export const reservations = [
   { id: 'r9', room: 111, from: 1, to: 3, name: '', icons: ['sync', 'group', 'access'], tone: 'blank' },
 ]
 
+// a booking that "drops in" near the end of the loop
+export const newReservation = {
+  id: 'r10', room: 103, from: 1, to: 3, name: 'Noah Walker', icons: ['sync'], tone: 'pink', isNew: true,
+}
+
 export const reservation = {
   guest: 'Olivia Bennett',
   tabs: ['Reservation', 'Group (3)'],
-  from: 'Oct 4', to: 'Oct 6', status: 'Checked-in',
+  from: 'Oct 4', to: 'Oct 6',
+  status: 'Confirmed',
+  statusDone: 'Checked-in',
   meta: '2 nights, Thu 14:30 - Sat 10:30', code: '52634564',
   notesCount: 3,
   notes: ['Quiet room on a higher floor', 'Peanut allergy (restaurant)', 'Extra towels from housekeeping'],
@@ -51,6 +59,21 @@ export const reservation = {
   tip: 'The guest has an upcoming reservation from Oct 3 to Oct 6. She has expressed a preference for a quiet room on a higher floor. Additionally, during a prior visit to the restaurant, she mentioned an allergy to peanuts. The guest also requested extra towels from housekeeping.',
   tipFooter: 'Summarized by AI, inaccurate information is possible.',
 }
+
+// Fake cursor position per step, in % of the dashboard: [left, top]
+// One entry per timeline step. Tweak if the cursor lands slightly off a target.
+export const cursorPath = [
+  [62, 9],   // 0  idle
+  [24, 9],   // 1  search field, typing
+  [30, 44],  // 2  booking selected, panel loads
+  [88, 21],  // 3  "Group" tab
+  [76, 21],  // 4  back to reservation, notes + tip
+  [74, 45],  // 5  hover notes/tip
+  [76, 87],  // 6  press "Check in"
+  [26, 29],  // 7  new booking drops in
+  [60, 9],   // 8  rest, then loop
+]
+export const STEPS = cursorPath.length
 
 // tiny icon path map (24x24, stroke icons)
 export const ICONS = {
@@ -72,19 +95,20 @@ export const ICONS = {
   dots: 'M12 5v.01M12 12v.01M12 19v.01',
   print: 'M7 9V4h10v5M7 17H4v-7h16v7h-3M7 14h10v6H7z',
   arrow: 'M5 12h14m-5-5 5 5-5 5',
+  check: 'm5 12 5 5 9-10',
 }
 
-
-// Cycles a "recently updated" highlight through reservation ids to mimic live activity.
-export function useLiveActivity(ids, interval = 3600) {
-  const liveId = ref(null)
-  let timer = null, i = 0
+// Advances one step at a time and loops. Final state is shown for reduced motion / SSR.
+export function useTimeline(interval = 1800) {
+  const step = ref(STEPS - 1)
+  let timer = null
   onMounted(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    timer = setInterval(() => { liveId.value = ids[i++ % ids.length] }, interval)
+    step.value = 0
+    timer = setInterval(() => { step.value = (step.value + 1) % STEPS }, interval)
   })
   onBeforeUnmount(() => clearInterval(timer))
-  return { liveId }
+  return { step }
 }
 
 // Small stroke-icon component (functional, no template needed)
