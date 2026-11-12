@@ -1,1 +1,1 @@
-export const homeMeta = { title: 'SaaSBeds: Hotel Booking Management Software' }
+export const homeMeta = { title: 'SaaSBeds' }
