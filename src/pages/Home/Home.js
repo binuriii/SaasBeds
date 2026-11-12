@@ -1,1 +1,1 @@
-export const homeMeta = { title: 'SaaSBeds' }
+export const homeMeta = { title: 'SaasBeds' }
