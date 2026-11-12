@@ -1,4 +1,4 @@
-.hero { text-align: center; }
+.hero { padding-top: 8.5vh; text-align: center; }
 .hero .stack > * { margin-inline: auto; }
 .hero__title { max-width: 18ch; } /* size/weight/leading come from global h1 */
 .hero__actions { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-2); }
