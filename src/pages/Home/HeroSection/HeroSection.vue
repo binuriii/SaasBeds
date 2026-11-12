@@ -31,11 +31,15 @@ const notesOpen = ref(false)
 <template>
   <section class="section hero">
     <div class="stack">
-      <h1 class="hero__title">Modern hotels run on Mews PMS</h1>
+      <h1 class="hero__title">Simple, yet Powerful
+Hotel Booking</h1>
       <p class="lead">
         Streamline operations, increase revenue and elevate every guest experience with one powerful hotel PMS platform.
       </p>
-      <a href="#demo" class="btn btn-cta">Book a demo</a>
+      <div class="hero__actions">
+        <a href="#demo" class="btn btn-cta">Book a demo</a>
+        <a href="#demo-video" class="btn-secondary">See it in action</a>
+      </div>
     </div>
 
     <div class="showcase media">

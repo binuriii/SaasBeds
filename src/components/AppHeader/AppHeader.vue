@@ -39,7 +39,6 @@ onBeforeUnmount(() => { window.removeEventListener('keydown', onKey) })
     <span class="mh-in mh-ann__in">
       <i class="mh-mark">S</i>
       <b>{{ announcement.tag }}</b><span>• {{ announcement.text }}</span>
-      <svg class="mh-ic"><use href="#mh-arrow" /></svg>
     </span>
   </a>
 

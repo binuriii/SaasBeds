@@ -16,8 +16,8 @@ onMounted(() => { document.title = homeMeta.title })
 </script>
 <template>
   <div class="home">
-    <HeroSection/>
-    <DashboardPreview /><TrustLogos /><ProductCards /><ChannelsReports /><PropertyTypes />
+    <HeroSection/><TrustLogos /><ProductCards />
+    <DashboardPreview /><PropertyTypes /><ChannelsReports />
     <Integrations /><ImpactStats /><Testimonial /><FaqSection /><CtaBanner />
   </div>
 </template>

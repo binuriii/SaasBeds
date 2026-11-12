@@ -1,11 +1,7 @@
-/* HeroSection: layout and motion only.
-   Colours, type, spacing, radius, shadows and easing come from the global style.css
-   (.section .stack .eyebrow .lead .btn .card .badge .media .accordion-* .label, h1, inputs, selects). */
-
-/* hero copy */
-.hero { text-align: center; }
+.hero { text-align: center; padding-top: 10vh; }
 .hero .stack > * { margin-inline: auto; }
-.hero__title { text-transform: uppercase; max-width: 18ch; }
+.hero__title { max-width: 18ch; font: 800 clamp(2.4rem, 5.4vw, 5rem)/.98 var(--head); letter-spacing: -.04em; line-height: 10vh; }
+.hero__actions { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-2); }
 
 /* showcase: photo + dashboard */
 .showcase { position: relative; display: flex; justify-content: center; align-items: flex-start; margin-top: var(--section-gap);
