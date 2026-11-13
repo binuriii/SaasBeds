@@ -1,4 +1,0 @@
-.cta{border-radius:var(--r);color:#fff;text-align:center;padding:clamp(3rem,12vh,7rem) 5vw;display:grid;gap:clamp(1rem,3vh,1.8rem);justify-items:center;
-background:repeating-linear-gradient(115deg,#3d8bff 0 9vw,#1f5fc7 14vw,#3d8bff 20vw)}
-.h2{max-width:18ch}p{font-size:clamp(1rem,1.3vw,1.25rem);opacity:.9}
-.cta div{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}.cta .btn:not(.dark){background:#fff;color:var(--navy)}

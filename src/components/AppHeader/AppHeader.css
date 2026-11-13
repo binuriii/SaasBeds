@@ -8,7 +8,7 @@ display:contents;color:#000;font-family:var(--font-primary,system-ui,sans-serif)
 .mh-ic{width:16px;height:16px;flex:none;fill:none}
 .mh-ic--sm{width:12px;height:12px}
 /* 1. announcement bar */
-.mh-ann{display:block;background:var(--mh-brand);color:#fff;max-height:48px;overflow:hidden;transition:max-height .25s}
+.mh-ann{display:block;background:#dab9f2;color:#010101;max-height:48px;overflow:hidden;transition:max-height .25s}
 .mh-ann__in{display:flex;align-items:center;gap:10px;height:40px;font-size:14px;line-height:20px}
 .mh-ann b{font-weight:800;letter-spacing:.3px}
 .mh-ann .mh-ic{width:18px;height:18px;margin-left:6px}
@@ -28,7 +28,7 @@ display:contents;color:#000;font-family:var(--font-primary,system-ui,sans-serif)
 /* 4. main bar */
 .mh-bar{display:flex;align-items:center;gap:clamp(24px,3.6vw,56px);height:clamp(64px,9vh,80px)}
 .mh-logo{font:800 clamp(26px,2.2vw,32px)/1 var(--font-primary,system-ui);color:var(--mh-brand);letter-spacing:-.04em;flex:none}
-.mh-logo img{display:block;height:clamp(28px,2.6vw,40px);width:auto;max-width:none}
+.mh-logo img{display:block;height:clamp(28px,2vw,40px);width:auto;max-width:none}
 .mh-nav{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:stretch;align-self:stretch;gap:clamp(18px,2.2vw,32px);flex:1;list-style:none;margin:0;padding:0}
 .mh-nav li{display:flex;align-items:stretch;margin:0;padding:0;list-style:none;white-space:nowrap}
 .mh-link{display:flex;align-items:center;margin:0;padding:0;border:0;background:none;color:#000;font:inherit;line-height:24px;cursor:pointer;transition:color .18s}
