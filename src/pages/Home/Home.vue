@@ -5,7 +5,6 @@ import DashboardPreview from './DashboardPreview/DashboardPreview.vue'
 import ProductCards from './ProductCards/ProductCards.vue'
 import ImpactStats from './ImpactStats/ImpactStats.vue'
 import FaqSection from './FaqSection/FaqSection.vue'
-import CtaBanner from './CtaBanner/CtaBanner.vue'
 import HeroSection from './HeroSection/HeroSection.vue'
 import SolutionTabs from './SolutionTabs/SolutionTabs.vue'
 import BrandOrbit from './BrandOrbit/BrandOrbit.vue'
@@ -20,7 +19,6 @@ onMounted(() => { document.title = homeMeta.title })
     <ImpactStats />
     <SolutionTabs/>
     <DashboardPreview />
-    <CtaBanner />
   </div>
 </template>
 <style src="./Home.css"></style>

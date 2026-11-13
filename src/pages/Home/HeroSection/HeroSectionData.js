@@ -2,7 +2,7 @@ import { ref, onMounted, onBeforeUnmount, h } from 'vue'
 
 // Central place for all dashboard content. Replace image URLs with local assets if you prefer.
 export const POOL_IMAGE =
-  'https://images.unsplash.com/photo-1684871431939-7ea664ac1eb9?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D'
+  'https://images.unsplash.com/photo-1494290684976-e84de6898624?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D'
 export const GUEST_PHOTO = 'https://i.pravatar.cc/120?img=47'
 
 export const brand = 'SaasBeds' // swap for your own generic brand
