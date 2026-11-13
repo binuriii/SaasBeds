@@ -12,7 +12,6 @@ export const navItems = [
   { label: 'Customers' },
   { label: 'Resources', menu: 'resources' },
   { label: 'Pricing' },
-  { label: 'Mews AI' }
 ]
 
 export const platform = {
