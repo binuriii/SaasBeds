@@ -1,7 +1,10 @@
 const img = (n) => new URL(`../../assets/header/${n}`, import.meta.url).href
 
-export const announcement = { tag: 'NEW', text: 'Mews Channel Manager, powered by SiteMinder', href: '#' }
+export const announcement = { tag: 'NEW', text: 'SaaSBeds Channel Manager: sync rates and availability on every channel', href: '#' }
+export const languages = ['EN', 'EN-GB', 'FR', 'DE', 'ES', 'NL', 'IT']
+export const ctas = { primary: 'Book a demo' }
 export const utilityLinks = ['Search', 'Contact us', 'Log in']
+export const logo = { src: img('cropped-Saasbeds.png'), alt: 'SaaSBeds' }
 
 export const navItems = [
   { label: 'Platform', menu: 'platform' },
@@ -9,7 +12,6 @@ export const navItems = [
   { label: 'Customers' },
   { label: 'Resources', menu: 'resources' },
   { label: 'Pricing' },
-  { label: 'Mews AI' }
 ]
 
 export const platform = {

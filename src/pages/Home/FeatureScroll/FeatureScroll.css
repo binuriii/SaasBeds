@@ -1,0 +1,144 @@
+/* Section padding, container width, h2/h3, .lead, .label, .btn and .reveal come from the global CSS */
+
+.feat { --hdr: clamp(64px, 10vh, 80px); } /* same as the sticky header height */
+
+/* heading: centered */
+.feat__head { text-align: center; margin-bottom: var(--section-gap); }
+.feat__head > * { margin-inline: auto; }
+.feat__head .lead { max-width: 52ch; }
+
+/* layout */
+.feat__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--space-5); align-items: start; }
+.feat__cards { display: grid; gap: var(--space-3); }
+
+/* cards */
+.feat__card {
+  position: relative; display: grid; place-items: center; overflow: hidden;
+  height: clamp(380px, 72vh, 640px);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+}
+.feat__card--lime  { background: var(--color-lime); }
+.feat__card--blue  { background: var(--color-blue-light); }
+.feat__card--pink  { background: var(--color-pink); }
+.feat__card--deep  { background: var(--color-blue-dark); }
+
+/* background photo: soft and out of focus, sharpens slightly when active */
+.feat__bg {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.08);
+  filter: blur(6px) saturate(1.05);
+  transition: transform 1.2s var(--ease), filter 1.2s var(--ease);
+}
+.feat__card.is-active .feat__bg { transform: scale(1); filter: blur(3px) saturate(1.05); }
+
+/* soft shade so the white panel stands out */
+.feat__card:has(.feat__bg)::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, color-mix(in srgb, var(--color-black) 35%, transparent));
+  pointer-events: none;
+}
+
+/* white preview panel: rises into place when its card is active */
+.feat__panel {
+  position: relative; z-index: 1; width: min(100%, 520px);
+  display: grid; gap: var(--space-2); padding: var(--space-3);
+  background: var(--color-white); color: var(--color-black);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-md);
+  opacity: 0.55; transform: translateY(var(--space-4)) scale(0.96);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.feat__card.is-active .feat__panel { opacity: 1; transform: none; }
+
+.feat__eyebrow { color: var(--color-text-muted); }
+.feat__mini { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-1); }
+.feat__minicard {
+  display: grid; gap: 4px; padding: var(--space-1) var(--space-2);
+  background: var(--color-white);
+  border: 1px solid var(--color-border); border-left: 3px solid var(--color-black);
+  border-radius: var(--radius-sm);
+  opacity: 0; transform: translateY(var(--space-1));
+}
+.feat__minicard:nth-child(2) { border-left-color: var(--color-blue-dark); background: var(--color-pink); }
+.feat__minicard strong { font-size: 13px; line-height: 20px; }
+.feat__minicard small, .feat__foot small { font-size: 12px; line-height: 16px; }
+.feat__card.is-active .feat__minicard {
+  opacity: 1; transform: none;
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.feat__card.is-active .feat__minicard:nth-child(1) { transition-delay: 0.25s; }
+.feat__card.is-active .feat__minicard:nth-child(2) { transition-delay: 0.35s; }
+.feat__card.is-active .feat__minicard:nth-child(3) { transition-delay: 0.45s; }
+.feat__card.is-active .feat__minicard:nth-child(4) { transition-delay: 0.55s; }
+
+.feat__foot {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);
+  padding: var(--space-2); background: var(--color-blue-light); border-radius: var(--radius-sm);
+}
+.feat__foot div { display: grid; gap: 2px; }
+.feat__foot strong { font-size: 13px; line-height: 20px; }
+.feat__cta { min-height: 32px; padding-inline: var(--space-2); font-size: 12px; pointer-events: none; }
+
+/* right: sticky list */
+.feat__list { position: sticky; top: calc(var(--hdr) + 8vh); display: grid; gap: var(--space-3); }
+
+.feat__title {
+  display: flex; align-items: baseline; gap: var(--space-3); width: 100%; text-align: left;
+  font-size: clamp(24px, 2.6vw, 40px); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em;
+  color: color-mix(in srgb, var(--color-black) 35%, transparent);
+  transition: color var(--t-base);
+}
+.feat__no { font-weight: 400; min-width: 2ch; }
+.feat__row.is-active .feat__title { color: var(--color-black); }
+.feat__title:hover { color: color-mix(in srgb, var(--color-black) 70%, transparent); }
+
+/* body expands when active */
+.feat__body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.6s var(--ease); }
+.feat__body > div { overflow: hidden; padding-left: calc(2ch + var(--space-3)); }
+.feat__row.is-active .feat__body { grid-template-rows: 1fr; }
+
+.feat__text { margin-top: var(--space-2); opacity: 0; transform: translateY(var(--space-1)); transition: opacity 0.4s var(--ease), transform 0.4s var(--ease); }
+.feat__row.is-active .feat__text { opacity: 1; transform: none; transition-delay: 0.2s; }
+
+.feat__points { margin-top: var(--space-3); }
+.feat__points li {
+  padding-block: var(--space-1); font-size: 16px; line-height: 24px; color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+}
+.feat__points li::before { content: '·'; margin-right: var(--space-1); }
+.feat__points li:last-child { border-bottom: 0; }
+.feat__body .feat__points li { opacity: 0; transform: translateY(var(--space-1)); }
+.feat__row.is-active .feat__points li {
+  opacity: 1; transform: none;
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  transition-delay: calc(0.3s + var(--j) * 0.09s);
+}
+
+/* mobile caption is hidden on desktop */
+.feat__cap { display: none; }
+
+/* tablet */
+@media (max-width: 1024px) {
+  .feat__grid { gap: var(--space-3); }
+  .feat__panel { padding: var(--space-2); }
+}
+
+/* mobile: no sticky list, text under each card */
+@media (max-width: 900px) {
+  .feat__grid { grid-template-columns: 1fr; }
+  .feat__list { display: none; }
+  .feat__cards { gap: var(--space-5); }
+  .feat__card { height: clamp(300px, 70vw, 420px); padding: var(--space-2); }
+  .feat__panel { opacity: 1; transform: none; }
+  .feat__minicard { opacity: 1; transform: none; }
+  .feat__bg { transform: none; filter: blur(3px) saturate(1.05); }
+  .feat__cap { display: grid; gap: var(--space-1); margin-top: var(--space-2); }
+  .feat__cap h3 span { font-weight: 400; margin-right: var(--space-1); }
+  .feat__cap .feat__points { margin-top: var(--space-1); }
+}
+
+/* reduced motion: show the final state */
+@media (prefers-reduced-motion: reduce) {
+  .feat__panel, .feat__minicard, .feat__text, .feat__body .feat__points li { opacity: 1; transform: none; }
+  .feat__bg { transition: none; }
+}

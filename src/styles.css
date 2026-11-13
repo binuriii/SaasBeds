@@ -1,14 +1,15 @@
 
 :root {
   /* brand palette */
-  --color-blue-light: #A4DDED;
-  --color-lime: #E3F988;
-  --color-pink: #F2BDCD;
+  --color-blue-light: #D3F4FF;
+  --color-lime: #EFFD90;
+  --color-pink: #F7E1F6;
   --color-black: #000000;
   --color-blue-dark: #153C94;
-  --color-green-light: #B1F8AC;
+  --color-green-light: #D1F9D6;
   --color-white: #FFFFFF;
   --color-text: #000000;
+  --color-secondary-button: #3B3B3B;
   --color-text-muted: rgba(0, 0, 0, 0.65);
   --color-border: rgba(0, 0, 0, 0.1);
 
@@ -161,55 +162,78 @@ p { max-width: 65ch; }
 .section--dark  { background: var(--color-black); color: var(--color-white); }
 .section--deep  { background: var(--color-blue-dark); color: var(--color-white); }
 
-/* 8. BUTTONS -------------------------------------------------------------- */
-.btn, .btn-primary, .btn-secondary, .btn-outline, .btn-text, .btn-cta, .btn-dark {
+/* 8. BUTTONS (header-style) ----------------------------------------------- */
+.btn, .btn-primary, .btn-outline, .btn-text, .btn-cta, .btn-dark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 44px;
-  padding: 12px clamp(18px, 2vw, 26px);
+  min-height: 40px;
+  padding: 0 clamp(16px, 1.6vw, 24px);
   font-family: var(--font-primary);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 20px;
   letter-spacing: 0.39px;
+  text-transform: uppercase;
   color: var(--color-black);
-  border: 1.5px solid transparent;
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
   white-space: nowrap;
-  transition: background-color var(--t-base), color var(--t-base), border-color var(--t-base),
-              transform var(--t-base), box-shadow var(--t-base);
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
 }
-.btn:hover, .btn-primary:hover, .btn-secondary:hover, .btn-outline:hover,
-.btn-cta:hover, .btn-dark:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.btn:active, .btn-primary:active, .btn-secondary:active, .btn-outline:active,
-.btn-cta:active, .btn-dark:active { transform: translateY(0); box-shadow: none; }
+.btn:hover, .btn-primary:hover, .btn-outline:hover,
+.btn-cta:hover, .btn-dark:hover { transform: translateY(-1px); box-shadow: none; }
+.btn:active, .btn-primary:active, .btn-outline:active,
+.btn-cta:active, .btn-dark:active { transform: translateY(0); }
 .btn svg, .btn img, .btn i { width: 1em; height: 1em; flex: none; }
 
+/* solid brand (same as header "Book a demo") */
+.btn-cta { background: var(--color-blue-dark); color: var(--color-white); }
+.btn-cta:hover { background: #0e2b6b; }
 /* primary: lime */
 .btn-primary, .solid { background: var(--color-lime); color: var(--color-black); }
 .btn-primary:hover, .solid:hover { background: #d6ee6d; }
-/* secondary: soft blue */
-.btn-secondary { background: var(--color-blue-light); }
-.btn-secondary:hover { background: #8fd0e4; }
-/* outline: follows surrounding text colour */
-.btn-outline, .ghost { background: transparent; border-color: currentColor; color: inherit; }
-.btn-outline:hover, .ghost:hover { background: rgba(0, 0, 0, 0.06); }
+
+/* outline / ghost (same as header ghost button) */
+.btn-outline, .ghost { background: var(--color-white); color: var(--color-black); border-color: #cfcfcf; }
+.btn-outline:hover, .ghost:hover { border-color: var(--color-black); background: var(--color-white); }
 /* dark */
 .btn-dark, .dark { background: var(--color-black); color: var(--color-white); }
 .btn-dark:hover, .dark:hover { background: #1a1a1a; }
-/* navigation CTA */
-.btn-cta { background: var(--color-blue-dark); color: var(--color-white); min-height: 40px; }
-.btn-cta:hover { background: #0e2b6b; }
 /* text button / link */
 .btn-text, .more {
   min-height: 0; padding: 0 0 2px; border-radius: 0; border-width: 0 0 1.5px;
-  border-color: currentColor; background: none; color: inherit;
+  border-color: currentColor; background: none; color: inherit; text-transform: none;
   font-size: 13px; font-weight: 700; letter-spacing: 0.39px; line-height: 20px;
   display: inline-flex; align-items: center; gap: 8px; transition: opacity var(--t-fast), gap var(--t-fast);
 }
 .btn-text:hover, .more:hover { opacity: 0.7; gap: 12px; transform: none; box-shadow: none; }
+
+/* secondary button: light blue (standalone) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 clamp(16px, 1.6vw, 24px);
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 20px;
+  letter-spacing: 0.39px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #FFFFFF;
+  background: var(--color-secondary-button);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.btn-secondary:hover { background: #494949; transform: translateY(-1px); }
+.btn-secondary:active { transform: translateY(0); }
+.btn-secondary svg, .btn-secondary img, .btn-secondary i { width: 1em; height: 1em; flex: none; }
 
 /* 9. HEADER --------------------------------------------------------------- */
 .site-header {
@@ -341,4 +365,19 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--c
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
   .js-reveal .reveal { opacity: 1; transform: none; }
+}
+
+/* header CTA: "Book a demo" (use together with .btn) */
+.btn-demo {
+  background: var(--color-blue-dark);
+  color: var(--color-white);
+  min-height: 40px;
+  padding-inline: clamp(16px, 1.6vw, 24px);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.btn-demo:hover {
+  background: #0e2b6b;
+  transform: translateY(-1px);
+  box-shadow: none;
 }
