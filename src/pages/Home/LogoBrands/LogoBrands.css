@@ -60,6 +60,7 @@
   padding-inline: clamp(28px, 4vw, 64px);
 }
 .brands__link { display: flex; align-items: center; border-radius: var(--radius-sm); }
+
 /* each logo sets its own height in the data file (--h, in px) */
 .brands__item img {
   width: auto; max-width: none;
@@ -78,6 +79,15 @@ a.brands__link:hover img, a.brands__link:focus-visible img { opacity: 0.7; }
   color: var(--color-black);
 }
 
+/* facts: one line, centered, under the logos */
+.brands__facts {
+  position: relative; z-index: 1;
+  display: flex; flex-wrap: nowrap; justify-content: center; align-items: center;
+  margin-top: clamp(24px, 4vh, 48px);
+}
+.brands__facts li { font-size: 14px; line-height: 20px; color: var(--color-text-muted); white-space: nowrap; }
+.brands__facts li + li::before { content: "·"; margin-inline: var(--space-2); }
+
 @keyframes brands-scroll { to { transform: translateX(-50%); } }
 
 /* mobile */
@@ -85,6 +95,7 @@ a.brands__link:hover img, a.brands__link:focus-visible img { opacity: 0.7; }
   .brands { --k: 0.75; }
   .brands__inner { grid-template-columns: 1fr; gap: var(--space-3); }
   .brands__text { max-width: 36ch; }
+  .brands__facts { flex-wrap: wrap; row-gap: 4px; }
 }
 
 /* reduced motion: no animation, scroll by hand */
@@ -93,22 +104,3 @@ a.brands__link:hover img, a.brands__link:focus-visible img { opacity: 0.7; }
   .brands__track { animation: none; }
   .brands__item[aria-hidden="true"] { display: none; }
 }
-
-/* stats row: full width, four equal centered columns */
-.brands__stats {
-  position: relative; z-index: 1;
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  width: 100%;
-  margin-top: clamp(24px, 4vh, 48px); padding-block: var(--space-4);
-  border-block: 1px solid var(--color-border);
-}
-.brands__stat {
-  display: grid; justify-items: center; align-content: start; gap: 6px;
-  padding-inline: var(--space-3); text-align: center;
-}
-.brands__stat + .brands__stat { border-left: 1px solid var(--color-border); }
-.brands__stat strong {
-  font-size: clamp(24px, 2.8vw, 40px); font-weight: 700; line-height: 1.1; letter-spacing: -0.5px;
-  color: var(--color-black); white-space: nowrap;
-}
-.brands__stat span { font-size: 15px; line-height: 20px; color: var(--color-text-muted); text-wrap: balance; }

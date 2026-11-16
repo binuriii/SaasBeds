@@ -35,6 +35,13 @@ const loop = [...logos, ...logos]
         </ul>
       </div>
     </div>
+
+    <!-- facts: one line under the logos -->
+    <div class="container">
+      <ul class="brands__facts">
+        <li v-for="s in stats" :key="s.label">{{ s.value }} {{ s.label }}</li>
+      </ul>
+    </div>
   </section>
 </template>
 
