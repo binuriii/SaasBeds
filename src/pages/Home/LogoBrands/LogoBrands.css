@@ -1,0 +1,114 @@
+/* Colors, spacing and easing come from the global tokens.
+   The top of the section is a blurry cloud that fades the hero photo into white. */
+
+.brands {
+  --fade: clamp(160px, 20vw, 300px);          /* height of the cloud fade */
+  --k: 1;                                     /* logo size multiplier (smaller on mobile) */
+  position: relative; z-index: 2;
+  /* pull the section up so the fade covers the bottom of the hero photo */
+  margin-top: calc((var(--fade) + var(--section-padding-bottom)) * -1);
+  padding-top: calc(var(--fade) + clamp(40px, 7vh, 80px));
+  padding-bottom: clamp(40px, 8vh, 96px);
+  color: var(--color-black);
+  /* transparent over the fade, solid white below it */
+  background: linear-gradient(to bottom, transparent var(--fade), var(--color-white) var(--fade));
+}
+
+/* cloud: blurs the photo behind it, more toward the bottom, then fades into white */
+.brands::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: var(--fade); pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 55%, var(--color-white) 100%);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 70%);
+          mask-image: linear-gradient(to bottom, transparent 0%, #000 70%);
+}
+
+.brands__inner {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(220px, 340px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+}
+
+.brands__text {
+  max-width: 24ch;
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-black);
+}
+
+/* viewport clips the track and fades both edges */
+.brands__viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+
+.brands__track {
+  display: flex; align-items: center;
+  width: max-content;
+  animation: brands-scroll var(--dur, 30s) linear infinite;
+  will-change: transform;
+}
+.brands__viewport:hover .brands__track { animation-play-state: paused; }
+
+/* padding (not gap) keeps the -50% loop exact */
+.brands__item {
+  flex: none; display: flex; align-items: center;
+  padding-inline: clamp(28px, 4vw, 64px);
+}
+.brands__link { display: flex; align-items: center; border-radius: var(--radius-sm); }
+/* each logo sets its own height in the data file (--h, in px) */
+.brands__item img {
+  width: auto; max-width: none;
+  height: calc(var(--h, 48) * var(--k) * 1px);
+  object-fit: contain;
+  transition: opacity var(--t-fast);
+}
+a.brands__link:hover img, a.brands__link:focus-visible img { opacity: 0.7; }
+
+/* text wordmark, used when a logo image is not found */
+.brands__word {
+  font-size: clamp(28px, 3.4vw, 48px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-black);
+}
+
+@keyframes brands-scroll { to { transform: translateX(-50%); } }
+
+/* mobile */
+@media (max-width: 768px) {
+  .brands { --k: 0.75; }
+  .brands__inner { grid-template-columns: 1fr; gap: var(--space-3); }
+  .brands__text { max-width: 36ch; }
+}
+
+/* reduced motion: no animation, scroll by hand */
+@media (prefers-reduced-motion: reduce) {
+  .brands__viewport { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .brands__track { animation: none; }
+  .brands__item[aria-hidden="true"] { display: none; }
+}
+
+/* stats row: full width, four equal centered columns */
+.brands__stats {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  margin-top: clamp(24px, 4vh, 48px); padding-block: var(--space-4);
+  border-block: 1px solid var(--color-border);
+}
+.brands__stat {
+  display: grid; justify-items: center; align-content: start; gap: 6px;
+  padding-inline: var(--space-3); text-align: center;
+}
+.brands__stat + .brands__stat { border-left: 1px solid var(--color-border); }
+.brands__stat strong {
+  font-size: clamp(24px, 2.8vw, 40px); font-weight: 700; line-height: 1.1; letter-spacing: -0.5px;
+  color: var(--color-black); white-space: nowrap;
+}
+.brands__stat span { font-size: 15px; line-height: 20px; color: var(--color-text-muted); text-wrap: balance; }

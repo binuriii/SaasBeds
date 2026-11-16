@@ -9,11 +9,13 @@ import HeroSection from './HeroSection/HeroSection.vue'
 import SolutionTabs from './SolutionTabs/SolutionTabs.vue'
 import BrandOrbit from './BrandOrbit/BrandOrbit.vue'
 import FeatureScroll from './FeatureScroll/FeatureScroll.vue'
+import LogoBrands from './LogoBrands/LogoBrands.vue'
 onMounted(() => { document.title = homeMeta.title })
 </script>
 <template>
   <div class="home">
     <HeroSection/>
+    <LogoBrands/>
     <ProductCards />
     <FeatureScroll/>
     <ImpactStats />
