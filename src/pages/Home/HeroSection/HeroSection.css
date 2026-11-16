@@ -1,4 +1,4 @@
-.hero { padding-top: 8.5vh; text-align: center; }
+.hero { padding-top: 6.5vh; text-align: center; }
 .hero .stack > * { margin-inline: auto; }
 .hero__title { max-width: 18ch; } /* size/weight/leading come from global h1 */
 .hero__actions { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-2); }
@@ -134,3 +134,30 @@
   .dnav__search { max-width: none; }
   .cursor { display: none; }
 }
+/* channel logos: overlapping circles that hop one by one */
+.channels { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: var(--space-3); }
+.channels__list { display: flex; align-items: center; padding: var(--space-1) 0; }
+.channels__logo {
+  display: grid; place-items: center; flex: none;
+  width: 45px; height: 45px; overflow: hidden;
+  background: var(--color-white); border: 1px solid var(--color-border); border-radius: 50%;
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.2);
+  animation: hop 4s var(--ease) infinite; animation-delay: calc(var(--i) * 0.45s);
+}
+.channels__logo + .channels__logo { margin-left: -10px; }
+.channels__logo:nth-child(1) { z-index: 4; }
+.channels__logo:nth-child(2) { z-index: 3; }
+.channels__logo:nth-child(3) { z-index: 2; }
+.channels__logo:nth-child(4) { z-index: 1; }
+/* same box for every logo; --scale evens out different amounts of padding in the files */
+.channels__logo img {
+  width: 34px; height: 34px; object-fit: contain;
+  transform: scale(var(--scale, 1));
+}
+.channels__fallback { font-size: 20px; font-weight: 900; color: var(--color-blue-dark); }
+.channels__text { max-width: none; font-size: 16px; line-height: 24px; color: var(--color-text-muted); }
+
+@keyframes hop { 0%, 22%, 100% { transform: none; } 11% { transform: translateY(-8px); } }
+
+@media (max-width: 480px) { .channels { flex-direction: column; gap: var(--space-1); } }
+@media (prefers-reduced-motion: reduce) { .channels__logo { animation: none; } }
