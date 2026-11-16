@@ -18,10 +18,11 @@ onMounted(() => { document.title = homeMeta.title })
     <HeroSection/>
     <ProductCards />
     <FeatureScroll/>
+    <SwitchingToSaasBeds />
     <ImpactStats />
     <SolutionTabs/>
-    <DashboardPreview />
-    <SwitchingToSaasBeds />
+    <!-- <DashboardPreview /> -->
+  
     <FAQ />
     
   </div>

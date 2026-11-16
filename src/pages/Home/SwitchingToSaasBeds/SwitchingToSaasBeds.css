@@ -5,7 +5,7 @@
   width:min(calc(100% - (var(--swx-gutter) * 2)),var(--swx-w));
   max-width:var(--swx-w);
   margin-inline:auto;
-  background:transparent;color:var(--swx-ink);font-family:inherit;overflow-x:clip}
+  background:transparent;color:var(--swx-ink);  font-family: var(--font-primary);overflow-x:clip}
 
 /* ---------- layout: pinned runway (desktop) ---------- */
 .swx-runway{position:relative}
