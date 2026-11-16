@@ -119,7 +119,7 @@ export const UiIcon = (props) =>
   }, [h('path', { d: ICONS[props.name] })])
 UiIcon.props = { name: { type: String, required: true }, size: { type: Number, default: 16 } }
 
-export const channelsText = 'Connected to the channels your guests book on.'
+export const channelsText = '" Connected to the channels your guests book on. "'
 
 // Local logo files: put them in the `logos` folder next to this file
 // (src/pages/Home/HeroSection/logos), or in src/assets/header

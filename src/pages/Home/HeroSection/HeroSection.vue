@@ -54,7 +54,7 @@ const cursor = computed(() => ({
           </ul>
           <p class="channels__text">{{ channelsText }}</p>
         </div>
-        <h1 class="hero__title">One console to run your entire property</h1>
+        <h1 class="hero__title">One Console to Run Your Entire Property</h1>
         <p class="lead">
           Built and supported in Sri Lanka for hotels, resorts, villas and boutique properties.
         </p>
