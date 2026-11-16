@@ -53,10 +53,12 @@
   background: var(--color-pink);
   border: 1px solid var(--color-border); border-left: 3px solid var(--color-black);
   border-radius: var(--radius-sm);
-  font-weight: 700; white-space: nowrap; overflow: hidden;
+  font-weight: 700; overflow: hidden;
   /* bookings stretch out from the left, row by row */
   transform: scaleX(0); transform-origin: left; opacity: 0;
 }
+.pc__row b span, .pc__row b small { display: block; }
+.pc__row b small { font-weight: 400; color: var(--color-text-muted); }
 .pc.is-in .pc__row b {
   animation: pc-stretch 0.8s var(--ease) forwards;
   animation-delay: calc(1.1s + var(--r) * 0.18s);
@@ -66,7 +68,7 @@
 .pc__phone {
   margin-top: auto; align-self: center; margin-bottom: calc(var(--pad) * -1);
   width: min(70%, calc(var(--space-5) * 6));
-  height: clamp(200px, 34vh, 300px);
+  min-height: clamp(200px, 34vh, 300px);
   display: grid; align-content: start; gap: var(--space-2);
   padding: var(--space-3) var(--space-2);
   background: var(--color-white); color: var(--color-black);

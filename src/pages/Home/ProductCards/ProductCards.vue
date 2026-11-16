@@ -37,17 +37,19 @@ onBeforeUnmount(() => io && io.disconnect())
       <!-- cards -->
       <div class="pc__grid">
         <article class="pc__card pc__card--sky" style="--c: 0">
-          <span class="badge pc__badge pc__in" style="--i: 0">Front desk</span>
-          <h3 class="pc__in" style="--i: 1">Run your property your way</h3>
+          <span class="badge pc__badge pc__in" style="--i: 0">See What inside SaaSBeds</span>
+          <h3 class="pc__in" style="--i: 1">More than a PMS and <br> channel manager</h3>
           <p class="lead pc__in" style="--i: 2">
-            Simplify everything from booking to check-out with a cloud-based system designed for daily hotel operations.
+            SaaSBeds adds what regional properties actually run on.
           </p>
-          <a href="#" class="more pc__in" style="--i: 3">Explore front desk →</a>
 
           <div class="pc__cal" aria-hidden="true">
             <div v-for="(r, i) in rooms" :key="r.no" class="pc__row">
               <em>{{ r.no }}</em>
-              <b :style="{ gridColumn: `${r.start + 1} / span ${r.span}`, '--r': i }">{{ r.name }}</b>
+              <b :style="{ gridColumn: `${r.start + 1} / span ${r.span}`, '--r': i }">
+                <span>{{ r.name }}</span>
+                <small>{{ r.text }}</small>
+              </b>
             </div>
           </div>
         </article>
@@ -58,14 +60,13 @@ onBeforeUnmount(() => io && io.disconnect())
           <p class="lead pc__in" style="--i: 2">
             A fast booking widget for your own website, with live availability and no commission.
           </p>
-          <a href="#" class="more pc__in" style="--i: 3">Explore booking engine →</a>
 
           <div class="pc__phone" aria-hidden="true">
             <div v-for="(s, i) in stays" :key="s.name" class="pc__stay" :style="{ '--s': i }">
               <strong>{{ s.name }}</strong>
               <small class="text-muted">{{ s.meta }}</small>
             </div>
-            <span class="btn btn-cta pc__book">Book now</span>
+            <span class="btn btn-cta pc__book">See all features</span>
           </div>
         </article>
       </div>
