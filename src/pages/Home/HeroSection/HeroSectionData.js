@@ -118,3 +118,25 @@ export const UiIcon = (props) =>
     stroke: 'currentColor', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true',
   }, [h('path', { d: ICONS[props.name] })])
 UiIcon.props = { name: { type: String, required: true }, size: { type: Number, default: 16 } }
+
+export const channelsText = '" Connected to the channels your guests book on. "'
+
+// Local logo files: put them in the `logos` folder next to this file
+// (src/pages/Home/HeroSection/logos), or in src/assets/header
+const local = {
+  ...import.meta.glob('../../../assets/logos/*.{png,jpg,jpeg,webp,avif,svg}', { eager: true, query: '?url', import: 'default' }),
+  ...import.meta.glob('../../../assets/header/*.{png,jpg,jpeg,webp,avif,svg}', { eager: true, query: '?url', import: 'default' }),
+}
+
+// matches by file name, so it does not matter which of the two folders the file is in
+const resolveImage = (name) => {
+  const key = Object.keys(local).find((k) => k.split('/').pop() === name)
+  return key ? local[key] : ''
+}
+
+export const channels = [
+  { name: 'Booking.com', src: resolveImage('booking.png'),    scale: 0.9 },
+  { name: 'Agoda',       src: resolveImage('agoda.png.webp'), scale: 1 },
+  { name: 'Expedia',     src: resolveImage('expedia.jpg'),    scale: 1.7 },
+  { name: 'Airbnb',      src: resolveImage('airbnb.png'),     scale: 0.8},
+]

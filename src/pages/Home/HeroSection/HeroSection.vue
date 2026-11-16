@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import {
   UiIcon, useTimeline, POOL_IMAGE, GUEST_PHOTO, brand, searchPlaceholder, searchTyped, cursorPath,
   dates, groups, reservations, newReservation, reservation as r,
+  channelsText, channels,
 } from './HeroSectionData.js'
 
 /* calendar layout */
@@ -45,13 +46,21 @@ const cursor = computed(() => ({
   <section class="section hero">
     <div class="container">
       <div class="stack">
-        <h1 class="hero__title">Simple, yet Powerful Hotel Booking</h1>
+        <div class="channels">
+          <ul class="channels__list">
+            <li v-for="(c, i) in channels" :key="c.name" class="channels__logo" :style="{ '--i': i, '--scale': c.scale || 1 }">
+              <img :src="c.src" :alt="c.name" loading="lazy" />
+            </li>
+          </ul>
+          <p class="channels__text">{{ channelsText }}</p>
+        </div>
+        <h1 class="hero__title">One Console to Run Your Entire Property</h1>
         <p class="lead">
-          Streamline operations, increase revenue and elevate every guest experience with one powerful hotel PMS platform.
+          Built and supported in Sri Lanka for hotels, resorts, villas and boutique properties.
         </p>
         <div class="hero__actions">
           <a href="#demo" class="btn btn-cta">Book a demo</a>
-          <a href="#demo-video" class="btn-secondary">See it in action</a>
+          <a href="#demo-video" class="btn-secondary">See pricing</a>
         </div>
       </div>
 

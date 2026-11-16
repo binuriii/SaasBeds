@@ -16,6 +16,7 @@ onMounted(() => { document.title = homeMeta.title })
 <template>
   <div class="home">
     <HeroSection/>
+    <LogoBrands/>
     <ProductCards />
     <FeatureScroll/>
     <SwitchingToSaasBeds />
