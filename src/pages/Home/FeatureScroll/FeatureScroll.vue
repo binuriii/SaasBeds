@@ -54,7 +54,6 @@ const goTo = (i) => cards[i] && cards[i].scrollIntoView({ behavior: 'smooth', bl
                     <strong>{{ f.mock.foot }}</strong>
                     <small class="text-muted">{{ f.mock.meta }}</small>
                   </div>
-                  <span class="btn btn-outline feat__cta">{{ f.mock.cta }}</span>
                 </div>
               </div>
             </article>

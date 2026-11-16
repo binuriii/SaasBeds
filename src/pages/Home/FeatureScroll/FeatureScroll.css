@@ -50,7 +50,6 @@
 }
 .feat__card.is-active .feat__panel { opacity: 1; transform: none; }
 
-.feat__eyebrow { color: var(--color-text-muted); }
 .feat__mini { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-1); }
 .feat__minicard {
   display: grid; gap: 4px; padding: var(--space-1) var(--space-2);

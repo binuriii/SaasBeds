@@ -29,7 +29,7 @@ const brands = [
   { name: 'Coco Bay',           image: 'cocobay_logo.png',        href: '', h: 40 },
   { name: 'House of Sincerity', image: 'house_of_sincerity.webp', href: '', h: 50 },
   { name: 'Grand Kandyan',      image: 'grand_kandyan.png',       href: '', h: 65 },
-  { name: 'Villa Albino',       image: 'Villa_Albino.png',        href: '', h: 70 },
+  { name: 'Villa Albino',       image: 'Villa-Albino-Logo.png',        href: '', h: 70 },
   { name: 'Sigiri Vananthara',  image: 'Sigiri_Vananthara.png',   href: '', h: 55 },
   { name: 'Square 380',         image: 'Square_380.webp',         href: '', h: 60 },
   { name: 'Tree of Life',       image: 'tree_of_life.png',        href: '', h: 50 },
