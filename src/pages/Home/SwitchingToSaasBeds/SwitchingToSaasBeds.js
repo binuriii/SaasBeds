@@ -1,33 +1,49 @@
-// ===== content for the "Switching to SaaSBeds" section (edit text here) =====
+
+const base = import.meta.env.BASE_URL
+
+const asset = (path) => `${base}${path}`
 
 export const switching = {
-  eyebrow: 'Switching to SaaSBeds booking software',
-  title: 'Switching has\nnever been easier',
-  description: 'Get up and running, fast. Whether you’re onboarding new hires or training existing staff, your people can train to use our booking software in no time.',
+  eyebrow: 'SWITCH TO SAASBEDS',
+
+  title: 'A smoother switch\nto smarter hotel management',
+
+  description:
+    'Move your rooms, rates, future bookings and tour operator details to SaaSBeds. Keep your existing system running alongside the new platform until you are ready to go live.',
+
   hint: 'Scroll to see how it works',
   features: [
-    'Self-paced online training, e-learning modules and support resources with SaaSBeds Academy',
-    'Easy onboarding for staff (minimal training needed)'
+    'Review and configure your existing setup',
+
+    'Import rooms, rates and future bookings',
+
+    'Keep your existing OTA listings',
+
+    'Staff training and local support included'
   ]
 }
 
-
 export const steps = [
-  { stage: 'split', at: 14 },  
-  { stage: 'ui', at: 34 },     
-  { stage: 'stats', at: 54 },  
-  { stage: 'video', at: 74 }    
+  { stage: 'split', at: 14 },
+  { stage: 'ui', at: 34 },
+  { stage: 'stats', at: 54 },
+  { stage: 'video', at: 74 }
 ]
-
 
 export const calendar = {
   brand: 'SAASBEDS',
-  search: 'Search within Central Inn',
+
+  search: 'Search bookings and guests',
+
   today: 'Today',
   selectDate: 'Select date',
-  selectSpace: 'Select space',
-  optimize: 'Optimize space a…',
+
+  selectSpace: 'Select room',
+
+  optimize: 'Optimize room availability',
+
   highlight: 2,
+
   days: [
     { dow: 'Wed', date: 'Oct 3' },
     { dow: 'Thu', date: 'Oct 4' },
@@ -55,20 +71,87 @@ export const calendar = {
     { no: '111', tone: 'green' }
   ],
   bookings: [
-    { row: 1, from: 0.05, to: 3.85, name: 'Maxwell Carter', lock: true, icons: ['loop', 'people', 'access'] },
-    { row: 1, from: 4.1, to: 7, name: 'Sophia Turner', lock: false },
-    { row: 2, from: 3.05, to: 3.95, name: 'Ethan Davis' },
-    { row: 3, from: 0.05, to: 1.9, name: '', icons: ['loop', 'people'] },
-    { row: 4, from: 1.05, to: 2.9, name: 'Olivia Bennett', lock: true, icons: ['target', 'loop', 'people'] },
-    { row: 4, from: 3.05, to: 7, name: 'Isabella Hughes', lock: true },
-    { row: 7, from: 0.05, to: 7, name: 'Out of order - Bathroom renovations', blocked: true },
-    { row: 9, from: 1.05, to: 1.9, name: 'Liam Johnson' },
-    { row: 9, from: 2.0, to: 5.5, name: 'Ava Martinez', lock: true, icons: ['loop', 'people'] },
-    { row: 10, from: 0.05, to: 2.9, name: '', icons: ['loop', 'people', 'access'] }
+    {
+      row: 1,
+      from: 0.05,
+      to: 3.85,
+      name: 'Maxwell Carter',
+      lock: true,
+      icons: ['loop', 'people', 'access']
+    },
+    {
+      row: 1,
+      from: 4.1,
+      to: 7,
+      name: 'Sophia Turner',
+      lock: false
+    },
+    {
+      row: 2,
+      from: 3.05,
+      to: 3.95,
+      name: 'Ethan Davis'
+    },
+    {
+      row: 3,
+      from: 0.05,
+      to: 1.9,
+      name: '',
+      icons: ['loop', 'people']
+    },
+    {
+      row: 4,
+      from: 1.05,
+      to: 2.9,
+      name: 'Olivia Bennett',
+      lock: true,
+      icons: ['target', 'loop', 'people']
+    },
+    {
+      row: 4,
+      from: 3.05,
+      to: 7,
+      name: 'Isabella Hughes',
+      lock: true
+    },
+    {
+      row: 7,
+      from: 0.05,
+      to: 7,
+      name: 'Out of order - Bathroom renovations',
+      blocked: true
+    },
+    {
+      row: 9,
+      from: 1.05,
+      to: 1.9,
+      name: 'Liam Johnson'
+    },
+    {
+      row: 9,
+      from: 2.0,
+      to: 5.5,
+      name: 'Ava Martinez',
+      lock: true,
+      icons: ['loop', 'people']
+    },
+    {
+      row: 10,
+      from: 0.05,
+      to: 2.9,
+      name: '',
+      icons: ['loop', 'people', 'access']
+    }
   ]
 }
 
 export const video = {
-  label: 'Hotel receptionist smiling and talking to a guest',
-  image: 'https://images.unsplash.com/photo-1713207458740-e59c368eba6e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D'
+  label: 'Hotel receptionist welcoming a guest',
+
+  image:
+    'src/assets/header/resources-article.png',
+
+  src: asset('videos/switching-training.mp4'),
+
+  poster: asset('videos/switching-poster.jpg')
 }

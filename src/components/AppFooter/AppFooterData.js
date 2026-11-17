@@ -1,57 +1,107 @@
-// All footer text lives here (copied 1:1 from the Saasbeds footer).
-export const brandName = 'Saasbeds'
-
+export const brandName = 'SaaSBeds'
 
 export const banner = {
- title: 'A smarter way to grow your business online.',
- primary: { label: 'Get a Demo', href: '#demo' },
- secondary: { label: 'Get Started', href: '#contact' }
+  title: 'A smarter way to grow your business online.',
+  primary: { label: 'Book a Demo', href: '/book-a-demo/' },
+  secondary: { label: 'See Pricing', href: '/pricing/' }
 }
 
+const link = (label, href, badge = '') => ({ label, href, badge })
 
-const L = (label, href = '#', badge) => ({ label, href, badge })
-
-
+// Keep four feature columns on desktop; they become two or one on smaller screens.
 export const featureGroups = [
- { title: 'Grow online discovery', items: [L('Restaurant Website'), L('Restaurant SEO'), L('Online Menu'), L('Reviews Engine', '#', 'Coming Soon'), L('Listings Management')] },
- { title: 'Grow repeat orders', items: [L('Point of Sale'), L('Branded Restaurant App', '#', 'Coming Soon'), L('Marketing Campaigns'), L('Push Notifications Marketing'), L('Loyalty & Rewards')] },
- { title: 'Grow online sales', items: [L('Online Ordering'), L('Smart Upsells'), L('Delivery'), L('Catering'), L('AI Phone Ordering', '#', 'Coming Soon')] },
- { title: 'Run your restaurant', items: [L('Reporting & Analytics'), L('Kitchen Tablet'), L('POS Integrations'), L('Delivery App', '#', 'Coming Soon')] }
+  {
+    title: 'Hotel operations',
+    items: [
+      link('Property Management System', '/features/hotel-property-management-system/'),
+      link('Housekeeping', '/features/hotel-housekeeping-software/'),
+      link('Night Audit', '/features/hotel-night-audit/'),
+      link('Inventory & Procurement', '/features/hotel-inventory-procurement/'),
+      link('Restaurant POS', '/features/restaurant-pos/'),
+      link('HRM', '/features/hotel-hrm-software/'),
+      link('Mobile App for Hoteliers', '/features/hotel-management-app/')
+    ]
+  },
+  {
+    title: 'Distribution & bookings',
+    items: [
+      link('Channel Manager', '/features/hotel-channel-manager/'),
+      link('Booking Engine', '/features/hotel-booking-engine/'),
+      link('Free Hotel Website', '/features/hotel-website-builder/'),
+      link('Tour Operator Panel', '/features/tour-operator-management/'),
+      link('Integrations & OTAs', '/integrations/')
+    ]
+  },
+  {
+    title: 'Revenue & guests',
+    items: [
+      link('Rate Manager, Packages & Offers', '/features/hotel-rate-management/'),
+      link('Guest Engagement', '/features/guest-engagement/'),
+      link('Payments', '/features/hotel-payment-gateway/'),
+      link('Reports & Analytics', '/features/hotel-reports-analytics/'),
+      link('Hotel PBX Phone System', '/features/hotel-pbx-phone-system/')
+    ]
+  },
+  {
+    title: 'AI & hotel solutions',
+    items: [
+      link('AI Agents Overview', '/ai/'),
+      link('AI Receptionist', '/features/ai-receptionist/'),
+      link('AI Front Desk Manager', '/features/ai-front-desk-manager/'),
+      link('Hotels', '/solutions/hotels/'),
+      link('Resorts', '/solutions/resorts/'),
+      link('Villas', '/solutions/villas/'),
+      link('Multi-Property Groups', '/solutions/multi-property/')
+    ]
+  }
 ]
 
-
+// Secondary footer row: overview links, property types, company and direct contact.
 export const products = [
- { id: 'ecommerce', title: 'E-commerce Solutions', href: '#' },
- { id: 'food', title: 'Food Ordering Systems', href: '#' }
+  { id: 'platform', title: 'Platform Overview', href: '/platform/' },
+  { id: 'features', title: 'All Features', href: '/features/' },
+  { id: 'pricing', title: 'Pricing', href: '/pricing/' },
+  { id: 'resources', title: 'Resources Overview', href: '/resources/' },
+  { id: 'blog', title: 'Blog', href: '/blog/' },
+  { id: 'guides', title: 'Guides & eBooks', href: '/guides/' }
 ]
-
 
 export const corporateSolutions = [
- { id: 'mv-ecommerce', title: 'Multivendor E-Commerce Portal', href: '#' },
- { id: 'mv-food', title: 'Multivendor Food Portal', href: '#' }
+  { id: 'boutique', title: 'Boutique Hotels', href: '/solutions/boutique-hotels/' },
+  { id: 'guest-houses', title: 'Guest Houses & B&Bs', href: '/solutions/guest-houses/' },
+  { id: 'apartments', title: 'Serviced Apartments', href: '/solutions/serviced-apartments/' },
+  { id: 'rentals', title: 'Vacation Rentals', href: '/solutions/vacation-rentals/' },
+  { id: 'switching', title: 'Switching to SaaSBeds', href: '/solutions/switch-hotel-software/' },
+  { id: 'onboarding', title: 'Onboarding & Training', href: '/onboarding/' }
 ]
-
 
 export const companyLinks = [
- { label: 'Home', href: '/' },
- { label: 'Clients', href: '#clients' },
- { label: 'About', href: '#about' },
- { label: 'Pricing', href: '#pricing' },
- { label: 'Contact', href: '#contact' }
+  link('About Us', '/about-us/'),
+  link('Customer Stories', '/customers/'),
+  link('Partners & Resellers', '/partners/'),
+  link('Careers', '/careers/'),
+  link('News & Press', '/news/'),
+  link('Security & Data Privacy', '/security/')
 ]
-
 
 export const contactLinks = [
- { label: 'Get a Demo', href: '#demo' },
- { label: 'Contact Us', href: '#contact' },
- { label: 'View Pricing', href: '#pricing' }
+  link('Book a Demo', '/book-a-demo/'),
+  link('Contact Us', '/contact-us/'),
+  link('Help Centre', 'https://help.saasbeds.com'),
+  link('FAQs', '/faq/'),
+  link('Call 0112 000 562', 'tel:+94112000562')
 ]
-export const contactDescription = 'Find the right solution for your next stage of growth.'
 
+export const contactDescription =
+  'Built and supported in Sri Lanka. Colombo 07, Sri Lanka · Bethlehem, Pennsylvania, USA.'
 
 export const legalLinks = [
- { label: 'Privacy Policy', href: '#privacy' },
- { label: 'Terms of Service', href: '#terms' },
- { label: 'Cookies', href: '#cookies' }
+  link('Privacy Policy', '/privacy-policy/'),
+  link('Terms of Service', '/terms/'),
+  link('Cookie Policy', '/cookie-policy/'),
+  link('Refund Policy', '/refund-policy/'),
+  link('Security', '/security/'),
+  link('Sitemap', '/sitemap/')
 ]
 
+export const footerCredit = 'Built and supported in Sri Lanka'
