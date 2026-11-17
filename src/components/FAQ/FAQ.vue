@@ -1,7 +1,5 @@
-
 <script setup>
-import { computed, ref } from 'vue'
-import './FAQ.css'
+import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import { getFaqContent } from './FAQ.js'
 
 const props = defineProps({
@@ -26,102 +24,102 @@ const props = defineProps({
   }
 })
 
-const openId = ref(null)
-
 const faqContent = computed(() => getFaqContent(props.pageKey))
+const faqTitle = computed(() => props.title || faqContent.value.title)
+const faqDescription = computed(() => props.description || faqContent.value.description)
+const faqItems = computed(() => (props.items.length ? props.items : faqContent.value.items))
 
-const faqTitle = computed(() => {
-  return props.title || faqContent.value.title
-})
+/* the first question is open by default */
+const openId = ref(faqItems.value[0]?.id ?? null)
 
-const faqDescription = computed(() => {
-  return props.description || faqContent.value.description
-})
-
-const faqItems = computed(() => {
-  return props.items.length ? props.items : faqContent.value.items
+/* if the page or the items change, open the first question again */
+watch(faqItems, (items) => {
+  openId.value = items[0]?.id ?? null
 })
 
 const columns = computed(() => {
   const middle = Math.ceil(faqItems.value.length / 2)
-
-  return [
-    faqItems.value.slice(0, middle),
-    faqItems.value.slice(middle)
-  ]
+  return [faqItems.value.slice(0, middle), faqItems.value.slice(middle)]
 })
 
 const toggleFaq = (id) => {
   openId.value = openId.value === id ? null : id
 }
+
+/* questions fade up when the section scrolls into view */
+const root = ref(null)
+const entered = ref(false)
+let io = null
+
+onMounted(() => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    entered.value = true
+    return
+  }
+  io = new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) {
+      entered.value = true
+      io.disconnect()
+    }
+  }, { threshold: 0.15 })
+  io.observe(root.value)
+})
+
+onBeforeUnmount(() => io && io.disconnect())
 </script>
 
 <template>
-  <section class="faq" aria-labelledby="faq-title">
-    <div class="faq-box">
-
-      <!-- FAQ HEADING -->
-      <div class="faq-intro">
-        <h2 id="faq-title" class="faq-title">
-          {{ faqTitle }}
-        </h2>
-
-        <p class="faq-lead">
-          {{ faqDescription }}
-        </p>
+  <section id="faq" ref="root" class="section faq" :class="{ 'is-in': entered }" aria-labelledby="faq-title">
+    <div class="container">
+      <!-- heading (centered) -->
+      <div class="faq__head stack reveal">
+        <h2 id="faq-title">{{ faqTitle }}</h2>
+        <p class="lead text-muted">{{ faqDescription }}</p>
       </div>
 
-      <!-- FAQ QUESTIONS -->
-      <div class="faq-list">
-
-        <div
-          v-for="(column, columnIndex) in columns"
-          :key="columnIndex"
-          class="faq-column"
-        >
+      <div class="faq__list">
+        <div v-for="(column, columnIndex) in columns" :key="columnIndex" class="faq__column">
           <article
-            v-for="item in column"
+            v-for="(item, i) in column"
             :key="item.id"
-            class="faq-item"
+            class="faq__item"
             :class="{ 'is-open': openId === item.id }"
+            :style="{ '--i': i + columnIndex }"
           >
-
-            <!-- QUESTION -->
-            <h3 class="faq-q">
+            <!-- question -->
+            <h3 class="faq__q">
               <button
-                class="faq-btn"
+                class="faq__btn"
                 type="button"
                 :aria-expanded="openId === item.id"
                 :aria-controls="`faq-panel-${item.id}`"
                 @click="toggleFaq(item.id)"
               >
-                <span class="faq-question-text">
-                  {{ item.question }}
-                </span>
+                <span class="faq__question">{{ item.question }}</span>
 
-                <span class="faq-icon" aria-hidden="true">
-                  <span class="faq-plus">+</span>
-                  <span class="faq-close">×</span>
+                <span class="faq__icon" aria-hidden="true">
+                  <span class="faq__plus">+</span>
+                  <span class="faq__close">×</span>
                 </span>
               </button>
             </h3>
 
-            <!-- ANSWER -->
+            <!-- answer -->
             <div
               :id="`faq-panel-${item.id}`"
-              class="faq-a"
+              class="faq__a"
               :aria-hidden="openId !== item.id"
               :inert="openId !== item.id"
             >
-              <div class="faq-a-inner">
+              <div class="faq__a-inner">
                 <p>{{ item.answer }}</p>
               </div>
             </div>
-
           </article>
         </div>
-
       </div>
     </div>
   </section>
 </template>
+
+<style scoped src="./FAQ.css"></style>
