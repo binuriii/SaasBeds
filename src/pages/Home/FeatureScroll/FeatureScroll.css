@@ -83,7 +83,7 @@
 
 .feat__title {
   display: flex; align-items: baseline; gap: var(--space-3); width: 100%; text-align: left;
-  font-size: clamp(24px, 2.6vw, 40px); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em;
+  font-size: clamp(24px, 2.6vw, 40px); font-weight: 550; line-height: 1.1; letter-spacing: -0.03em;
   color: color-mix(in srgb, var(--color-black) 35%, transparent);
   transition: color var(--t-base);
 }
