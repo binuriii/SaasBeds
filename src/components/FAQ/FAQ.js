@@ -1,43 +1,57 @@
-
 export const faqData = {
   home: {
     title: 'Frequently Asked Questions',
-    description: 'Everything you need to know about SaasBeds.',
+    description: 'Everything you need to know about SaaSBeds.',
     items: [
       {
         id: 'home-1',
-        question: 'What is SaasBeds?',
-        answer: 'SaasBeds is an all-in-one accommodation management platform designed to simplify property operations, manage bookings, and improve the guest experience.'
+        question: 'What is SaaSBeds?',
+        answer: 'SaaSBeds is a cloud hotel management platform that runs the front desk, rates, OTA distribution, tour operators, housekeeping, restaurant, procurement, HR and reporting from one admin console, with every money figure in LKR and USD.'
       },
       {
         id: 'home-2',
-        question: 'Who can use SaasBeds?',
-        answer: 'SaasBeds is designed for hotels, resorts, guesthouses, serviced apartments, vacation rentals, and other accommodation providers.'
+        question: 'Which OTAs does SaaSBeds connect to?',
+        answer: 'The channel manager connects to channels including Booking.com, Agoda, Expedia and Airbnb [confirm full list]. OTA prices are managed day by day in a separate CM Rate table, and OTA bookings arrive in their own register.'
       },
       {
         id: 'home-3',
-        question: 'Can I manage multiple properties?',
-        answer: 'Yes. You can manage multiple properties from one centralized platform, making it easier to oversee reservations, availability, and daily operations.'
+        question: 'Can I manage more than one property?',
+        answer: 'Yes. One login covers every property in a group. A property switcher in the header moves between hotels, and a Super Admin view sits above them.'
       },
       {
         id: 'home-4',
-        question: 'Can guests book directly?',
-        answer: 'Yes. SaasBeds supports direct booking experiences that allow guests to explore available rooms and make reservations through your website.'
+        question: 'Do I get a website?',
+        answer: 'Yes. A hotel website with the booking engine built in is included and managed from the console, including FAQs, reviews and themes.'
       },
       {
         id: 'home-5',
-        question: 'Can I manage reservations in one place?',
-        answer: 'Yes. You can organize reservations, monitor booking details, and manage your property availability through a centralized dashboard.'
+        question: 'Where is SaaSBeds based?',
+        answer: 'SaaSBeds is built and supported in Sri Lanka by Sepova (Pvt) Ltd, 207/09 Dharmapala Mawatha, Colombo 07, with Sepova LLC in Bethlehem, Pennsylvania, USA.'
       },
       {
         id: 'home-6',
-        question: 'Does SaasBeds support online payments?',
-        answer: 'SaasBeds can support online payment workflows through supported payment integrations. Available payment methods depend on your configuration.'
+        question: 'What is the best hotel management software in Sri Lanka?',
+        answer: 'The best system is one that fits how your property sells. SaaSBeds is built and supported in Sri Lanka and covers what local hotels need: tour operator business, separate direct and OTA rates, LKR and USD pricing, restaurant POS and HR, with support from Colombo.'
       },
       {
         id: 'home-7',
-        question: 'Can I access SaasBeds from anywhere?',
-        answer: 'Yes. You can access your platform through supported web browsers, allowing you to manage your accommodation business from different locations.'
+        question: 'How much does hotel management software cost?',
+        answer: 'SaaSBeds pricing depends on the package and number of rooms, billed monthly or annually. The calculator on the Pricing page shows the price for your property.'
+      },
+      {
+        id: 'home-8',
+        question: 'What is the difference between a PMS and a channel manager?',
+        answer: 'A PMS runs operations inside the hotel: bookings, check-in, rooms and billing. A channel manager sends rates and availability to OTAs and brings their bookings back. SaaSBeds includes both in one console.'
+      },
+      {
+        id: 'home-9',
+        question: 'Is SaaSBeds cloud-based?',
+        answer: 'Yes. It runs in the browser with nothing to install, and there is a mobile app for iPhone and Android.'
+      },
+      {
+        id: 'home-10',
+        question: 'How long does it take to set up SaaSBeds?',
+        answer: '[X] days for most properties. The team configures rooms, rates, tour operators and channels, imports existing bookings and trains your staff.'
       }
     ]
   },

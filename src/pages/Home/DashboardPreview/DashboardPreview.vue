@@ -1,78 +1,32 @@
 <script setup>
-import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
-import { dashboardHeading, intro, sidebar, tabs, days } from './DashboardPreview.js'
-
-const names = Object.keys(tabs)
-const active = ref(names[0])
-const data = computed(() => tabs[active.value])
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { dashboardHeading, mobileApp, support } from './DashboardPreview.js'
 
 const root = ref(null)
 const entered = ref(false)
-const nums = ref(data.value.stats.map(() => 0))
-
-const fmt = (s, n) => `${s.prefix || ''}${Math.round(n).toLocaleString('en-US')}${s.suffix || ''}`
-
-/* count-up */
-let raf = 0
-function count() {
-  cancelAnimationFrame(raf)
-  const stats = data.value.stats
-  const t0 = performance.now()
-  const dur = 900
-  const tick = (t) => {
-    const p = Math.min((t - t0) / dur, 1)
-    const e = 1 - Math.pow(1 - p, 3)
-    nums.value = stats.map((s) => s.value * e)
-    if (p < 1) raf = requestAnimationFrame(tick)
-  }
-  raf = requestAnimationFrame(tick)
-}
-
-/* auto-cycling tabs, only while the section is on screen */
-let timer = null
 let io = null
-let reduced = false
-const stop = () => clearInterval(timer)
-const play = () => {
-  stop()
-  if (reduced) return
-  timer = setInterval(() => {
-    active.value = names[(names.indexOf(active.value) + 1) % names.length]
-  }, 4200)
-}
-const select = (name) => { active.value = name; play() }
-
-watch(active, () => { if (entered.value) count() })
 
 onMounted(() => {
-  reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  if (reduced) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     entered.value = true
-    nums.value = data.value.stats.map((s) => s.value)
     return
   }
   io = new IntersectionObserver(([e]) => {
     if (e.isIntersecting) {
-      if (!entered.value) { entered.value = true; count() }
-      play()
-    } else {
-      stop()
+      entered.value = true
+      io.disconnect()
     }
   }, { threshold: 0.3 })
   io.observe(root.value)
 })
 
-onBeforeUnmount(() => {
-  stop()
-  cancelAnimationFrame(raf)
-  io && io.disconnect()
-})
+onBeforeUnmount(() => io && io.disconnect())
 </script>
 
 <template>
   <section id="dashboard-review" ref="root" class="section dp" :class="{ 'is-in': entered }">
     <div class="container">
-      <!-- heading (centered) -->
+      <!-- heading (left) -->
       <div class="dp__head stack reveal">
         <h2>{{ dashboardHeading.title1 }}<br>
         {{ dashboardHeading.title2 }}</h2>
@@ -80,65 +34,47 @@ onBeforeUnmount(() => {
       </div>
 
       <div class="dp__grid">
-        <!-- left: intro -->
-        <div id="dashboard-review-intro" class="dp__panel dp__intro">
-          <h3 class="dp__item" style="--i: 1">{{ intro.title }}</h3>
-          <p class="dp__item" style="--i: 2">{{ intro.text }}</p>
+        <!-- left: mobile app -->
+        <div class="dp__panel dp__app">
+          <span class="dp__tag dp__item" style="--i: 0">{{ mobileApp.tag }}</span>
+          <h3 class="dp__item" style="--i: 1">{{ mobileApp.title }}</h3>
+          <p class="dp__item" style="--i: 2">{{ mobileApp.text }}</p>
           <div class="dp__actions dp__item" style="--i: 3">
-            <a class="btn btn-primary" href="#">Book a demo</a>
-            <a class="btn btn-outline" href="#">See it in action</a>
+            <a
+              v-for="b in mobileApp.buttons"
+              :key="b.label"
+              :href="b.href"
+              class="dp__btn"
+              :aria-label="`${b.small} ${b.label}`"
+            >
+              <!-- apple -->
+              <svg v-if="b.store === 'apple'" class="dp__btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
+              </svg>
+              <!-- google play -->
+              <svg v-else class="dp__btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#00c3ff" d="M3 1.5 13 12 3 22.5z" />
+                <path fill="#32e36b" d="M3 1.5 17.2 9.78 13 12z" />
+                <path fill="#ffd500" d="M17.2 9.78 21 12 17.2 14.22 13 12z" />
+                <path fill="#ff3a44" d="M13 12 17.2 14.22 3 22.5z" />
+              </svg>
+
+              <span class="dp__btn-text">
+                <small>{{ b.small }}</small>
+                <strong>{{ b.label }}</strong>
+              </span>
+            </a>
           </div>
         </div>
 
-        <!-- right: animated dashboard -->
-        <div id="dashboard-review-preview" class="dp__panel dp__shot">
-          <div class="dp__app">
-            <div class="dp__sidebar">
-              <b class="dp__side" style="--i: 0">SaasBeds</b>
-              <i
-                v-for="(n, i) in sidebar"
-                :key="n"
-                class="dp__side"
-                :class="{ 'is-active': data.nav === n }"
-                :style="{ '--i': i + 1 }"
-              >{{ n }}</i>
-            </div>
-
-            <div class="dp__main">
-              <div class="dp__top">
-                <h4>Dashboard · {{ active }}</h4>
-                <span class="dp__live"><i class="dp__dot"></i> Live</span>
-              </div>
-
-              <div :key="active" class="dp__stats">
-                <div v-for="(s, i) in data.stats" :key="s.label" class="dp__stat" :style="{ '--i': i }">
-                  <small class="text-muted">{{ s.label }}</small>
-                  <strong>{{ fmt(s, nums[i]) }}</strong>
-                  <span class="dp__track"><u class="dp__bar" :style="{ width: s.pct + '%', '--i': i }"></u></span>
-                </div>
-              </div>
-
-              <div :key="active + '-chart'" class="dp__chart">
-                <div v-for="(n, i) in data.chart" :key="i" class="dp__colwrap">
-                  <s class="dp__col" :style="{ height: n + '%', '--i': i }"></s>
-                  <small class="text-muted">{{ days[i] }}</small>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dp__tabs" role="tablist">
-            <button
-              v-for="k in names"
-              :key="k"
-              type="button"
-              role="tab"
-              class="btn dp__tab"
-              :class="{ 'btn-dark': active === k }"
-              :aria-selected="active === k"
-              @click="select(k)"
-            >{{ k }}</button>
-          </div>
+        <!-- right: support -->
+        <div class="dp__panel dp__support">
+          <span class="dp__tag dp__item" style="--i: 0">{{ support.tag }}</span>
+          <h3 class="dp__item" style="--i: 1">{{ support.title }}</h3>
+          <p class="dp__item" style="--i: 2">
+            {{ support.text }}
+            <a :href="`tel:${support.tel}`" class="dp__phone">{{ support.phone }}</a>.
+          </p>
         </div>
       </div>
     </div>
