@@ -38,11 +38,6 @@ export const switching = {
 
 /* ==========================================
    2. SCROLL ANIMATION STAGES
-========================================== */
-
-export const steps = [
-  { stage: 'split', at: 14 },
-  { stage: 'ui',    at: 34 },
   { stage: 'stats', at: 54 },
   { stage: 'video', at: 74 }
 ]
@@ -50,12 +45,12 @@ export const steps = [
 
 /* ==========================================
    3. HOTEL CALENDAR CONTENT
-========================================== */
-
 export const calendar = {
 
   brand: 'SAASBEDS',
-  search: 'Search within Central Inn',
+
+  search: 'Search bookings and guests',
+
   today: 'Today',
   selectDate: 'Select date',
   selectSpace: 'Select space',
