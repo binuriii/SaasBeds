@@ -67,9 +67,10 @@ const handleScroll = () => {
 <template>
   <section id="solutions" class="section showcase">
     <div class="container">
-      <!-- header -->
-      <div class="showcase__head reveal">
+      <!-- heading (centered) -->
+      <div class="showcase__head stack reveal">
         <h2>{{ solutionTabsHeading.title }}</h2>
+        <p class="lead text-muted">{{ solutionTabsHeading.description }}</p>
       </div>
 
       <div class="showcase__layout">
@@ -81,7 +82,7 @@ const handleScroll = () => {
               <span class="showcase__total">/{{ pad(total) }}</span>
             </div>
 
-            <p class="showcase__desc">{{ activeCard.text }}</p>
+            <p class="showcase__desc">{{ activeCard.description }}</p>
           </div>
 
           <div class="showcase__arrows">
@@ -126,7 +127,6 @@ const handleScroll = () => {
               <div class="showcase__tint"></div>
 
               <div class="showcase__top">
-                
                 <span class="showcase__num">{{ pad(index + 1) }}</span>
               </div>
 
