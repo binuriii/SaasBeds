@@ -19,9 +19,9 @@
   /* spacing */
   --section-gap: clamp(40px, 5vw, 72px);
   --section-padding-top: 5vh;
-  --section-padding-x: 3vw;
+  --section-padding-x: 2vw;
   --section-padding-bottom: 10vh;
-  --container-max: 1280px;
+  --container-max: 1380px;
   --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px; --space-5: 48px;
 
   /* shape + depth */

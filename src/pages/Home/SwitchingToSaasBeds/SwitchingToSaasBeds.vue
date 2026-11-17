@@ -181,7 +181,9 @@ onBeforeUnmount(() => {
               </li>
             </ul>
 
-            <a :href="switching.link.url" class="more" style="--k:4">{{ switching.link.text }} →</a>
+            <div class="swx-cta" style="--k:4">
+              <a :href="switching.link.url" class="btn btn-dark">{{ switching.link.text }}</a>
+            </div>
           </div>
         </div>
       </div>

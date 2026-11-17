@@ -18,13 +18,12 @@ export const switching = {
     {
       title: 'AI Receptionist',
       description:
-        'For your staff. Ask "Is there a room on the 20th?" and get the room type, meal plan and price from live inventory, then a reservation draft ready to confirm.'
+        'For your staff. Ask "Is there a room on the 20th?" and get the room type, meal plan and price from live inventory'
     },
     {
       title: 'AI Front Desk Manager',
       description:
-        'For your guests. Answers questions on your website and booking engine at any hour and guides guests to book direct.',
-      status: 'Launch status to be confirmed'
+        'For your guests. Answers questions on your website and booking engine at any hour.'
     }
   ],
 

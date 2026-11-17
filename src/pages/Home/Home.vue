@@ -11,6 +11,7 @@ import BrandOrbit from './BrandOrbit/BrandOrbit.vue'
 import FeatureScroll from './FeatureScroll/FeatureScroll.vue'
 import SwitchingToSaasBeds from './SwitchingToSaasBeds/SwitchingToSaasBeds.vue'
 import FAQ from '../../components/FAQ/FAQ.vue'
+import HowItWorksCards from './HowItWorksCards/HowItWorksCards.vue'
 onMounted(() => { document.title = homeMeta.title })
 </script>
 <template>
@@ -19,9 +20,10 @@ onMounted(() => { document.title = homeMeta.title })
     <LogoBrands/>
     <ProductCards />
     <FeatureScroll/>
+    <ImpactStats />
+    <HowItWorksCards/>
     <SwitchingToSaasBeds />
     <SolutionTabs/>
-    <ImpactStats />
     <DashboardPreview />
   
     <FAQ />
