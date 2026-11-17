@@ -1,33 +1,70 @@
-// ===== content for the "Switching to SaaSBeds" section (edit text here) =====
-
 export const switching = {
-  eyebrow: 'Switching to SaaSBeds booking software',
-  title: 'Switching has\nnever been easier',
-  description: 'Get up and running, fast. Whether you’re onboarding new hires or training existing staff, your people can train to use our booking software in no time.',
-  hint: 'Scroll to see how it works',
+
+  // Small label above the heading (shown in both the intro and the left panel)
+  eyebrow: 'Meet your AI team',
+
+  // Main H2 heading (\n = line break)
+  title: 'AI that works from\nyour live hotel data',
+
+  // Section paragraph (below H2)
+  description:
+    'Meet two AI teammates designed to help your staff work with live hotel inventory and help guests find answers and book direct.',
+
+  // Initial scroll animation hint
+  hint: 'Scroll to meet your AI team',
+
+  // AI team features
   features: [
-    'Self-paced online training, e-learning modules and support resources with SaaSBeds Academy',
-    'Easy onboarding for staff (minimal training needed)'
-  ]
+    {
+      title: 'AI Receptionist',
+      description:
+        'For your staff. Ask "Is there a room on the 20th?" and get the room type, meal plan and price from live inventory, then a reservation draft ready to confirm.'
+    },
+    {
+      title: 'AI Front Desk Manager',
+      description:
+        'For your guests. Answers questions on your website and booking engine at any hour and guides guests to book direct.',
+      status: 'Launch status to be confirmed'
+    }
+  ],
+
+  // Link
+  link: {
+    text: 'Meet SaaSBeds AI',
+    url: '/ai'
+  }
+
 }
 
 
+/* ==========================================
+   2. SCROLL ANIMATION STAGES
+========================================== */
+
 export const steps = [
-  { stage: 'split', at: 14 },  
-  { stage: 'ui', at: 34 },     
-  { stage: 'stats', at: 54 },  
-  { stage: 'video', at: 74 }    
+  { stage: 'split', at: 14 },
+  { stage: 'ui',    at: 34 },
+  { stage: 'stats', at: 54 },
+  { stage: 'video', at: 74 }
 ]
 
 
+/* ==========================================
+   3. HOTEL CALENDAR CONTENT
+========================================== */
+
 export const calendar = {
+
   brand: 'SAASBEDS',
   search: 'Search within Central Inn',
   today: 'Today',
   selectDate: 'Select date',
   selectSpace: 'Select space',
   optimize: 'Optimize space a…',
+
+  // index of the highlighted day column
   highlight: 2,
+
   days: [
     { dow: 'Wed', date: 'Oct 3' },
     { dow: 'Thu', date: 'Oct 4' },
@@ -37,10 +74,12 @@ export const calendar = {
     { dow: 'Mon', date: 'Oct 8' },
     { dow: 'Tue', date: 'Oct 9' }
   ],
+
   groups: [
     { label: 'Single rooms', rows: 4 },
     { label: 'Double rooms', rows: 7 }
   ],
+
   rooms: [
     { no: '101', tone: 'green' },
     { no: '102', tone: 'orange' },
@@ -54,21 +93,32 @@ export const calendar = {
     { no: '110', tone: 'green' },
     { no: '111', tone: 'green' }
   ],
+
   bookings: [
-    { row: 1, from: 0.05, to: 3.85, name: 'Maxwell Carter', lock: true, icons: ['loop', 'people', 'access'] },
-    { row: 1, from: 4.1, to: 7, name: 'Sophia Turner', lock: false },
-    { row: 2, from: 3.05, to: 3.95, name: 'Ethan Davis' },
-    { row: 3, from: 0.05, to: 1.9, name: '', icons: ['loop', 'people'] },
-    { row: 4, from: 1.05, to: 2.9, name: 'Olivia Bennett', lock: true, icons: ['target', 'loop', 'people'] },
-    { row: 4, from: 3.05, to: 7, name: 'Isabella Hughes', lock: true },
-    { row: 7, from: 0.05, to: 7, name: 'Out of order - Bathroom renovations', blocked: true },
-    { row: 9, from: 1.05, to: 1.9, name: 'Liam Johnson' },
-    { row: 9, from: 2.0, to: 5.5, name: 'Ava Martinez', lock: true, icons: ['loop', 'people'] },
-    { row: 10, from: 0.05, to: 2.9, name: '', icons: ['loop', 'people', 'access'] }
+    { row: 1,  from: 0.05, to: 3.85, name: 'Maxwell Carter', lock: true, icons: ['loop', 'people', 'access'] },
+    { row: 1,  from: 4.1,  to: 7,    name: 'Sophia Turner', lock: false },
+    { row: 2,  from: 3.05, to: 3.95, name: 'Ethan Davis' },
+    { row: 3,  from: 0.05, to: 1.9,  name: '', icons: ['loop', 'people'] },
+    { row: 4,  from: 1.05, to: 2.9,  name: 'Olivia Bennett', lock: true, icons: ['target', 'loop', 'people'] },
+    { row: 4,  from: 3.05, to: 7,    name: 'Isabella Hughes', lock: true },
+    { row: 7,  from: 0.05, to: 7,    name: 'Out of order - Bathroom renovations', blocked: true },
+    { row: 9,  from: 1.05, to: 1.9,  name: 'Liam Johnson' },
+    { row: 9,  from: 2.0,  to: 5.5,  name: 'Ava Martinez', lock: true, icons: ['loop', 'people'] },
+    { row: 10, from: 0.05, to: 2.9,  name: '', icons: ['loop', 'people', 'access'] }
   ]
+
 }
 
+
+/* ==========================================
+   4. SMALL IMAGE CARD
+========================================== */
+
 export const video = {
+
   label: 'Hotel receptionist smiling and talking to a guest',
-  image: 'https://images.unsplash.com/photo-1713207458740-e59c368eba6e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D'
+
+  image:
+    'https://images.unsplash.com/photo-1713207458740-e59c368eba6e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D'
+
 }

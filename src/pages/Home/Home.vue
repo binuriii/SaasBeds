@@ -20,9 +20,9 @@ onMounted(() => { document.title = homeMeta.title })
     <ProductCards />
     <FeatureScroll/>
     <SwitchingToSaasBeds />
-    <ImpactStats />
     <SolutionTabs/>
-    <!-- <DashboardPreview /> -->
+    <ImpactStats />
+    <DashboardPreview />
   
     <FAQ />
     

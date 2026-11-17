@@ -26,7 +26,9 @@ function onSteps(entries) {
 }
 // stacked layout: reveal progressively while the visual area scrolls into view
 function onReveal(entries) {
-  const r = entries[0].intersectionRatio
+  const e = entries[0]
+  if (!e) return
+  const r = e.intersectionRatio
   if (r >= 0.12) { flags.split = true; flags.ui = true }
   if (r >= 0.3) flags.stats = true
   if (r >= 0.5) flags.video = true
@@ -65,7 +67,7 @@ onBeforeUnmount(() => {
 <template>
   <section
     ref="root"
-    class="swx"
+    class="section swx"
     :class="[mode === 'scroll' ? 'swx--scroll' : 'swx--static', { 'is-split': flags.split, 'is-ui': flags.ui, 'is-stats': flags.stats, 'is-video': flags.video }]"
     aria-labelledby="swx-title"
   >
@@ -83,87 +85,104 @@ onBeforeUnmount(() => {
       <symbol id="ic-caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
     </svg>
 
-    <div class="swx-runway">
-      <div v-for="s in steps" :key="s.stage" class="swx-sentinel" :data-stage="s.stage" :style="{ top: `${s.at}%` }" aria-hidden="true"></div>
+    <div class="container">
+      <!-- heading + paragraph above the panel (original content) -->
+      <div class="swx__head stack reveal">
+        <h2 id="swx-title">{{ switching.title }}</h2>
+        <p class="lead text-muted">{{ switching.description }}</p>
+      </div>
 
-      <div class="swx-stage">
-        <!-- 1. full-width centered intro -->
-        <div class="swx-intro" aria-hidden="true">
-          <p class="swx-eyebrow">{{ switching.eyebrow }}</p>
-          <p class="swx-h">{{ switching.title }}</p>
-          <p class="swx-lead">{{ switching.description }}</p>
-          <span class="swx-hint"><i></i>{{ switching.hint }}</span>
-        </div>
+      <div class="swx-runway">
+        <div v-for="s in steps" :key="s.stage" class="swx-sentinel" :data-stage="s.stage" :style="{ top: `${s.at}%` }" aria-hidden="true"></div>
 
-        <!-- 2. right side: calendar UI + small image card (sits under the pink panel) -->
-        <div ref="rightEl" class="swx-right">
-          <div class="swx-vis">
-            <div class="swx-app" aria-hidden="true">
-              <div class="cal-head">
-                <svg class="ic"><use href="#ic-menu" /></svg>
-                <b class="cal-logo">{{ calendar.brand }}</b>
-                <span class="cal-search"><svg class="ic"><use href="#ic-search" /></svg>{{ calendar.search }}</span>
-              </div>
+        <div class="swx-stage">
+          <!-- 1. intro shown before the split (centered) -->
+          <div class="swx-intro" aria-hidden="true">
+            <span class="label">{{ switching.eyebrow }}</span>
+            <h2>{{ switching.title }}</h2>
+            <p class="lead text-muted">{{ switching.description }}</p>
+            <span class="swx-hint"><i></i>{{ switching.hint }}</span>
+          </div>
 
-              <div class="cal-tools">
-                <span class="cal-today"><span>‹</span>{{ calendar.today }}<span>›</span></span>
-                <span class="cal-pill"><svg class="ic"><use href="#ic-cal" /></svg>{{ calendar.selectDate }}<svg class="ic"><use href="#ic-caret" /></svg></span>
-                <span class="cal-pill">{{ calendar.selectSpace }}<svg class="ic"><use href="#ic-caret" /></svg></span>
-                <span class="cal-opt">{{ calendar.optimize }}</span>
-              </div>
-
-              <div class="cal-grid">
-                <div class="cal-days">
-                  <span></span>
-                  <span v-for="(d, i) in calendar.days" :key="d.date" class="cal-day" :class="{ hl: i === calendar.highlight }"><small>{{ d.dow }}</small><b>{{ d.date }}</b></span>
+          <!-- 2. right side: calendar UI + small image card (sits under the left panel) -->
+          <div ref="rightEl" class="swx-right">
+            <div class="swx-vis">
+              <div class="swx-app" aria-hidden="true">
+                <div class="cal-head">
+                  <svg class="ic"><use href="#ic-menu" /></svg>
+                  <b class="cal-logo">{{ calendar.brand }}</b>
+                  <span class="cal-search"><svg class="ic"><use href="#ic-search" /></svg>{{ calendar.search }}</span>
                 </div>
 
-                <div class="cal-rows">
-                  <div v-for="r in calendar.rooms" :key="r.no" class="cal-row">
-                    <span class="cal-room"><i :class="`dot-${r.tone}`"></i>{{ r.no }}</span>
-                    <span v-for="(d, i) in calendar.days" :key="d.date" class="cal-cell" :class="{ hl: i === calendar.highlight }"></span>
+                <div class="cal-tools">
+                  <span class="cal-today"><span>‹</span>{{ calendar.today }}<span>›</span></span>
+                  <span class="cal-pill"><svg class="ic"><use href="#ic-cal" /></svg>{{ calendar.selectDate }}<svg class="ic"><use href="#ic-caret" /></svg></span>
+                  <span class="cal-pill">{{ calendar.selectSpace }}<svg class="ic"><use href="#ic-caret" /></svg></span>
+                  <span class="cal-opt">{{ calendar.optimize }}</span>
+                </div>
+
+                <div class="cal-grid">
+                  <div class="cal-days">
+                    <span></span>
+                    <span v-for="(d, i) in calendar.days" :key="d.date" class="cal-day" :class="{ hl: i === calendar.highlight }"><small>{{ d.dow }}</small><b>{{ d.date }}</b></span>
                   </div>
 
-                  <div class="cal-groups">
-                    <span v-for="g in calendar.groups" :key="g.label" class="cal-group" :style="{ '--n': g.rows }">{{ g.label }}</span>
-                  </div>
+                  <div class="cal-rows">
+                    <div v-for="r in calendar.rooms" :key="r.no" class="cal-row">
+                      <span class="cal-room"><i :class="`dot-${r.tone}`"></i>{{ r.no }}</span>
+                      <span v-for="(d, i) in calendar.days" :key="d.date" class="cal-cell" :class="{ hl: i === calendar.highlight }"></span>
+                    </div>
 
-                  <div class="cal-books">
-                    <div
-                      v-for="(b, i) in calendar.bookings"
-                      :key="i"
-                      class="cal-bk"
-                      :class="{ blocked: b.blocked }"
-                      :style="{ '--r': b.row, '--f': b.from, '--t': b.to, '--k': i }"
-                    >
-                      <svg v-if="b.blocked" class="ic"><use href="#ic-x" /></svg>
-                      <svg v-else-if="b.lock" class="ic"><use href="#ic-lock" /></svg>
-                      <span v-if="b.name">{{ b.name }}</span>
-                      <span v-if="b.icons" class="cal-icons"><svg v-for="ic in b.icons" :key="ic" class="ic"><use :href="`#ic-${ic}`" /></svg></span>
+                    <div class="cal-groups">
+                      <span v-for="g in calendar.groups" :key="g.label" class="cal-group" :style="{ '--n': g.rows }">{{ g.label }}</span>
+                    </div>
+
+                    <div class="cal-books">
+                      <div
+                        v-for="(b, i) in calendar.bookings"
+                        :key="i"
+                        class="cal-bk"
+                        :class="{ blocked: b.blocked }"
+                        :style="{ '--r': b.row, '--f': b.from, '--t': b.to, '--k': i }"
+                      >
+                        <svg v-if="b.blocked" class="ic"><use href="#ic-x" /></svg>
+                        <svg v-else-if="b.lock" class="ic"><use href="#ic-lock" /></svg>
+                        <span v-if="b.name">{{ b.name }}</span>
+                        <span v-if="b.icons" class="cal-icons"><svg v-for="ic in b.icons" :key="ic" class="ic"><use :href="`#ic-${ic}`" /></svg></span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- small image card (Unsplash link comes from video.image in the .js file) -->
+              <figure v-if="video.image" class="swx-lady">
+                <img :src="video.image" :alt="video.label" loading="lazy" decoding="async" />
+              </figure>
             </div>
-
-            <!-- small image card (Unsplash link comes from video.image in the .js file) -->
-            <figure v-if="video.image" class="swx-lady">
-              <img :src="video.image" :alt="video.label" loading="lazy" decoding="async" />
-            </figure>
           </div>
-        </div>
 
-        <!-- 3. left panel (pink, curved edge, on top of the blue side) -->
-        <div class="swx-copy">
-          <p class="swx-eyebrow" style="--k:0">{{ switching.eyebrow }}</p>
-          <h2 id="swx-title" class="swx-h" style="--k:1">{{ switching.title }}</h2>
-          <p class="swx-lead" style="--k:2">{{ switching.description }}</p>
-          <ul class="swx-features">
-            <li v-for="(f, i) in switching.features" :key="f" :style="{ '--k': 3 + i }">
-              <span class="swx-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
-              <span>{{ f }}</span>
-            </li>
-          </ul>
+          <!-- 3. left panel (curved edge, on top of the right side) -->
+          <div class="swx-copy">
+            <span class="label" style="--k:0">{{ switching.eyebrow }}</span>
+            <h2 style="--k:1" aria-hidden="true">{{ switching.title }}</h2>
+            <p class="lead text-muted" style="--k:2" aria-hidden="true">{{ switching.description }}</p>
+
+            <ul class="swx-features" style="--k:3">
+              <li v-for="f in switching.features" :key="f.title">
+                <span class="swx-check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </span>
+                <div class="swx-feature">
+                  <h3>{{ f.title }}</h3>
+                  <p class="text-muted">{{ f.description }}</p>
+                  <small v-if="f.status" class="text-muted">{{ f.status }}</small>
+                </div>
+              </li>
+            </ul>
+
+            <a :href="switching.link.url" class="more" style="--k:4">{{ switching.link.text }} →</a>
+          </div>
         </div>
       </div>
     </div>
