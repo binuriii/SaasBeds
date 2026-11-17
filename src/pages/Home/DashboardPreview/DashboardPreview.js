@@ -5,47 +5,20 @@ export const dashboardHeading = {
     'Track revenue, channels and housekeeping live, so your team always knows where the day stands.',
 }
 
-export const intro = {
-  tag: 'Hotel booking management software',
-  title: 'Simple, yet powerful for modern hotels',
-  text: 'Run bookings, channels, payments and housekeeping from one dashboard built to simplify your daily operations.',
+export const mobileApp = {
+  tag: 'Run it from anywhere',
+  title: 'Your property in your pocket',
+  text: 'Manage bookings, check performance and keep things moving from your phone.',
+  buttons: [
+    { store: 'apple', small: 'Download on the', label: 'App Store', href: '#' },
+    { store: 'google', small: 'GET IT ON', label: 'Google Play', href: '#' },
+  ],
 }
 
-export const sidebar = ['Front Desk', 'Dashboard', 'Bookings', 'Marketing']
-
-// stats: value = number to count up to, pct = bar fill, prefix/suffix wrap the number
-// chart: 7 column heights in %   nav: sidebar item highlighted for this tab
-export const tabs = {
-  Bookings: {
-    nav: 'Bookings',
-    stats: [
-      { label: 'Revenue',      value: 290172, prefix: '$', pct: 72 },
-      { label: 'Occupancy',    value: 82,     suffix: '%', pct: 82 },
-      { label: 'ADR',          value: 177,    prefix: '$', pct: 58 },
-      { label: 'New bookings', value: 220,    pct: 45 },
-    ],
-    chart: [40, 62, 48, 80, 66, 92, 74],
-  },
-  Channels: {
-    nav: 'Marketing',
-    stats: [
-      { label: 'Direct',      value: 48, suffix: '%', pct: 48 },
-      { label: 'Booking.com', value: 31, suffix: '%', pct: 31 },
-      { label: 'Expedia',     value: 14, suffix: '%', pct: 14 },
-      { label: 'Walk-in',     value: 7,  suffix: '%', pct: 7 },
-    ],
-    chart: [55, 44, 70, 58, 86, 64, 78],
-  },
-  Housekeeping: {
-    nav: 'Front Desk',
-    stats: [
-      { label: 'Clean',       value: 132, pct: 88 },
-      { label: 'In progress', value: 24,  pct: 34 },
-      { label: 'Not ready',   value: 13,  pct: 18 },
-      { label: 'Inspected',   value: 96,  pct: 70 },
-    ],
-    chart: [72, 50, 84, 60, 46, 90, 68],
-  },
+export const support = {
+  tag: 'Support',
+  title: 'We set it up with you, and we stay',
+  text: 'Free setup and data import, staff training on site or online, a library of guides and videos, and a support team in Colombo on',
+  phone: '0112 000 562',
+  tel: '+94112000562',
 }
-
-export const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
