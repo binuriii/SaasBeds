@@ -55,7 +55,7 @@
 .cs__card--quote {
   justify-content: space-between;
   padding: clamp(24px, 2.5vw, 35px);
-  background: #f4f4f4;
+  background: #fff3fb;
 }
 
 .cs__mark {
