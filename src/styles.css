@@ -84,10 +84,10 @@ h1, .h1 {
 }
 /* Main section heading (H2) */
 h2, .h2 {
-  font-size: clamp(32px, 3.5vw, 48px);
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.72px;
+  font-size: clamp(26px, 4.4vw, 54px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
 }
 /* H3 */
 h3, .h3 {
