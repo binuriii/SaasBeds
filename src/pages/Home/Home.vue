@@ -12,6 +12,7 @@ import FAQ from '../../components/FAQ/FAQ.vue'
 import HowItWorksCards from './HowItWorksCards/HowItWorksCards.vue'
 import SolutionShowcase from './SolutionShowcase/SolutionShowcase.vue'
 import CustomerStories from './CustomerStories/CustomerStories.vue'
+import SwitchingToSaasBeds from './SwitchingToSaasBeds/SwitchingToSaasBeds.vue'
 onMounted(() => { document.title = homeMeta.title })
 </script>
 <template>
@@ -22,6 +23,7 @@ onMounted(() => { document.title = homeMeta.title })
     <FeatureScroll/>
     <ImpactStats />
     <HowItWorksCards/>
+    <SwitchingToSaasBeds/>
     <SolutionShowcase/>
     <DashboardPreview />
     <CustomerStories/> 

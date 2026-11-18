@@ -1,24 +1,27 @@
 <script setup>
-import { reactive, computed, onMounted, onBeforeUnmount, ref, nextTick } from 'vue'
+import { reactive, computed, onMounted, onBeforeUnmount, ref } from 'vue'
 import './SwitchingToSaasBeds.css'
 import { switching, steps, calendar, video } from './SwitchingToSaasBeds.js'
 
+/* ---------- scroll stages (IntersectionObserver only, no scroll listeners) ---------- */
 const root = ref(null)
 const rightEl = ref(null)
 const flags = reactive({ split: false, ui: false, stats: false, video: false })
 const desktop = ref(false)
 const reduced = ref(false)
 const mode = computed(() => (desktop.value && !reduced.value ? 'scroll' : 'static'))
+
 let io = null
 let mqDesktop = null
 let mqReduce = null
-let mounted = false
-const setAll = value => { Object.keys(flags).forEach(key => { flags[key] = value }) }
 
+const setAll = (v) => { Object.keys(flags).forEach((k) => { flags[k] = v }) }
+
+// a step is "passed" while its marker is in the upper 55% of the screen, or already above the screen
 function onSteps(entries) {
-  for (const entry of entries) {
-    const above = entry.boundingClientRect.bottom <= (entry.rootBounds ? entry.rootBounds.top : 0)
-    flags[entry.target.dataset.stage] = entry.isIntersecting || above
+  for (const e of entries) {
+    const above = e.boundingClientRect.bottom <= (e.rootBounds ? e.rootBounds.top : 0)
+    flags[e.target.dataset.stage] = e.isIntersecting || above
   }
 }
 // stacked layout: reveal progressively while the visual area scrolls into view
@@ -35,33 +38,26 @@ function setup() {
   io?.disconnect()
   io = null
   if (!root.value || !rightEl.value) return
-  // Stacked content is always visible; no intersection threshold can hide it.
-  if (mode.value === 'static') { setAll(true); return }
-  setAll(false)
-  if (typeof IntersectionObserver === 'undefined') { setAll(true); return }
-  io = new IntersectionObserver(onSteps, { rootMargin: '0px 0px -45% 0px', threshold: 0 })
-  root.value.querySelectorAll('[data-stage]').forEach(el => io.observe(el))
+  if (reduced.value) { setAll(true); return }
+  if (mode.value === 'scroll') {
+    io = new IntersectionObserver(onSteps, { rootMargin: '0px 0px -45% 0px', threshold: 0 })
+    root.value.querySelectorAll('[data-stage]').forEach((el) => io.observe(el))
+  } else {
+    setAll(false)
+    io = new IntersectionObserver(onReveal, { threshold: [0.12, 0.3, 0.5, 0.7] })
+    io.observe(rightEl.value)
+  }
 }
-
-async function syncQueries() {
-  desktop.value = mqDesktop.matches
-  reduced.value = mqReduce.matches
-  // Measure after Vue switches the layout class, including device rotation.
-  await nextTick()
-  if (mounted) setup()
-}
+const syncQueries = () => { desktop.value = mqDesktop.matches; reduced.value = mqReduce.matches; setup() }
 
 onMounted(() => {
-  mounted = true
-  mqDesktop = window.matchMedia('(min-width: 1101px)')
+  mqDesktop = window.matchMedia('(min-width: 901px)')
   mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)')
   mqDesktop.addEventListener('change', syncQueries)
   mqReduce.addEventListener('change', syncQueries)
   syncQueries()
 })
-
 onBeforeUnmount(() => {
-  mounted = false
   io?.disconnect()
   mqDesktop?.removeEventListener('change', syncQueries)
   mqReduce?.removeEventListener('change', syncQueries)
@@ -75,6 +71,7 @@ onBeforeUnmount(() => {
     :class="[mode === 'scroll' ? 'swx--scroll' : 'swx--static', { 'is-split': flags.split, 'is-ui': flags.ui, 'is-stats': flags.stats, 'is-video': flags.video }]"
     aria-labelledby="swx-title"
   >
+    <!-- icon sprite -->
     <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
       <symbol id="ic-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" fill="currentColor" /><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="2.4" /></symbol>
       <symbol id="ic-loop" viewBox="0 0 24 24"><path d="M20 12a8 8 0 11-2.4-5.7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" /><path d="M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></symbol>
