@@ -8,7 +8,6 @@ import ImpactStats from './ImpactStats/ImpactStats.vue'
 import HeroSection from './HeroSection/HeroSection.vue'
 import BrandOrbit from './BrandOrbit/BrandOrbit.vue'
 import FeatureScroll from './FeatureScroll/FeatureScroll.vue'
-import SwitchingToSaasBeds from './SwitchingToSaasBeds/SwitchingToSaasBeds.vue'
 import FAQ from '../../components/FAQ/FAQ.vue'
 import HowItWorksCards from './HowItWorksCards/HowItWorksCards.vue'
 import SolutionShowcase from './SolutionShowcase/SolutionShowcase.vue'
@@ -23,7 +22,6 @@ onMounted(() => { document.title = homeMeta.title })
     <FeatureScroll/>
     <ImpactStats />
     <HowItWorksCards/>
-    <SwitchingToSaasBeds />
     <SolutionShowcase/>
     <DashboardPreview />
     <CustomerStories/> 
