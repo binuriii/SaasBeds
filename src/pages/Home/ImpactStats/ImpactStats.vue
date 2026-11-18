@@ -87,7 +87,6 @@ onBeforeUnmount(() => {
         </div>
       </div>
 
-      <p class="imp__note text-muted">{{ impactNote }}</p>
     </div>
   </section>
 </template>

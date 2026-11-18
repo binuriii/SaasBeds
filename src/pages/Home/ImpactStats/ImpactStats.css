@@ -86,9 +86,6 @@
   transition: opacity 0.7s var(--ease) 0.45s, transform 0.7s var(--ease) 0.45s;
 }
 
-/* note */
-.imp__note { margin-top: var(--space-2); font-size: 12px; line-height: 20px; }
-
 /* tablet */
 @media (max-width: 1024px) {
   .imp__item.is-active .imp__sum { max-width: 44%; }
