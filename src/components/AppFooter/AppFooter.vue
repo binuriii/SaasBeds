@@ -157,4 +157,3 @@ function resolveHref(href = '/') {
     </div>
   </footer>
 </template>
-
