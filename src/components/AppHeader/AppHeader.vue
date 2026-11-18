@@ -369,3 +369,4 @@ function mobileGroups(menu) {
 </template>
 
 <style scoped src="./AppHeader.css"></style>
+
