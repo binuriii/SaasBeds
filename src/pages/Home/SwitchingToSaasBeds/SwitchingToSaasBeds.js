@@ -118,6 +118,6 @@ export const video = {
   label: 'Hotel receptionist smiling and talking to a guest',
 
   image:
-    'https://images.unsplash.com/photo-1713207458740-e59c368eba6e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D'
+    'https://images.unsplash.com/photo-1659018966834-99be9746b49e?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D'
 
 }
