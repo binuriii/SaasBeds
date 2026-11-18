@@ -284,6 +284,79 @@ footer.site-footer {
   min-height: 350px;
 }
 
+/* =====================================
+   FOOTER TYPOGRAPHY IMPROVEMENTS
+===================================== */
+
+/* Footer column headings */
+.site-footer .footer-column h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 16px;
+  color: #3c3c3c;
+}
+
+/* Footer navigation links */
+.site-footer .footer-text-link {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  padding: 4px 0;
+  color: #5f6168;
+}
+
+/* Space between links */
+.site-footer .footer-column ul {
+  gap: 5px;
+}
+
+/* Contact description */
+.site-footer .footer-contact-description {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Copyright */
+.site-footer .footer-copyright p {
+  font-size: 13px;
+}
+
+/* Legal links */
+.site-footer .footer-legal a {
+  font-size: 13px;
+}
+
+/* Tablet */
+@media (max-width: 1180px) {
+  .site-footer .footer-column h3 {
+    font-size: 16px;
+  }
+
+  .site-footer .footer-text-link {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+/* Mobile */
+@media (max-width: 540px) {
+  .site-footer .footer-column h3 {
+    font-size: 16px;
+  }
+
+  .site-footer .footer-text-link {
+    font-size: 15px;
+    min-height: 44px;
+    padding: 10px 0;
+  }
+
+  .site-footer .footer-contact-description {
+    font-size: 14px;
+  }
+}
+
+
 /* Tablet: two readable columns in portrait and landscape. */
 @media (max-width: 1180px) {
   footer.site-footer {
