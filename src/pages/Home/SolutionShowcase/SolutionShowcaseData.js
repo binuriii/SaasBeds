@@ -31,8 +31,20 @@ const list = [
     description:
       'Manage the front desk, housekeeping, night audit and reporting from a single login. Every department sees the same live data, so your team stays in sync from check-in to check-out.',
     features: ['Front desk calendar', 'Housekeeping', 'Night audit', '27 reports'],
-    image: 'https://images.unsplash.com/photo-1695544930142-636cc035a431?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
+    image: 'https://images.unsplash.com/photo-1769501203628-0520479aef53?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
     alt: 'Hotel lobby',
+    href: '#',
+  },
+  {
+    id: 'boutique',
+    icon: 'fa-bell-concierge',
+    title: 'Boutique hotels',
+    text: 'Two rate tables, so direct and OTA prices stay yours',
+    description:
+      'Keep separate rate tables for direct and OTA bookings so your pricing stays in your control. Build packages, manage channels and know your guests before they arrive.',
+    features: ['Rate Manager & packages', 'Channel Manager', 'Guest profiles & offers'],
+    image: 'https://images.unsplash.com/photo-1663841364507-d0a8a9c11bda?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
+    alt: 'Boutique hotel room',
     href: '#',
   },
   {
@@ -43,7 +55,7 @@ const list = [
     description:
       'Bring rooms, restaurant sales and tour operator bookings into one console. Keep every revenue stream visible and connected to the channels that fill your property.',
     features: ['Restaurant POS', 'Tour Operator Panel', 'Channel Manager'],
-    image: 'https://images.unsplash.com/photo-1787143061724-21dbe51822bf?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
+    image: 'https://images.unsplash.com/photo-1649731000184-7ced04998f44?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
     alt: 'Resort pool',
     href: '#',
   },
@@ -57,18 +69,6 @@ const list = [
     features: ['Booking Engine', 'Free hotel website', 'Payments & balances'],
     image: 'https://images.unsplash.com/photo-1720161263981-84281892ee4b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
     alt: 'Villa exterior',
-    href: '#',
-  },
-  {
-    id: 'boutique',
-    icon: 'fa-bell-concierge',
-    title: 'Boutique hotels',
-    text: 'Two rate tables, so direct and OTA prices stay yours',
-    description:
-      'Keep separate rate tables for direct and OTA bookings so your pricing stays in your control. Build packages, manage channels and know your guests before they arrive.',
-    features: ['Rate Manager & packages', 'Channel Manager', 'Guest profiles & offers'],
-    image: 'https://images.unsplash.com/photo-1663841364507-d0a8a9c11bda?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
-    alt: 'Boutique hotel room',
     href: '#',
   },
   {
