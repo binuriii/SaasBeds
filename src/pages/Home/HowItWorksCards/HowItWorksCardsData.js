@@ -15,7 +15,7 @@ export const steps = [
 
     // background photo for card 01 (same Unsplash photo already used in your switching section)
     image:
-      'https://images.unsplash.com/photo-1649271626755-f09407d48c4e?auto=format&fit=crop&w=1400&q=85',
+      'https://images.unsplash.com/photo-1600813547757-39c40da12c8d?auto=format&fit=crop&w=1400&q=85',
     imageAlt: 'Green natural texture'
   },
 
@@ -27,7 +27,7 @@ export const steps = [
 
     // background photo for card 02
     image:
-      'https://images.unsplash.com/photo-1793559141197-6f3526020346?auto=format&fit=crop&w=1400&q=85',
+      'https://images.unsplash.com/photo-1747738307140-103b6c352499?auto=format&fit=crop&w=1400&q=85',
     imageAlt: 'Abstract green background',
 
     widget: {
@@ -60,7 +60,7 @@ export const steps = [
 
     // plant picture for card 03 (positioned bottom right, tilted)
     image:
-      'https://images.unsplash.com/photo-1599986827456-8d85a9242a10?auto=format&fit=crop&w=1400&q=85',
+      'https://images.unsplash.com/photo-1623239203472-f10f554e0d31?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
     imageAlt: 'Green plant',
 
     panel: {
