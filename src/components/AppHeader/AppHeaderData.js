@@ -52,13 +52,13 @@ export const platform = {
       title: 'Platform Overview',
       text: 'One login for your entire hotel operation.',
       href: '/platform/',
-      image: img('platform-overview.png')
+      image: img('SaasBeds Modern Dashboard Interface.png')
     },
     {
-      title: 'All Features',
-      text: 'Explore every module in the SaaSBeds platform.',
+      title: 'SaasBeds Marketplace',
+      text: 'Connected to the channels your guests book on',
       href: '/features/',
-      image: img('platform-features.png')
+      image: img('Travel Booking Platform Badges.png')
     }
   ],
   cols: [
@@ -124,7 +124,7 @@ export const aiAgents = {
     title: 'AI that works from your live hotel data',
     text: 'Discover AI tools designed to help hotel teams and guests using approved property information.',
     href: '/ai/',
-    image: img('company-feature.png'),
+    image: img('AI Agents Over Floral Hotel Data.png'),
     alt: 'SaaSBeds AI agents'
   },
   items: [
@@ -191,13 +191,13 @@ export const solutions = {
     category: 'SOLUTIONS',
     title: 'Find the right hotel management solution for your property',
     href: '/solutions/',
-    image: img('solutions-article.png'),
+    image: img('SaaSBeds Resort Editorial Mockup.png'),
     alt: 'SaaSBeds solutions'
   },
   feature: {
     tag: 'EXPLORE',
     href: '/platform/',
-    image: img('solutions-stat.png'),
+    image: img('10x Simpler Hotel Operations.png'),
     alt: 'Explore the SaaSBeds platform'
   }
 }
@@ -238,7 +238,7 @@ export const resources = {
     tag: 'SAASBEDS',
     title: 'Blog',
     href: '/blog/',
-    image: img('resources-feature.png'),
+    image: img('Explore Our Resources by the Lake.png'),
     alt: 'SaaSBeds blog'
   }
 }
