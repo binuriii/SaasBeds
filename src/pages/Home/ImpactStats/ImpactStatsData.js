@@ -49,7 +49,7 @@ const list = [
     id: 'payments', tone: 'pink', h: 84,
     value: '100%', label: 'Automated payments',
     title: 'Villas automate payments and balances in LKR and USD',
-    link: '#', image: 'https://images.unsplash.com/photo-1792936778799-d05ee5836d2d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', alt: 'Villa pool',
+    link: '#', image: 'https://images.unsplash.com/photo-1780453401974-238fe8615599?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', alt: 'Villa pool',
   },
 
   
