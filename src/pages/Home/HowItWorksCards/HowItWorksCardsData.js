@@ -27,7 +27,7 @@ export const steps = [
 
     // background photo for card 02
     image:
-      'https://images.unsplash.com/photo-1747738307140-103b6c352499?auto=format&fit=crop&w=1400&q=85',
+      'https://images.unsplash.com/photo-1540429642795-26aa06834d0d?auto=format&fit=crop&w=1400&q=85',
     imageAlt: 'Abstract green background',
 
     widget: {
@@ -60,7 +60,7 @@ export const steps = [
 
     // plant picture for card 03 (positioned bottom right, tilted)
     image:
-      'https://images.unsplash.com/photo-1623239203472-f10f554e0d31?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
+      'https://images.unsplash.com/photo-1685291793110-5fe3854a44c0?auto=format&fit=crop&w=1400&q=85',
     imageAlt: 'Green plant',
 
     panel: {
