@@ -269,7 +269,6 @@ function mobileGroups(menu) {
               <span class="sb-resource-tag">{{ resources.feature.tag }}</span>
               <strong>Resource Center</strong>
               <span>A library of hospitality insights.</span>
-              <img v-if="resources.feature.image" :src="resources.feature.image" :alt="resources.feature.alt" loading="lazy" />
             </a>
           </div>
           <div class="sb-mega-column">
@@ -315,7 +314,6 @@ function mobileGroups(menu) {
               <strong>{{ aiAgents.feature.title }}</strong>
               <span class="sb-ai-card-description">{{ aiAgents.feature.text }}</span>
        
-              <img v-if="aiAgents.feature.image" :src="aiAgents.feature.image" :alt="aiAgents.feature.alt" loading="lazy" />
             </a>
           </div>
           <div class="sb-mega-column">
