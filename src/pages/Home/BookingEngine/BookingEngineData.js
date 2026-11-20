@@ -2,7 +2,7 @@
 export const head = {
   title1: 'Everything you run,',
   title2: 'in one dashboard',
-  text: 'SaaSBeds provides a smart and modern booking engine designed for hotels, resorts, and guesthouses. It allows you to manage reservations, payments, and packages easily in one platform.'
+  text: 'SaaSBeds provides a smart and modern booking engine designed for hotels, resorts, and guesthouses.'
 }
 
 export const features = [
@@ -106,22 +106,19 @@ export function smooth(vals, w, h, min = 50, max = 200) {
   return { line: d, area: `${d} L${w},${h} L0,${h} Z`, pts }
 }
 
-
-/* ---------- lower cards (formerly DashboardPreview) ---------- */
-export const mobileApp = {
-  tag: 'Run it from anywhere',
-  title: 'Your property in your pocket',
-  text: 'Manage bookings, check performance and keep things moving from your phone.',
+/* ---------- lower cards ---------- */
+export const dayView = {
+  tag: 'Property dashboard',
+  title: 'Your whole day at a glance',
+  text: 'See every arrival, departure, room and balance on one screen, and watch revenue, occupancy, ADR and RevPAR in LKR and USD as they happen.',
   buttons: [
-    { store: 'apple', small: 'Download on the', label: 'App Store', href: '#' },
-    { store: 'google', small: 'GET IT ON', label: 'Google Play', href: '#' }
+    { label: 'Book a demo', href: '/demo/' },
+    { label: 'See Pricing', href: '/pricing/' }
   ]
 }
 
-export const support = {
-  tag: 'Support',
-  title: 'We set it up with you, and we stay',
-  text: 'Free setup and data import, staff training on site or online, a library of guides and videos, and a support team in Colombo on',
-  phone: '0112 000 562',
-  tel: '+94112000562'
+export const reports = {
+  tag: 'Reports & analytics',
+  title: '27 reports ready on day one',
+  text: 'The reports dashboard compares bookings, arrivals, departures, in-house guests, revenue, occupancy and outstanding balances with the previous period.'
 }
