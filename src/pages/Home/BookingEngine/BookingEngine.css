@@ -217,8 +217,8 @@
 .dp__support{background:var(--color-blue-light);color:var(--color-black);transform:translateX(var(--space-5));transition-delay:.15s}
 .dp.is-in .dp__panel{opacity:1;transform:none}
 
-.dp__panel h3{max-width:14ch;font-size:clamp(30px,3.6vw,52px);font-weight:600;line-height:1;letter-spacing:-.04em}
-.dp__panel p{max-width:44ch}
+.dp__panel h3{max-width:14ch;font-size:clamp(30px,3vw,52px);font-weight:600;line-height:1;letter-spacing:-.04em}
+.dp__panel p{max-width:44ch; font-size: 18px;}
 .dp__app p{color:var(--color-white);opacity:.8}
 .dp__support p{color:var(--color-black);opacity:.8}
 
@@ -229,7 +229,7 @@
 /* store buttons: badge style (icons unchanged) */
 .dp__btn{--badge:var(--color-blue-dark,#153c94);display:inline-flex;align-items:center;gap:14px;min-height:0;padding:11px 28px 11px 22px;
   border:1px solid rgba(255,255,255,.2);border-radius:var(--radius-pill,999px);
-  background:linear-gradient(135deg,color-mix(in srgb,var(--badge) 78%,#000),var(--badge));color:#fff;text-align:left;text-transform: lowercase;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--badge) 78%,#000),var(--badge));color:#fff;text-align:left;
   letter-spacing:0;text-decoration:none;transition:transform .25s var(--ease),filter .25s,border-color .25s}
 .dp__btn:hover{transform:translateY(-2px);filter:brightness(1.18);border-color:rgba(255,255,255,.4)}
 .dp__btn-icon{width:28px;height:28px;flex:none}
