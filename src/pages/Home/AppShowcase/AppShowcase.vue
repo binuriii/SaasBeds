@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import QRCode from 'qrcode'
 import { section, mobileApp, qr } from './AppShowcaseData.js'
-import phones from '../../../assets/saasbeds/image copy 2.png'
+import phones from '../../../assets/saasbeds/Yellow Real Estate Phone Dashboard.png'
 
 const banner = ref(null)
 const entered = ref(false)
