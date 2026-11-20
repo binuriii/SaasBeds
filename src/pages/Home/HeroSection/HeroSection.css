@@ -4,13 +4,15 @@
 .hero__actions { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-2); }
 
 /* showcase: photo + dashboard */
+/* height now comes from the dashboard inside (no fixed clamp), so no empty space on big monitors */
 .showcase { position: relative; display: flex; justify-content: center; align-items: flex-start; margin-top: var(--section-gap);
-  height: clamp(480px, 48vw, 920px); border-radius: var(--radius-lg); }
+  border-radius: var(--radius-lg); }
 .showcase > img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
 .showcase:hover > img { transform: none; }
 
 /* dashboard = video, never interactive */
-.dash { position: relative; display: flex; width: 74%; height: clamp(560px, 62vw, 1100px); margin-top: var(--space-5);
+/* fixed height ≈ calendar content (top bar + toolbar + header + 11 rows). Add ~48px per extra room row. */
+.dash { position: relative; display: flex; width: 74%; height: 740px; margin-top: var(--space-5);
   background: var(--color-white); border: 1px solid var(--color-border); border-bottom: 0;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0; box-shadow: var(--shadow-md); overflow: hidden;
   text-align: left; font-size: 13px; pointer-events: none; user-select: none; cursor: default;
@@ -134,6 +136,7 @@
   .dnav__search { max-width: none; }
   .cursor { display: none; }
 }
+
 /* channel logos: overlapping circles that hop one by one */
 .channels { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: var(--space-3); }
 .channels__list { display: flex; align-items: center; padding: var(--space-1) 0; }
