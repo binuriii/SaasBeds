@@ -13,6 +13,9 @@ import HowItWorksCards from './HowItWorksCards/HowItWorksCards.vue'
 import SolutionShowcase from './SolutionShowcase/SolutionShowcase.vue'
 import CustomerStories from './CustomerStories/CustomerStories.vue'
 import SwitchingToSaasBeds from './SwitchingToSaasBeds/SwitchingToSaasBeds.vue'
+import BookingEngine from './BookingEngine/BookingEngine.vue'
+import AppShowcase from './AppShowcase/AppShowcase.vue'
+
 onMounted(() => { document.title = homeMeta.title })
 </script>
 <template>
@@ -23,10 +26,12 @@ onMounted(() => { document.title = homeMeta.title })
     <FeatureScroll/>
     <ImpactStats />
     <HowItWorksCards/>
-    <SwitchingToSaasBeds/>
+    <!-- <SwitchingToSaasBeds/> -->
     <SolutionShowcase/>
-    <DashboardPreview />
-    <CustomerStories/> 
+    <!-- <DashboardPreview /> -->
+    <BookingEngine/>
+    <CustomerStories/>
+     <AppShowcase/> 
     <FAQ />
     
   </div>
