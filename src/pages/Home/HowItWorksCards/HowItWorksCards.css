@@ -212,3 +212,12 @@
   .hws *, .hws *::before, .hws *::after { transition-duration: 0.01ms !important; }
   .hws-track { scroll-behavior: auto; }
 }
+
+/* card 03 with a full-card photo */
+.hws-card--panel.has-img { background: #28451f; color: var(--color-white); border: 0; }
+.hws-card--panel.has-img .hws-body p { color: rgba(255, 255, 255, 0.85); }
+.hws-card--panel.has-img .hws-list__title { color: rgba(255, 255, 255, 0.75); }
+.hws-card--panel.has-img .hws-list li { background: rgba(0, 0, 0, 0.16); color: var(--color-white); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.hws-card--panel.has-img .hws-tick { background: var(--color-black); color: var(--color-white); }
+.hws-card--panel.has-img:hover .hws-card__bg { scale: 1.035; }
+.hws-card__shade--top { background: linear-gradient(180deg, rgba(7, 20, 6, 0.6), rgba(7, 20, 6, 0.15) 60%, rgba(7, 20, 6, 0.05)); }

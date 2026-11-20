@@ -118,7 +118,10 @@ const pad = (n) => String(n).padStart(2, '0')
             </div>
 
             <!-- picture bottom right, tilted (same position as the reference) -->
-            <img v-if="s.image" :src="s.image" :alt="s.imageAlt" class="hws-plant" loading="lazy" decoding="async" draggable="false" />
+            <template v-if="s.image">
+              <img :src="s.image" :alt="s.imageAlt" class="hws-card__bg" loading="lazy" decoding="async" draggable="false" />
+              <div class="hws-card__shade hws-card__shade--bottom"></div>
+            </template>
             <div v-else class="hws-panel" aria-hidden="true"></div>
           </template>
 

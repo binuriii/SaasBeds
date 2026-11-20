@@ -1,6 +1,7 @@
 // All content for the combined BookingEngine section (dashboard animation + app / support cards).
 export const head = {
-  title: 'Fast and Modern Hotel Booking Engine',
+  title1: 'Everything you run,',
+  title2: 'in one dashboard',
   text: 'SaaSBeds provides a smart and modern booking engine designed for hotels, resorts, and guesthouses. It allows you to manage reservations, payments, and packages easily in one platform.'
 }
 
