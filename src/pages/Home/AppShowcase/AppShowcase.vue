@@ -2,7 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import QRCode from 'qrcode'
 import { section, mobileApp, qr } from './AppShowcaseData.js'
-import phones from '/Users/naduniameesha/SaasBeds/src/assets/saasbeds/image copy 2.png'
+import phones from '../../../assets/saasbeds/image copy 2.png'
 
 const banner = ref(null)
 const entered = ref(false)
@@ -47,7 +47,6 @@ onBeforeUnmount(() => observer?.disconnect())
       <div ref="banner" class="banner" :class="{ entered }">
         <div class="hero">
           <div class="copy">
-            <p class="tag rise">{{ section.tag }}</p>
 
             <h2 id="app-showcase-title" class="rise" style="--i: 1">
               {{ section.title1 }}<br>{{ section.title2 }}
