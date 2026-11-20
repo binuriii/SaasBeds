@@ -85,7 +85,7 @@ const total = computed(() => fmt(step.value >= 8 ? 1234 * prog.value : 0))
   <section id="booking-engine" class="section be">
     <div class="container">
     <header class="be__head stack reveal">
-      <h2>{{ head.title }}</h2>
+      <h2>{{ head.title1 }}<br>{{ head.title2 }}</h2>
       <p class="lead text-muted">{{ head.text }}</p>
     </header>
 

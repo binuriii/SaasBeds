@@ -11,7 +11,7 @@ import FAQ from '../../components/FAQ/FAQ.vue'
 import HowItWorksCards from './HowItWorksCards/HowItWorksCards.vue'
 import SolutionShowcase from './SolutionShowcase/SolutionShowcase.vue'
 import CustomerStories from './CustomerStories/CustomerStories.vue'
-import SwitchingToSaasBeds from './SwitchingToSaasBeds/SwitchingToSaasBeds.vue'
+import MeeetAITeam from './MeetAITeam/MeetAITeam.vue'
 import BookingEngine from './BookingEngine/BookingEngine.vue'
 import AppShowcase from './AppShowcase/AppShowcase.vue'
 
@@ -24,13 +24,12 @@ onMounted(() => { document.title = homeMeta.title })
     <ProductCards />
     <FeatureScroll/>
     <ImpactStats />
+    <MeeetAITeam/>
     <HowItWorksCards/>
-    <!-- <SwitchingToSaasBeds/> -->
-    <SolutionShowcase/>
-    <!-- <DashboardPreview /> -->
     <BookingEngine/>
+    <SolutionShowcase/>
+    <AppShowcase/> 
     <CustomerStories/>
-     <AppShowcase/> 
     <FAQ />
     
   </div>
