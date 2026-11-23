@@ -55,7 +55,7 @@ export const platform = {
       image: img('SaasBeds Modern Dashboard Interface.png')
     },
     {
-      title: 'SaasBeds Marketplace',
+      title: 'All Features - SaasBeds Marketplace',
       text: 'Connected to the channels your guests book on',
       href: '/features/',
       image: img('Travel Booking Platform Badges.png')
