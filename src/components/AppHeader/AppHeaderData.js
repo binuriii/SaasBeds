@@ -1,5 +1,5 @@
-// All original SaaSBeds labels, groups and URLs are preserved from your supplied navigation.
-// Artwork is stored locally in src/assets/header and bundled by Vite.
+// SaaSBeds header navigation data.
+// Artwork is stored in src/assets/header and bundled by Vite.
 const page = (label, href) => ({ label, href })
 
 const files = import.meta.glob('../../assets/header/*.{png,jpg,jpeg,webp,svg,avif}', {
@@ -11,30 +11,32 @@ const files = import.meta.glob('../../assets/header/*.{png,jpg,jpeg,webp,svg,avi
 const img = (name) => {
   if (!name) return ''
   if (/^https?:\/\//i.test(name)) return name
-  const key = Object.keys(files).find(k => k.toLowerCase().endsWith(`/${name.toLowerCase()}`))
+  const key = Object.keys(files).find(k =>
+    k.toLowerCase().endsWith(`/${name.toLowerCase()}`)
+  )
   return key ? files[key] : ''
 }
 
-// NAVY ANNOUNCEMENT STRIP: update this text without changing AppHeader.vue.
+// Announcement strip.
 export const announcement = {
   tag: 'NEW',
   text: 'SaaSBeds Channel Manager: sync rates and availability on every channel',
   href: '/features/hotel-channel-manager/'
 }
 
-// Brand logo: local transparent PNG; keep this exact filename in src/assets/header/.
+// Logo.
 export const logo = {
   src: img('saasbeds-wordmark.png'),
   alt: 'SaaSBeds'
 }
 
-// HEADER CTA: the requested Book a Demo wording + URL stay unchanged.
+// Header CTA.
 export const ctas = {
   primary: 'Book a Demo',
   primaryHref: '/book-a-demo/'
 }
 
-// MAIN NAVIGATION
+// Main navigation.
 export const navItems = [
   page('Home', '/'),
   { label: 'Platform', menu: 'platform' },
@@ -46,6 +48,8 @@ export const navItems = [
   page('Log in', 'https://partners.saasbeds.com/console')
 ]
 
+// Platform mega-menu: only image cards go in `cards`.
+// PMS already appears in `cols[0][0].groups[0].items`.
 export const platform = {
   cards: [
     {
@@ -69,7 +73,7 @@ export const platform = {
         groups: [
           {
             items: [
-              page('Property Management System', '/features/hotel-property-management-system/'),
+              page('Property Management System','/features/hotel-property-management-system/'),
               page('Housekeeping', '/features/hotel-housekeeping-software/'),
               page('Night Audit', '/features/hotel-night-audit/'),
               page('Inventory & Procurement', '/features/hotel-inventory-procurement/'),

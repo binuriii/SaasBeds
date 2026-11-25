@@ -3,12 +3,25 @@ defineProps({
   tone: {
     type: String,
     default: 'white'
+  },
+
+  // true = rounded section
+  // false = straight section
+  curved: {
+    type: Boolean,
+    default: true
   }
 })
 </script>
 
 <template>
-  <section class="sb-curved" :class="`sb-curved--${tone}`">
+  <section
+    class="sb-curved"
+    :class="[
+      `sb-curved--${tone}`,
+      { 'sb-curved--flat': !curved }
+    ]"
+  >
     <div class="sb-curved__container">
       <slot />
     </div>
@@ -49,11 +62,17 @@ defineProps({
 }
 
 .sb-curved--blue {
-  background: var(--color-blue-light, #D3F4FF);
+  background: var(
+    --color-blue-light,
+    #D3F4FF
+  );
 }
 
 .sb-curved--dark {
-  background: var(--color-blue-dark, #153C94);
+  background: var(
+    --color-blue-dark,
+    #153C94
+  );
   color: #fff;
 }
 
@@ -71,6 +90,16 @@ defineProps({
   .sb-curved {
     margin-top: -43px;
     border-radius: 42px 42px 0 0;
+  }
+
+  .sb-curved--flat {
+    margin-top: 0;
+    border-radius: 0;
+
+    padding:
+      65px
+      0
+      85px;
   }
 }
 </style>
