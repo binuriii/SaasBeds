@@ -1,13 +1,17 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
-import opening from '../../../assets/saasbeds/phone-ui/opening.webp'
-import palm from '../../../assets/saasbeds/phone-ui/palm.webp'
-import riverside from '../../../assets/saasbeds/phone-ui/riverside.webp'
-import map from '../../../assets/saasbeds/phone-ui/map.webp'
-import portrait from '../../../assets/saasbeds/phone-ui/agent.webp'
 
-import neighborhood from '../../../assets/saasbeds/phone-ui/neighborhood.webp?url'
-import sunset from '../../../assets/saasbeds/phone-ui/sunset.webp?url'
+
+import opening from '../../assets/saasbeds/phone-ui/opening.webp'
+import palm from '../../assets/saasbeds/phone-ui/palm.webp'
+import riverside from '../../assets/saasbeds/phone-ui/riverside.webp'
+
+import map from '../../assets/saasbeds/phone-ui/map.webp'
+import portrait from '../../assets/saasbeds/phone-ui/agent.webp'
+
+import neighborhood from '../../assets/saasbeds/phone-ui/neighborhood.webp?url'
+import sunset from '../../assets/saasbeds/phone-ui/sunset.webp?url'
+
 
 defineProps({ src: { type: String, required: true } })
 

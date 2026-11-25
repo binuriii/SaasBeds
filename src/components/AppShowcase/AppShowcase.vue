@@ -3,7 +3,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import QRCode from 'qrcode'
 import { section, mobileApp, qr } from './AppShowcaseData.js'
 import PhoneMotion from './PhoneMotion.vue'
-import phoneImageUrl from '../../../assets/saasbeds/Yellow Real Estate Phone Dashboard.png?url'
+import phoneImageUrl from '../../assets/saasbeds/Yellow Real Estate Phone Dashboard.png?url'
 
 const banner = ref(null)
 const entered = ref(false)

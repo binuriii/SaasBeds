@@ -13,10 +13,11 @@ import SolutionShowcase from './SolutionShowcase/SolutionShowcase.vue'
 import CustomerStories from './CustomerStories/CustomerStories.vue'
 import MeeetAITeam from './MeetAITeam/MeetAITeam.vue'
 import BookingEngine from './BookingEngine/BookingEngine.vue'
-import AppShowcase from './AppShowcase/AppShowcase.vue'
+import AppShowcase from '../../components/AppShowcase/AppShowcase.vue'
 
 onMounted(() => { document.title = homeMeta.title })
 </script>
+
 <template>
   <div class="home">
     <HeroSection/>
@@ -28,10 +29,10 @@ onMounted(() => { document.title = homeMeta.title })
     <HowItWorksCards/>
     <BookingEngine/>
     <SolutionShowcase/>
-    <AppShowcase/> 
+    <AppShowcase/>
     <CustomerStories/>
     <FAQ />
-    
   </div>
 </template>
+
 <style src="./Home.css"></style>
