@@ -1,30 +1,57 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import heroBg from '../../assets/saasbeds/Soft Periwinkle Gradient Background.png'
+
 const props = defineProps({
+  backgroundImage: {
+  type: String,
+  default: heroBg
+},
+
   eyebrow: {
-    type: String,
+    type: String
   },
-  firstLine: { type: String, required: true },
-  secondLine: { type: String, required: true },
-  description: { type: String, required: true },
-  primaryText: { type: String, default: 'Book a demo' },
+
+  firstLine: {
+    type: String,
+    required: true
+  },
+
+  secondLine: {
+    type: String,
+    required: true
+  },
+
+  description: {
+    type: String,
+    required: true
+  },
+
+  primaryText: {
+    type: String,
+    default: 'Book a demo'
+  },
+
   primaryHref: {
     type: String,
     default: 'https://saasbeds.com/book-a-demo/'
   },
+
   secondaryText: {
     type: String,
     default: 'Explore features'
   },
+
   secondaryHref: {
     type: String,
     default: '#platform-features'
   },
+
   rotatingLines: {
-  type: Array,
-  default: () => []
-}
+    type: Array,
+    default: () => []
+  }
 })
 
 const activeLine = ref(0)
@@ -46,15 +73,21 @@ onMounted(() => {
 onBeforeUnmount(() => {
   if (wordTimer) clearInterval(wordTimer)
 })
-
 </script>
 
 <template>
-  <section class="sb-inner-hero" aria-labelledby="sb-inner-hero-title">
+  <section
+    class="sb-inner-hero"
+    aria-labelledby="sb-inner-hero-title"
+    :style="backgroundImage
+      ? { backgroundImage: `url('${backgroundImage}')` }
+      : {}"
+  >
     <span
       class="sb-inner-hero__glow sb-inner-hero__glow--left"
       aria-hidden="true"
     ></span>
+
     <span
       class="sb-inner-hero__glow sb-inner-hero__glow--right"
       aria-hidden="true"
@@ -62,38 +95,40 @@ onBeforeUnmount(() => {
 
     <div class="sb-inner-hero__content">
 
-      <h1 id="sb-inner-hero-title" class="sb-inner-hero__title">
+      <h1
+        id="sb-inner-hero-title"
+        class="sb-inner-hero__title"
+      >
         <span>{{ firstLine }}</span>
-        
-<span class="sb-inner-hero__soft">
-  <Transition name="sb-word" mode="out-in">
-    <span
-      :key="activeLine"
-      class="sb-inner-hero__word"
-    >
-      {{
-        rotatingLines.length
-          ? rotatingLines[activeLine]
-          : secondLine
-      }}
-    </span>
-  </Transition>
-</span>
 
+        <span class="sb-inner-hero__soft">
+          <Transition name="sb-word" mode="out-in">
+            <span
+              :key="activeLine"
+              class="sb-inner-hero__word"
+            >
+              {{
+                rotatingLines.length
+                  ? rotatingLines[activeLine]
+                  : secondLine
+              }}
+            </span>
+          </Transition>
+        </span>
       </h1>
 
       <p class="sb-inner-hero__description">
         {{ description }}
       </p>
 
-<div class="sb-inner-hero__actions">
-  <a
-    class="sb-inner-hero__button sb-inner-hero__button--primary"
-    :href="primaryHref"
-  >
-   {{ primaryText }}
-  </a>
-</div>
+      <div class="sb-inner-hero__actions">
+        <a
+          class="sb-inner-hero__button sb-inner-hero__button--primary"
+          :href="primaryHref"
+        >
+          {{ primaryText }}
+        </a>
+      </div>
 
     </div>
   </section>
@@ -108,11 +143,19 @@ onBeforeUnmount(() => {
   min-height: clamp(510px, 66vh, 680px);
   padding: clamp(85px, 9vw, 125px) 22px 166px;
   overflow: hidden;
+
+  /* Default background */
   background: linear-gradient(
     145deg,
     var(--color-blue-light, #D3F4FF) 0%,
     #e8f7ff 100%
   );
+
+  /* Background image settings */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   color: #1a202b;
   font-family: var(--font-primary, 'Outfit', sans-serif);
   text-align: center;
@@ -151,34 +194,13 @@ onBeforeUnmount(() => {
   margin-inline: auto;
 }
 
-.sb-inner-hero__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  margin-bottom: 30px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .10em;
-  line-height: 1.5;
-  text-transform: uppercase;
-  color: var(--color-blue-dark, #153C94);
-}
-
-.sb-inner-hero__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #153C94;
-}
-
 .sb-inner-hero__title {
   display: grid;
   justify-items: center;
   gap: 5px;
   margin: 0;
-  font-size: clamp(39px, 5.45vw, 78px);
-  font-weight: 600;
+  font-size: clamp(29px, 4.9vw, 75px);
+  font-weight: 550;
   line-height: 1.08;
   letter-spacing: -.055em;
   text-wrap: balance;
@@ -189,7 +211,7 @@ onBeforeUnmount(() => {
 }
 
 .sb-inner-hero__soft {
-  color: #657687;
+  color: #153C94;
 }
 
 .sb-inner-hero__description {
@@ -207,7 +229,6 @@ onBeforeUnmount(() => {
   gap: 12px;
   margin-top: 32px;
 }
-
 
 /* Animated changing hero words */
 .sb-inner-hero__word {
@@ -244,7 +265,7 @@ onBeforeUnmount(() => {
   }
 }
 
-
+/* Hero buttons */
 .sb-inner-hero__button {
   display: inline-flex;
   align-items: center;
@@ -257,7 +278,7 @@ onBeforeUnmount(() => {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: .01em;
-  text-decoration: none;
+  text-transform: uppercase;
   transition:
     transform .2s ease,
     background .2s ease,
@@ -269,12 +290,12 @@ onBeforeUnmount(() => {
 }
 
 .sb-inner-hero__button--primary {
-  background: #1b2330;
+  background: #153C94;
   color: #fff;
 }
 
 .sb-inner-hero__button--primary:hover {
-  background: var(--color-blue-dark, #153C94);
+  background: var(--color-blue-dark, #0e2b6b);
 }
 
 .sb-inner-hero__button--outline {
@@ -287,13 +308,13 @@ onBeforeUnmount(() => {
   border-color: #a8c5de;
 }
 
-
 /* Smooth animation for the second heading only */
 .sb-inner-hero__animate {
   display: inline-block;
   opacity: 0;
   transform: translateY(25px);
-  animation: heroTextReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+  animation: heroTextReveal 1.2s
+    cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
 }
 
 @keyframes heroTextReveal {
@@ -319,7 +340,7 @@ onBeforeUnmount(() => {
   }
 }
 
-
+/* Mobile responsive */
 @media (max-width: 640px) {
   .sb-inner-hero {
     min-height: 530px;

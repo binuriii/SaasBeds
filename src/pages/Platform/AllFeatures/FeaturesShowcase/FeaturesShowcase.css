@@ -1,0 +1,1011 @@
+/* ==================================================
+   FEATURES SHOWCASE
+
+   Section padding, container width,
+   h2, h3, .lead and spacing are inherited
+   from the existing global stylesheet.
+================================================== */
+
+.fsh {
+  --fsh-gap: clamp(16px, 2vw, 32px);
+  --fsh-radius: clamp(18px, 1.7vw, 29px);
+
+  --fsh-soft: color-mix(
+    in srgb,
+    var(--color-black) 4%,
+    var(--color-white)
+  );
+
+  width: 100%;
+
+  color: var(--color-black);
+  font-family: var(--font-primary);
+}
+
+.fsh *,
+.fsh *::before,
+.fsh *::after {
+  box-sizing: border-box;
+}
+
+/* ==================================================
+   MAIN GRID
+================================================== */
+
+.fsh__grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.4fr)
+    minmax(0, 1fr);
+
+  align-items: stretch;
+
+  gap: clamp(24px, 4vw, 64px);
+}
+
+/* ==================================================
+   LEFT SIDE
+================================================== */
+
+.fsh__left {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+/* ==================================================
+   HEADING
+
+   Font sizes inherited from global CSS.
+================================================== */
+
+.fsh__heading {
+  padding-top: 5vh;
+  text-align: left;
+}
+
+.fsh__heading-row {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: var(--space-3);
+}
+
+.fsh__heading h2 {
+  margin: 0;
+
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.fsh__heading .lead {
+  max-width: 52ch;
+
+  margin: var(--space-2) 0 0;
+
+  text-align: left;
+}
+
+/* Connected circles */
+
+.fsh__connected-icon {
+  flex-shrink: 0;
+
+  width: clamp(36px, 4vw, 58px);
+
+  margin-top: 8px;
+
+  color: var(--color-text-muted);
+}
+
+/* ==================================================
+   FEATURE TAGS
+================================================== */
+
+.fsh__tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: var(--space-3);
+}
+
+.fsh__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 36px;
+
+  padding: 9px 14px;
+
+  background: var(--fsh-soft);
+
+  border: 1px solid rgba(0, 0, 0, 0.025);
+  border-radius: 7px;
+
+  color: var(--color-black);
+
+  font-size: clamp(11px, 0.9vw, 14px);
+  font-weight: 500;
+
+  line-height: 1.3;
+}
+
+/* ==================================================
+   BOTTOM LEFT GRID
+
+   Portrait image + supporting content
+================================================== */
+
+.fsh__bottom {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.85fr)
+    minmax(0, 1.15fr);
+
+  align-items: stretch;
+
+  gap: clamp(18px, 3vw, 42px);
+
+  margin-top: auto;
+
+  padding-top: var(--section-gap);
+}
+
+/* ==================================================
+   SMALL PORTRAIT IMAGE
+================================================== */
+
+.fsh__portrait {
+  position: relative;
+
+  isolation: isolate;
+  overflow: hidden;
+
+  min-width: 0;
+
+  min-height: clamp(250px, 25vw, 360px);
+
+  background: #d9dedb;
+
+  border-radius: var(--fsh-radius);
+}
+
+.fsh__portrait-image {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center 30%;
+
+  user-select: none;
+
+  transition: scale 700ms var(--ease);
+}
+
+.fsh__portrait:hover .fsh__portrait-image {
+  scale: 1.045;
+}
+
+/* Image shade */
+
+.fsh__portrait-overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 35%,
+      rgba(0, 0, 0, 0.1) 50%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* Image content */
+
+.fsh__portrait-content {
+  position: absolute;
+
+  z-index: 2;
+
+  right: 0;
+  left: 0;
+  bottom: 0;
+
+  padding: clamp(18px, 2vw, 28px);
+
+  color: var(--color-white);
+}
+
+.fsh__portrait-label {
+  display: block;
+
+  max-width: 20ch;
+
+  font-size: clamp(11px, 1vw, 14px);
+  font-weight: 600;
+
+  line-height: 1.4;
+}
+
+.fsh__portrait-caption {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: clamp(10px, 0.85vw, 12px);
+
+  line-height: 1.4;
+
+  opacity: 0.75;
+}
+
+/* Portrait progress line */
+
+.fsh__portrait-progress {
+  position: relative;
+
+  overflow: hidden;
+
+  height: 7px;
+
+  margin-top: var(--space-2);
+
+  background: rgba(255, 255, 255, 0.28);
+
+  border-radius: var(--radius-pill);
+}
+
+.fsh__portrait-progress span {
+  display: block;
+
+  width: 65%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-blue-light),
+      #ffffff
+    );
+
+  border-radius: inherit;
+
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.fsh--visible .fsh__portrait-progress span {
+  animation:
+    fsh-progress
+    1.6s
+    var(--ease)
+    500ms
+    both;
+}
+
+@keyframes fsh-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ==================================================
+   SUPPORTING CONTENT
+================================================== */
+
+.fsh__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-width: 0;
+
+  gap: var(--space-3);
+
+  padding-block: 6px;
+}
+
+.fsh__info h3 {
+  margin: 0;
+
+  max-width: 16ch;
+
+  text-wrap: balance;
+}
+
+/* Subtitle */
+
+.fsh__subtitle {
+  margin: var(--space-1) 0 0;
+
+  color: var(--color-text-muted);
+}
+
+/* Connected status */
+
+.fsh__highlight {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: var(--space-2);
+
+  color: var(--color-blue-dark);
+
+  font-size: clamp(11px, 1vw, 14px);
+  font-weight: 500;
+}
+
+.fsh__highlight svg {
+  flex-shrink: 0;
+
+  width: 18px;
+  height: 18px;
+}
+
+/* Supporting paragraph */
+
+.fsh__info-description {
+  max-width: 32ch;
+
+  margin: 0;
+
+  color: var(--color-text-muted);
+}
+
+/* ==================================================
+   BUTTONS
+================================================== */
+
+.fsh__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: var(--space-3);
+}
+
+/* Main CTA */
+
+.fsh__book {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  min-height: 43px;
+
+  padding: 4px 4px 4px 17px;
+
+  background: var(--color-blue-dark);
+  color: var(--color-white);
+
+  border-radius: 12px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    background var(--t-base),
+    transform var(--t-base);
+}
+
+.fsh__book:hover {
+  background: #102d70;
+
+  transform: translateY(-2px);
+}
+
+.fsh__book-icon {
+  display: grid;
+  place-items: center;
+
+  width: 35px;
+  height: 35px;
+
+  background: var(--color-white);
+  color: var(--color-black);
+
+  border-radius: 9px;
+}
+
+.fsh__book-icon svg {
+  width: 16px;
+  height: 16px;
+
+  transition: transform var(--t-base);
+}
+
+.fsh__book:hover .fsh__book-icon svg {
+  transform: translateX(3px);
+}
+
+/* Secondary CTA */
+
+.fsh__pricing {
+  font-size: 13px;
+  font-weight: 600;
+
+  color: var(--color-black);
+
+  border-bottom: 1px solid currentColor;
+
+  transition: color var(--t-base);
+}
+
+.fsh__pricing:hover {
+  color: var(--color-blue-dark);
+}
+
+/* ==================================================
+   RIGHT SIDE — LARGE PHOTO
+================================================== */
+
+.fsh__visual {
+  position: relative;
+
+  isolation: isolate;
+  overflow: hidden;
+
+  min-width: 0;
+
+  min-height: clamp(500px, 47vw, 690px);
+
+  background: #c9d7cf;
+
+  border-radius: var(--fsh-radius);
+}
+
+.fsh__hotel-image {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  user-select: none;
+
+  transition: scale 900ms var(--ease);
+}
+
+.fsh__visual:hover .fsh__hotel-image {
+  scale: 1.035;
+}
+
+.fsh__visual-overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.1),
+      transparent 50%,
+      rgba(0, 0, 0, 0.05)
+    );
+
+  pointer-events: none;
+}
+
+/* ==================================================
+   FLOATING DASHBOARD
+
+   Only one floating card, like the reference.
+================================================== */
+
+.fsh__dashboard {
+  position: absolute;
+
+  z-index: 3;
+
+  top: clamp(24px, 4vw, 60px);
+
+  left: 50%;
+
+  width: 80%;
+
+  padding: clamp(18px, 2vw, 30px);
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+
+  border-radius: calc(var(--fsh-radius) * 0.8);
+
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+
+  box-shadow: var(--shadow-md);
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, 24px)
+    scale(0.95);
+}
+
+.fsh--visible .fsh__dashboard {
+  animation:
+    fsh-dashboard-enter
+    1s
+    var(--ease)
+    350ms
+    both;
+}
+
+@keyframes fsh-dashboard-enter {
+  from {
+    opacity: 0;
+
+    transform:
+      translate(-50%, 24px)
+      scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate(-50%, 0)
+      scale(1);
+  }
+}
+
+/* ==================================================
+   DASHBOARD METRICS
+================================================== */
+
+.fsh__metrics {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: var(--space-2);
+}
+
+.fsh__metric {
+  min-width: 0;
+}
+
+.fsh__metric-label {
+  display: block;
+
+  color: var(--color-text-muted);
+
+  font-size: clamp(9px, 0.75vw, 11px);
+  font-weight: 600;
+
+  line-height: 1.4;
+
+  letter-spacing: 0.02em;
+
+  text-transform: uppercase;
+}
+
+.fsh__metric-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+
+  gap: 6px;
+
+  margin-top: 8px;
+}
+
+.fsh__metric-value {
+  color: var(--color-black);
+
+  font-size: clamp(30px, 3.2vw, 48px);
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  letter-spacing: -0.06em;
+}
+
+.fsh__metric-unit {
+  color: var(--color-text-muted);
+
+  font-size: clamp(9px, 0.75vw, 11px);
+  font-weight: 400;
+}
+
+/* ==================================================
+   DASHBOARD BAR ANIMATION
+================================================== */
+
+.fsh__chart {
+  margin-top: var(--space-3);
+}
+
+.fsh__chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 10px;
+
+  color: var(--color-text-muted);
+
+  font-size: clamp(10px, 0.85vw, 12px);
+}
+
+.fsh__chart-status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  font-weight: 500;
+
+  color: var(--color-blue-dark);
+}
+
+.fsh__chart-status i {
+  width: 6px;
+  height: 6px;
+
+  background: var(--color-blue-dark);
+
+  border-radius: 50%;
+}
+
+/* Vertical rounded bars */
+
+.fsh__bars {
+  display: grid;
+
+  grid-template-columns:
+    repeat(14, minmax(0, 1fr));
+
+  gap: clamp(3px, 0.45vw, 6px);
+}
+
+.fsh__bars span {
+  height: clamp(35px, 4vw, 65px);
+
+  background: #edf0f3;
+
+  border-radius: var(--radius-pill);
+
+  transform: scaleY(0);
+
+  transform-origin: bottom center;
+}
+
+.fsh__bars span.is-active {
+  background:
+    linear-gradient(
+      180deg,
+      #8cec92,
+      #56c45d
+    );
+}
+
+.fsh--visible .fsh__bars span {
+  animation:
+    fsh-bar-enter
+    700ms
+    var(--ease)
+    both;
+
+  animation-delay:
+    calc(700ms + var(--index) * 65ms);
+}
+
+@keyframes fsh-bar-enter {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* ==================================================
+   SCROLL REVEAL
+================================================== */
+
+.fsh-reveal {
+  opacity: 0;
+
+  transform: translateY(24px);
+
+  transition:
+    opacity 750ms var(--ease),
+    transform 850ms var(--ease);
+}
+
+.fsh--visible .fsh-reveal {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.fsh--visible .fsh__heading {
+  transition-delay: 0ms;
+}
+
+.fsh--visible .fsh__portrait {
+  transition-delay: 180ms;
+}
+
+.fsh--visible .fsh__info {
+  transition-delay: 250ms;
+}
+
+.fsh--visible .fsh__visual {
+  transition-delay: 100ms;
+}
+
+/* Feature tags reveal */
+
+.fsh__tag {
+  opacity: 0;
+
+  transform: translateY(10px);
+
+  transition:
+    opacity 450ms var(--ease),
+    transform 450ms var(--ease);
+}
+
+.fsh--visible .fsh__tag {
+  opacity: 1;
+
+  transform: translateY(0);
+
+  transition-delay:
+    calc(120ms + var(--index) * 65ms);
+}
+
+/* ==================================================
+   KEYBOARD ACCESSIBILITY
+================================================== */
+
+.fsh-reveal:focus-within {
+  opacity: 1;
+  transform: none;
+}
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 1050px) {
+
+  .fsh__grid {
+    grid-template-columns:
+      minmax(0, 1.2fr)
+      minmax(0, 1fr);
+
+    gap: 24px;
+  }
+
+  .fsh__bottom {
+    gap: 18px;
+  }
+
+  .fsh__portrait {
+    min-height: 280px;
+  }
+
+  .fsh__dashboard {
+    width: 88%;
+  }
+
+  .fsh__connected-icon {
+    display: none;
+  }
+
+}
+
+/* ==================================================
+   MOBILE AND SMALL TABLETS
+================================================== */
+
+@media (max-width: 768px) {
+
+  .fsh__grid {
+    grid-template-columns: 1fr;
+
+    gap: var(--space-4);
+  }
+
+  .fsh__heading h2 {
+    max-width: 20ch;
+  }
+
+  .fsh__bottom {
+    padding-top: var(--space-4);
+  }
+
+  .fsh__portrait {
+    min-height: 300px;
+  }
+
+  .fsh__visual {
+    min-height: clamp(420px, 90vw, 600px);
+  }
+
+  .fsh__dashboard {
+    width: 82%;
+  }
+
+  .fsh__connected-icon {
+    display: block;
+  }
+
+}
+
+/* ==================================================
+   SMALL MOBILE
+================================================== */
+
+@media (max-width: 480px) {
+
+  .fsh__bottom {
+    grid-template-columns:
+      minmax(0, 0.9fr)
+      minmax(0, 1.1fr);
+
+    gap: 14px;
+  }
+
+  .fsh__portrait {
+    min-height: 260px;
+  }
+
+  .fsh__portrait-content {
+    padding: 14px;
+  }
+
+  .fsh__info {
+    gap: 16px;
+  }
+
+  .fsh__tags {
+    gap: 6px;
+  }
+
+  .fsh__tag {
+    min-height: 32px;
+
+    padding: 7px 10px;
+  }
+
+  .fsh__highlight {
+    align-items: flex-start;
+  }
+
+  .fsh__actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .fsh__book {
+    gap: 9px;
+
+    padding-left: 10px;
+
+    font-size: 11px;
+  }
+
+  .fsh__book-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .fsh__dashboard {
+    width: 88%;
+
+    padding: 16px;
+  }
+
+  .fsh__connected-icon {
+    display: none;
+  }
+
+}
+
+@media (max-width: 360px) {
+
+  .fsh__bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .fsh__portrait {
+    min-height: 300px;
+  }
+
+}
+
+/* ==================================================
+   TOUCH DEVICES
+================================================== */
+
+@media (hover: none) {
+
+  .fsh__portrait:hover .fsh__portrait-image,
+  .fsh__visual:hover .fsh__hotel-image {
+    scale: 1;
+  }
+
+}
+
+/* ==================================================
+   REDUCED MOTION
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .fsh *,
+  .fsh *::before,
+  .fsh *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .fsh-reveal,
+  .fsh__tag {
+    opacity: 1;
+    transform: none;
+  }
+
+  .fsh__dashboard {
+    opacity: 1;
+
+    transform: translate(-50%, 0);
+  }
+
+  .fsh__bars span,
+  .fsh__portrait-progress span {
+    opacity: 1;
+    transform: none;
+  }
+
+}
