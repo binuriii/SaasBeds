@@ -27,7 +27,6 @@ const resolveImage = (name) => {
 // image = file name in src/assets/logos, href = link (leave '' for no link), h = logo height in px
 const brands = [
   { name: 'Coco Bay',           image: 'cocobay_logo.png',        href: 'https://cocobayunawatuna.com', h: 40 },
-  { name: 'House of Sincerity', image: 'house_of_sincerity.webp', href: 'https://www.houseofsincerity.com', h: 50 },
   { name: 'Grand Kandyan',      image: 'grand_kandyan.png',       href: 'https://www.grandkandyan.com', h: 65 },
   { name: 'Villa Albino',       image: 'Villa-Albino-Logo.png',        href: 'https://albinovilla.com', h: 70 },
   { name: 'Sigiri Vananthara',  image: 'Sigiri_Vananthara.png',   href: 'https://sigirivananthara.com', h: 55 },
