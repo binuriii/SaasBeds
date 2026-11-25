@@ -103,7 +103,7 @@ const testimonials = [
     'Their creative designs and attention to detail helped us deliver an unforgettable entertainment experience for our visitors.',
   role: 'Operations Manager',
   org: 'Indoor Entertainment Arena',
-  image: 'https://images.unsplash.com/photo-1789758386134-01c0f5316597?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDE%3D',
+  image: 'https://images.unsplash.com/photo-1794840593434-3c3ee170203b?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
   alt: 'Indoor entertainment arena'
 },
 ]

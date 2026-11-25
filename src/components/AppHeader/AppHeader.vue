@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
 import {
   logo,
   announcement,
@@ -11,6 +12,24 @@ import {
   resources,
   company
 } from './AppHeaderData.js'
+
+const router = useRouter()
+
+// Registered pages use Vue Router; other links keep their original href.
+function isInternalRoute(href) {
+  if (typeof href !== 'string' || !href.startsWith('/') || href.startsWith('//')) {
+    return false
+  }
+
+  return router.resolve(href).matched.some(
+    route => route.name && !route.redirect
+  )
+}
+
+function linkProps(href) {
+  return isInternalRoute(href) ? { to: href } : { href }
+}
+
 
 const headerRoot = ref(null)
 const mobileToggle = ref(null)
@@ -147,7 +166,7 @@ function mobileGroups(menu) {
     '--sb-mobile-header-height': `${mobileHeaderHeight}px`,
     '--sb-mobile-viewport': mobileViewportHeight
   }">
-  <a class="sb-announcement" :href="announcement.href" aria-label="Discover our new SaaSBeds Channel Manager">
+  <component class="sb-announcement" :is="isInternalRoute(announcement.href) ? RouterLink : 'a'" v-bind="linkProps(announcement.href)" aria-label="Discover our new SaaSBeds Channel Manager">
     <span class="sb-container sb-announcement-inner">
       <span class="sb-announcement-logo" aria-hidden="true">S</span>
       <strong class="sb-announcement-label">{{ announcement.tag }}</strong>
@@ -156,7 +175,7 @@ function mobileGroups(menu) {
         <span class="sb-announcement-copy">{{ announcement.text }}</span>
       </span>
     </span>
-  </a>
+  </component>
 
   <!-- All utility links, main navigation and mega menus are white. -->
   <div class="sb-header-root">
@@ -176,21 +195,21 @@ function mobileGroups(menu) {
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.2"/><path d="m15.3 15.3 5.2 5.2"/></svg>
             Search
           </button>
-          <a class="sb-utility-link" href="/contact-us/">Contact us</a>
-          <a v-if="login" class="sb-utility-link" :href="login.href">{{ login.label }}</a>
+          <component class="sb-utility-link" :is="isInternalRoute('/contact-us/') ? RouterLink : 'a'" v-bind="linkProps('/contact-us/')">Contact us</component>
+          <component v-if="login" class="sb-utility-link" :is="isInternalRoute(login.href) ? RouterLink : 'a'" v-bind="linkProps(login.href)">{{ login.label }}</component>
         </div>
       </div>
 
       <div class="sb-mainbar">
         <nav class="sb-container sb-nav" aria-label="Main navigation">
-          <a class="sb-brand" href="/" aria-label="SaaSBeds home" @click="closeAll">
+          <component class="sb-brand" :is="isInternalRoute('/') ? RouterLink : 'a'" v-bind="linkProps('/')" aria-label="SaaSBeds home" @click="closeAll">
             <img v-if="logo.src && !logoFailed" :src="logo.src" :alt="logo.alt" @error="logoFailed = true" />
             <strong v-else>SaaSBeds<span>.</span></strong>
-          </a>
+          </component>
 
           <ul class="sb-nav-list">
             <li v-for="item in desktopItems" :key="item.label" @mouseenter="openMenu(item.menu || null)">
-              <a v-if="!item.menu" class="sb-nav-link" :href="item.href" @focus="open = null">{{ item.label }}</a>
+              <component v-if="!item.menu" class="sb-nav-link" :is="isInternalRoute(item.href) ? RouterLink : 'a'" v-bind="linkProps(item.href)" @focus="open = null">{{ item.label }}</component>
               <button
                 v-else
                 class="sb-nav-link sb-nav-dropdown"
@@ -205,7 +224,7 @@ function mobileGroups(menu) {
 
           <!-- One CTA only: restore Book a Demo with blue background. -->
           <div class="sb-actions">
-            <a class="sb-btn sb-btn-blue" :href="ctas.primaryHref">{{ ctas.primary }}</a>
+            <component class="sb-btn sb-btn-blue" :is="isInternalRoute(ctas.primaryHref) ? RouterLink : 'a'" v-bind="linkProps(ctas.primaryHref)">{{ ctas.primary }}</component>
           </div>
 
           <button ref="mobileToggle" class="sb-menu-toggle" type="button" aria-label="Toggle navigation" :aria-expanded="drawer" aria-controls="sb-mobile-drawer" @click="toggleDrawer">
@@ -229,13 +248,11 @@ function mobileGroups(menu) {
         <div v-if="open === 'platform'" class="sb-container sb-mega-grid sb-mega-platform">
           <div class="sb-mega-column sb-promo-stack">
            
-              <a
+              <component
                 v-for="card in platform.cards"
                 :key="card.title"
                 class="sb-promo-card"
-                :href="card.title === 'Platform Overview'
-                  ? $router.resolve('/platform').href
-                  : card.href"
+                :is="isInternalRoute(card.href) ? RouterLink : 'a'" v-bind="linkProps(card.href)"
                 @click="closeAll"
               >
                 <span class="sb-promo-image">
@@ -253,7 +270,7 @@ function mobileGroups(menu) {
                 <span class="sb-promo-description">
                   {{ card.text }}
                 </span>
-              </a>
+              </component>
 
           </div>
           <div v-for="(column, i) in platform.cols" :key="i" class="sb-mega-column">
@@ -262,7 +279,7 @@ function mobileGroups(menu) {
               <p class="sb-section-description">{{ section.sub }}</p>
               <div v-for="(group, gi) in section.groups" :key="gi">
                 <span v-if="group.label" class="sb-eyebrow">{{ group.label }}</span>
-                <a v-for="entry in group.items" :key="entry.label" class="sb-mega-link" :href="entry.href">{{ entry.label }}</a>
+                <component v-for="entry in group.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
               </div>
             </section>
           </div>
@@ -272,85 +289,85 @@ function mobileGroups(menu) {
           <div v-for="(column, i) in solutions.cols" :key="i" class="sb-mega-column">
             <section v-for="section in column.sections" :key="section.label" class="sb-link-section sb-section-spaced">
               <h2 class="sb-eyebrow">{{ section.label }}</h2>
-              <a v-for="entry in section.items" :key="entry.label" class="sb-mega-link" :href="entry.href">{{ entry.label }}</a>
+              <component v-for="entry in section.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
             </section>
           </div>
-          <a class="sb-mega-column sb-editorial" :href="solutions.article.href">
+          <component class="sb-mega-column sb-editorial" :is="isInternalRoute(solutions.article.href) ? RouterLink : 'a'" v-bind="linkProps(solutions.article.href)">
             <span class="sb-pills"><span class="sb-pill sb-pill-highlight"><span class="sb-pink-dot"></span>{{ solutions.article.tag }}</span><span class="sb-editorial-type">{{ solutions.article.category }}</span></span>
             <strong class="sb-editorial-title">{{ solutions.article.title }}</strong>
             <img v-if="solutions.article.image" class="sb-editorial-image" :src="solutions.article.image" :alt="solutions.article.alt" loading="lazy" />
-          </a>
-          <a class="sb-mega-column sb-stat-column" :href="solutions.feature.href">
+          </component>
+          <component class="sb-mega-column sb-stat-column" :is="isInternalRoute(solutions.feature.href) ? RouterLink : 'a'" v-bind="linkProps(solutions.feature.href)">
             <span class="sb-stat-card"><img v-if="solutions.feature.image" :src="solutions.feature.image" :alt="solutions.feature.alt" loading="lazy" /><span class="sb-pill sb-stat-pill"><span class="sb-pink-dot"></span>{{ solutions.feature.tag }}</span></span>
-          </a>
+          </component>
         </div>
 
         <div v-else-if="open === 'resources'" class="sb-container sb-mega-grid sb-mega-resources">
           <div class="sb-mega-column sb-resource-intro">
-            <a :href="resources.feature.href" class="sb-resource-card">
+            <component :is="isInternalRoute(resources.feature.href) ? RouterLink : 'a'" v-bind="linkProps(resources.feature.href)" class="sb-resource-card">
               <span class="sb-resource-tag">{{ resources.feature.tag }}</span>
               <strong>Resource Center</strong>
               <span>A library of hospitality insights.</span>
-            </a>
+            </component>
           </div>
           <div class="sb-mega-column">
             <section v-for="column in resources.cols.slice(0, 2)" :key="column.label" class="sb-link-section sb-section-spaced">
               <h2 class="sb-eyebrow">{{ column.label }}</h2>
-              <a v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :href="entry.href">{{ entry.label }}</a>
+              <component v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
             </section>
           </div>
           <div class="sb-mega-column">
             <section v-for="column in resources.cols.slice(2)" :key="column.label" class="sb-link-section sb-section-spaced">
               <h2 class="sb-eyebrow">{{ column.label }}</h2>
-              <a v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :href="entry.href">{{ entry.label }}</a>
+              <component v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
             </section>
           </div>
-          <a class="sb-mega-column sb-editorial sb-resource-editorial" :href="resources.feature.href">
+          <component class="sb-mega-column sb-editorial sb-resource-editorial" :is="isInternalRoute(resources.feature.href) ? RouterLink : 'a'" v-bind="linkProps(resources.feature.href)">
             <span class="sb-pill sb-pill-highlight"><span class="sb-pink-dot"></span>{{ resources.feature.tag }}</span>
             <strong class="sb-editorial-title">{{ resources.feature.title }}</strong>
             <img v-if="resources.feature.image" class="sb-editorial-image" :src="resources.feature.image" :alt="resources.feature.alt" loading="lazy" />
-          </a>
+          </component>
         </div>
 
         <div v-else-if="open === 'company'" class="sb-container sb-mega-grid sb-mega-company">
           <div class="sb-mega-column sb-resource-intro">
-            <a class="sb-resource-card sb-company-card" :href="company.feature.href">
+            <component class="sb-resource-card sb-company-card" :is="isInternalRoute(company.feature.href) ? RouterLink : 'a'" v-bind="linkProps(company.feature.href)">
               <span class="sb-resource-tag">{{ company.feature.tag }}</span>
               <strong>{{ company.feature.title }}</strong>
               <span>Get to know the team behind SaaSBeds.</span>
               <img v-if="company.feature.image" :src="company.feature.image" :alt="company.feature.alt" loading="lazy" />
-            </a>
+            </component>
           </div>
           <div v-for="column in company.cols" :key="column.label" class="sb-mega-column">
             <section class="sb-link-section">
               <h2 class="sb-eyebrow">{{ column.label }}</h2>
-              <a v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :href="entry.href">{{ entry.label }}</a>
+              <component v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
             </section>
           </div>
         </div>
 
         <div v-else-if="open === 'ai-agents'" class="sb-container sb-mega-grid sb-mega-ai">
           <div class="sb-mega-column sb-resource-intro">
-            <a class="sb-resource-card sb-ai-card" :href="aiAgents.feature.href">
+            <component class="sb-resource-card sb-ai-card" :is="isInternalRoute(aiAgents.feature.href) ? RouterLink : 'a'" v-bind="linkProps(aiAgents.feature.href)">
               <span class="sb-resource-tag">{{ aiAgents.feature.tag }}</span>
               <strong>{{ aiAgents.feature.title }}</strong>
               <span class="sb-ai-card-description">{{ aiAgents.feature.text }}</span>
        
-            </a>
+            </component>
           </div>
           <div class="sb-mega-column">
             <section class="sb-link-section">
               <h2 class="sb-eyebrow">AI Agents</h2>
-              <a v-for="entry in aiAgents.items" :key="entry.label" class="sb-mega-link" :href="entry.href">{{ entry.label }}</a>
+              <component v-for="entry in aiAgents.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
             </section>
           </div>
-          <a class="sb-mega-column sb-editorial sb-ai-editorial" :href="aiAgents.feature.href">
+          <component class="sb-mega-column sb-editorial sb-ai-editorial" :is="isInternalRoute(aiAgents.feature.href) ? RouterLink : 'a'" v-bind="linkProps(aiAgents.feature.href)">
             <span class="sb-pill sb-pill-highlight">
               <span class="sb-pink-dot" aria-hidden="true"></span>{{ aiAgents.feature.tag }}
             </span>
             <strong class="sb-editorial-title">{{ aiAgents.items[0].label }}</strong>
             <img v-if="aiAgents.feature.image" class="sb-editorial-image" :src="aiAgents.feature.image" :alt="aiAgents.feature.alt" loading="lazy" />
-          </a>
+          </component>
         </div>
       </div>
 
@@ -362,10 +379,10 @@ function mobileGroups(menu) {
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.2"/><path d="m15.3 15.3 5.2 5.2"/></svg>
               Search
             </button>
-            <a class="sb-mobile-utility" href="/contact-us/" @click="closeAll">Contact us</a>
+            <component class="sb-mobile-utility" :is="isInternalRoute('/contact-us/') ? RouterLink : 'a'" v-bind="linkProps('/contact-us/')" @click="closeAll">Contact us</component>
           </div>
           <template v-for="item in navItems" :key="item.label">
-            <a v-if="!item.menu" class="sb-mobile-row" :href="item.href" @click="closeAll">{{ item.label }} <span aria-hidden="true">↗</span></a>
+            <component v-if="!item.menu" class="sb-mobile-row" :is="isInternalRoute(item.href) ? RouterLink : 'a'" v-bind="linkProps(item.href)" @click="closeAll">{{ item.label }} <span aria-hidden="true">↗</span></component>
             <template v-else>
               <button type="button" class="sb-mobile-row" :aria-controls="`sb-mobile-${item.menu}`" :aria-expanded="mobileSub === item.menu" @click="mobileSub = mobileSub === item.menu ? null : item.menu">
                 {{ item.label }} <span aria-hidden="true">{{ mobileSub === item.menu ? '−' : '+' }}</span>
@@ -374,23 +391,21 @@ function mobileGroups(menu) {
                 <section v-for="(group, index) in mobileGroups(item.menu)" :key="index" class="sb-mobile-group">
                   <h2 v-if="group.label" class="sb-eyebrow">{{ group.label }}</h2>
                   
-                    <a
+                    <component
                       v-for="link in group.items"
                       :key="`${link.href}-${link.label}`"
-                      :href="link.label === 'Platform Overview'
-                        ? $router.resolve('/platform').href
-                        : link.href"
+                      :is="isInternalRoute(link.href) ? RouterLink : 'a'" v-bind="linkProps(link.href)"
                       @click="closeAll"
                     >
                       {{ link.label }}
-                    </a>
+                    </component>
 
                 </section>
               </div>
             </template>
           </template>
           <div class="sb-mobile-actions">
-            <a class="sb-btn sb-btn-blue" :href="ctas.primaryHref" @click="closeAll">{{ ctas.primary }}</a>
+            <component class="sb-btn sb-btn-blue" :is="isInternalRoute(ctas.primaryHref) ? RouterLink : 'a'" v-bind="linkProps(ctas.primaryHref)" @click="closeAll">{{ ctas.primary }}</component>
           </div>
         </div>
       </div>
