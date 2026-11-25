@@ -228,11 +228,33 @@ function mobileGroups(menu) {
       <div v-if="open" :id="`sb-menu-${open}`" class="sb-mega" :aria-label="`${open} menu`">
         <div v-if="open === 'platform'" class="sb-container sb-mega-grid sb-mega-platform">
           <div class="sb-mega-column sb-promo-stack">
-            <a v-for="card in platform.cards" :key="card.title" class="sb-promo-card" :href="card.href">
-              <span class="sb-promo-image"><img v-if="card.image" :src="card.image" :alt="card.title" loading="lazy" /><span v-else class="sb-image-fallback"></span></span>
-              <strong>{{ card.title }}</strong>
-              <span class="sb-promo-description">{{ card.text }}</span>
-            </a>
+           
+              <a
+                v-for="card in platform.cards"
+                :key="card.title"
+                class="sb-promo-card"
+                :href="card.title === 'Platform Overview'
+                  ? $router.resolve('/platform').href
+                  : card.href"
+                @click="closeAll"
+              >
+                <span class="sb-promo-image">
+                  <img
+                    v-if="card.image"
+                    :src="card.image"
+                    :alt="card.title"
+                    loading="lazy"
+                  />
+                  <span v-else class="sb-image-fallback"></span>
+                </span>
+
+                <strong>{{ card.title }}</strong>
+
+                <span class="sb-promo-description">
+                  {{ card.text }}
+                </span>
+              </a>
+
           </div>
           <div v-for="(column, i) in platform.cols" :key="i" class="sb-mega-column">
             <section v-for="section in column" :key="section.title" class="sb-link-section">
@@ -351,7 +373,18 @@ function mobileGroups(menu) {
               <div v-if="mobileSub === item.menu" :id="`sb-mobile-${item.menu}`" class="sb-mobile-sub">
                 <section v-for="(group, index) in mobileGroups(item.menu)" :key="index" class="sb-mobile-group">
                   <h2 v-if="group.label" class="sb-eyebrow">{{ group.label }}</h2>
-                  <a v-for="link in group.items" :key="`${link.href}-${link.label}`" :href="link.href" @click="closeAll">{{ link.label }}</a>
+                  
+                    <a
+                      v-for="link in group.items"
+                      :key="`${link.href}-${link.label}`"
+                      :href="link.label === 'Platform Overview'
+                        ? $router.resolve('/platform').href
+                        : link.href"
+                      @click="closeAll"
+                    >
+                      {{ link.label }}
+                    </a>
+
                 </section>
               </div>
             </template>
