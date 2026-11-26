@@ -1,11 +1,11 @@
-
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './pages/Home/Home.vue'
 import PlatformOverview from './pages/Platform/PlatformOverview/PlatformOverview.vue'
+import AllFeatures from './pages/Platform/AllFeatures/AllFeatures.vue'
 
-const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+export default createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
 
   routes: [
     {
@@ -19,11 +19,9 @@ const router = createRouter({
       component: PlatformOverview
     },
     {
-      path: '/features/hotel-property-management-system',
-      alias: '/property-management-system',
-      name: 'property-management-system',
-      component: () =>
-        import('./pages/Platform/Operations/PropertyManagementSystem/PropertyManagementSystem.vue')
+      path: '/features',
+      name: 'all-features',
+      component: AllFeatures
     },
     {
       path: '/:pathMatch(.*)*',
@@ -33,5 +31,3 @@ const router = createRouter({
 
   scrollBehavior: () => ({ top: 0 })
 })
-
-export default router

@@ -61,7 +61,7 @@ export const platform = {
     {
       title: 'All Features - SaasBeds Marketplace',
       text: 'Connected to the channels your guests book on',
-      href: '/features/',
+      href: '/features',
       image: img('Travel Booking Platform Badges.png')
     }
   ],

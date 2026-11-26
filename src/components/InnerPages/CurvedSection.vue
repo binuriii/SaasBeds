@@ -1,4 +1,3 @@
-
 <script setup>
 defineProps({
   tone: {
@@ -34,13 +33,12 @@ defineProps({
   position: relative;
   isolation: isolate;
 
-  /* Original curved overlap */
   margin-top: -68px;
 
   padding:
-    clamp(106px, 10vw, 152px)
-    0
-    clamp(132px, 12vw, 174px);
+    var(--section-padding-top)
+    var(--section-padding-x)
+    var(--section-padding-bottom);
 
   border-radius:
     clamp(36px, 6.4vw, 88px)
@@ -50,33 +48,13 @@ defineProps({
   background: #fff;
   color: #20242c;
 
-  font-family: var(
-    --font-primary,
-    'Outfit',
-    sans-serif
-  );
+  font-family: var(--font-primary, 'Outfit', sans-serif);
 }
 
-/* =====================================
-   STRAIGHT SECTION — NO CURVE
-===================================== */
-
-.sb-curved--flat {
-  margin-top: 0;
-  border-radius: 0;
-
-  padding:
-    clamp(70px, 7vw, 110px)
-    0
-    clamp(80px, 8vw, 120px);
-}
-
-/* =====================================
-   SECTION COLORS
-===================================== */
+/* Background colours */
 
 .sb-curved--white {
-  background: #fff;
+  background: var(--color-white, #ffffff);
 }
 
 .sb-curved--mist {
@@ -98,32 +76,19 @@ defineProps({
   color: #fff;
 }
 
-/* =====================================
-   CONTAINER
-===================================== */
+/* Container */
 
 .sb-curved__container {
-  width: min(
-    1220px,
-    calc(100% - 2 * clamp(22px, 5vw, 86px))
-  );
-
+  width: 100%;
+  max-width: var(--container-max);
   margin-inline: auto;
 }
 
-/* =====================================
-   RESPONSIVE
-===================================== */
+/* Mobile */
 
 @media (max-width: 700px) {
   .sb-curved {
     margin-top: -43px;
-
-    padding:
-      88px
-      0
-      126px;
-
     border-radius: 42px 42px 0 0;
   }
 
