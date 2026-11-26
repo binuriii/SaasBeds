@@ -1,0 +1,915 @@
+.vi {
+  --vi-gap: clamp(16px, 2vw, 32px);
+
+  --vi-radius: clamp(18px, 1.7vw, 29px);
+
+  --vi-soft: color-mix(
+    in srgb,
+    var(--color-black) 4%,
+    var(--color-white)
+  );
+
+  --vi-height: clamp(500px, 47vw, 690px);
+
+  width: 100%;
+
+  color: var(--color-black);
+  font-family: var(--font-primary);
+}
+
+.vi *,
+.vi *::before,
+.vi *::after {
+  box-sizing: border-box;
+}
+
+.vi ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+/* ==================================================
+   THREE COLUMN GRID
+================================================== */
+
+.vi__grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1.08fr)
+    minmax(0, 1.04fr);
+
+  align-items: center;
+
+  gap: var(--vi-gap);
+}
+
+
+/* ==================================================
+   LEFT CONTENT
+================================================== */
+
+.vi__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  align-self: stretch;
+
+  min-width: 0;
+
+  gap: var(--space-3);
+
+  padding-bottom: 5vh;
+}
+
+.vi__heading {
+  padding-top: 5vh;
+
+  text-align: left;
+}
+
+.vi__heading h2 {
+  margin: 0;
+
+  max-width: 18ch;
+
+  text-align: left;
+  text-wrap: balance;
+}
+
+.vi__heading .lead {
+  max-width: 52ch;
+
+  margin: var(--space-2) 0 0;
+
+  text-align: left;
+}
+
+
+/* ==================================================
+   FEATURE TAGS
+================================================== */
+
+.vi .vi__tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 8px;
+
+  margin-top: var(--space-3);
+
+  padding-bottom: 5vh;
+}
+
+.vi__tag {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  min-height: 36px;
+
+  padding: 9px 14px;
+
+  background: var(--vi-soft);
+
+  border: 1px solid rgba(0, 0, 0, 0.025);
+  border-radius: 7px;
+
+  color: var(--color-black);
+
+  font-size: clamp(11px, 0.9vw, 14px);
+  font-weight: 500;
+
+  line-height: 1.3;
+
+  transition:
+    opacity 450ms var(--ease),
+    transform 450ms var(--ease),
+    background var(--t-base);
+}
+
+.vi__tag:not(:first-child) {
+  background: transparent;
+
+  border-color: transparent;
+}
+
+.vi__tag:hover {
+  background: var(--vi-soft);
+
+  transform: translateX(3px);
+}
+
+.vi__tag-dot {
+  flex-shrink: 0;
+
+  width: 6px;
+  height: 6px;
+
+  background: var(--color-blue-dark);
+
+  border-radius: 50%;
+}
+
+
+/* ==================================================
+   CTA BUTTON
+   Same style as FeaturesShowcase
+================================================== */
+
+.vi__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: auto;
+}
+
+.vi__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  min-height: 43px;
+
+  padding: 4px 4px 4px 17px;
+
+  background: var(--color-blue-dark);
+  color: var(--color-white);
+
+  border-radius: 12px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    background var(--t-base),
+    transform var(--t-base);
+}
+
+.vi__cta:hover {
+  background: #102d70;
+
+  transform: translateY(-2px);
+}
+
+.vi__cta-icon {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 35px;
+  height: 35px;
+
+  background: var(--color-white);
+  color: var(--color-black);
+
+  border-radius: 9px;
+}
+
+.vi__cta-icon svg {
+  width: 16px;
+  height: 16px;
+
+  transition: transform var(--t-base);
+}
+
+.vi__cta:hover .vi__cta-icon svg {
+  transform: translateX(3px);
+}
+
+.vi__cta:focus-visible {
+  outline: 2px solid var(--color-blue-dark);
+  outline-offset: 4px;
+}
+
+
+/* ==================================================
+   MIDDLE PORTRAIT CARD
+================================================== */
+
+.vi__portrait {
+  position: relative;
+
+  isolation: isolate;
+  overflow: hidden;
+
+  min-width: 0;
+  min-height: var(--vi-height);
+
+  align-self: stretch;
+
+  background: #709cab;
+
+  border-radius: var(--vi-radius);
+
+  color: var(--color-white);
+}
+
+.vi__portrait-image {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center 30%;
+
+  user-select: none;
+
+  transition: scale 700ms var(--ease);
+}
+
+.vi__portrait:hover .vi__portrait-image {
+  scale: 1.045;
+}
+
+
+/* Image shade */
+
+.vi__portrait-overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.48) 0%,
+    rgba(0, 0, 0, 0.18) 28%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 75%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+
+  pointer-events: none;
+}
+
+
+/* ==================================================
+   PORTRAIT ICON
+================================================== */
+
+.vi__badge {
+  position: absolute;
+
+  z-index: 2;
+
+  top: clamp(18px, 2vw, 28px);
+  left: clamp(18px, 2vw, 28px);
+
+  display: grid;
+  place-items: center;
+
+  width: clamp(36px, 3.5vw, 46px);
+  height: clamp(36px, 3.5vw, 46px);
+
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--color-white);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.vi__badge svg {
+  width: 55%;
+  height: 55%;
+}
+
+
+/* ==================================================
+   PORTRAIT CONTENT
+================================================== */
+
+.vi__portrait-top {
+  position: absolute;
+
+  z-index: 2;
+
+  top: clamp(80px, 7vw, 110px);
+
+  left: clamp(18px, 2vw, 28px);
+  right: clamp(18px, 2vw, 28px);
+}
+
+.vi__portrait-top h3 {
+  margin: 0;
+
+  max-width: 16ch;
+
+  color: var(--color-white);
+
+  text-align: left;
+  text-wrap: balance;
+}
+
+.vi__portrait-top p {
+  max-width: 32ch;
+
+  margin: var(--space-1) 0 0;
+
+  color: var(--color-white);
+
+  text-align: left;
+
+  opacity: 0.9;
+}
+
+
+/* ==================================================
+   RIGHT INFORMATION CARD
+================================================== */
+
+.vi__card {
+  position: relative;
+
+  isolation: isolate;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  min-height: calc(var(--vi-height) - 70px);
+
+  padding: clamp(18px, 2vw, 28px);
+
+  background: linear-gradient(
+    155deg,
+    #f4f9fa,
+    #edf6f8,
+    #f4f9fa
+  );
+
+  border: 1px solid rgba(0, 0, 0, 0.025);
+
+  border-radius: var(--vi-radius);
+}
+
+
+/* Right card icon */
+
+.vi__card-icon {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 36px;
+  height: 36px;
+
+  margin-bottom: var(--space-3);
+
+  background: var(--color-white);
+  color: var(--color-blue-dark);
+
+  border-radius: 50%;
+}
+
+.vi__card-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+/* ==================================================
+   RIGHT CARD HEADING
+================================================== */
+
+.vi__card-heading {
+  position: relative;
+
+  z-index: 1;
+
+  text-align: left;
+}
+
+.vi__card-heading h3 {
+  margin: 0;
+
+  max-width: 16ch;
+
+  text-align: left;
+  text-wrap: balance;
+}
+
+.vi__card-heading p {
+  max-width: 32ch;
+
+  margin: var(--space-1) 0 0;
+
+  color: var(--color-text-muted);
+
+  text-align: left;
+}
+
+
+/* ==================================================
+   LANDSCAPE IMAGE
+================================================== */
+
+.vi__card-media {
+  position: relative;
+
+  z-index: 1;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+
+  width: 100%;
+
+  aspect-ratio: 2 / 1;
+
+  margin-top: var(--space-3);
+
+  background: #c9d7cf;
+
+  border-radius: calc(var(--vi-radius) * 0.8);
+}
+
+.vi__card-media img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  user-select: none;
+
+  transition: scale 900ms var(--ease);
+}
+
+.vi__card-media:hover img {
+  scale: 1.035;
+}
+
+
+/* ==================================================
+   DECORATIVE CURVED PATTERN
+================================================== */
+
+.vi__decoration {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  flex: 1;
+
+  min-height: 85px;
+
+  overflow: hidden;
+
+  margin-top: var(--space-2);
+
+  color: rgba(255, 255, 255, 0.95);
+
+  pointer-events: none;
+}
+
+.vi__decoration svg {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  max-height: 190px;
+
+  opacity: 0.85;
+
+  transform: scale(1.15);
+}
+
+.vi--visible .vi__decoration svg {
+  animation:
+    vi-decoration-enter
+    1.2s
+    var(--ease)
+    400ms
+    both;
+}
+
+@keyframes vi-decoration-enter {
+  from {
+    opacity: 0;
+
+    transform: translateY(20px) scale(1.05);
+  }
+
+  to {
+    opacity: 0.85;
+
+    transform: translateY(0) scale(1.15);
+  }
+}
+
+
+/* ==================================================
+   BOTTOM LABELS
+================================================== */
+
+.vi__pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.vi__card .vi__pills {
+  position: relative;
+
+  z-index: 1;
+
+  justify-content: space-between;
+
+  margin-top: auto;
+
+  padding-top: var(--space-3);
+}
+
+.vi__pills li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 14px;
+
+  background: var(--color-white);
+  color: var(--color-black);
+
+  border: 1px solid rgba(0, 0, 0, 0.025);
+
+  border-radius: 7px;
+
+  font-size: clamp(11px, 0.9vw, 14px);
+  font-weight: 500;
+
+  line-height: 1.3;
+
+  transition:
+    background var(--t-base),
+    transform var(--t-base);
+}
+
+.vi__card .vi__pills li:hover {
+  transform: translateY(-2px);
+}
+
+
+/* ==================================================
+   GLASS LABELS
+================================================== */
+
+.vi__pills--glass {
+  position: absolute;
+
+  z-index: 2;
+
+  right: clamp(18px, 2vw, 28px);
+  bottom: clamp(18px, 2vw, 28px);
+  left: clamp(18px, 2vw, 28px);
+}
+
+.vi__pills--glass li {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--color-white);
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 7px;
+
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+
+  font-size: clamp(10px, 0.85vw, 12px);
+}
+
+
+/* ==================================================
+   SCROLL REVEAL
+================================================== */
+
+.vi-reveal {
+  opacity: 1;
+
+  transform: translateY(0);
+
+  transition:
+    opacity 750ms var(--ease),
+    transform 850ms var(--ease);
+}
+
+.vi--js:not(.vi--visible) .vi-reveal {
+  opacity: 0;
+
+  transform: translateY(24px);
+}
+
+.vi--visible .vi-reveal {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+.vi--visible .vi__left {
+  transition-delay: 0ms;
+}
+
+.vi--visible .vi__portrait {
+  transition-delay: 180ms;
+}
+
+.vi--visible .vi__card {
+  transition-delay: 250ms;
+}
+
+
+/* Feature tags reveal */
+
+.vi--js:not(.vi--visible) .vi__tag {
+  opacity: 0;
+
+  transform: translateY(10px);
+}
+
+.vi--visible .vi__tag {
+  opacity: 1;
+
+  transform: translateY(0);
+
+  transition-delay:
+    calc(120ms + var(--index) * 65ms);
+}
+
+.vi--visible .vi__tag:hover {
+  transform: translateX(3px);
+
+  transition-delay: 0ms;
+}
+
+.vi--js:not(.vi--visible) .vi-reveal:focus-within {
+  opacity: 1;
+
+  transform: none;
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 1050px) {
+
+  .vi {
+    --vi-height: 500px;
+  }
+
+  .vi__grid {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+
+    gap: 24px;
+  }
+
+  .vi__left {
+    grid-column: 1 / -1;
+
+    padding-bottom: 0;
+
+    gap: var(--space-3);
+  }
+
+  .vi__heading {
+    padding-top: 5vh;
+  }
+
+  .vi__heading h2 {
+    max-width: 20ch;
+  }
+
+  .vi .vi__tags {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    padding-bottom: 0;
+  }
+
+  .vi__portrait {
+    min-height: 500px;
+  }
+
+  .vi__card {
+    min-height: 460px;
+  }
+
+}
+
+
+/* ==================================================
+   MOBILE AND SMALL TABLETS
+================================================== */
+
+@media (max-width: 768px) {
+
+  .vi__grid {
+    grid-template-columns: 1fr;
+
+    gap: var(--space-4);
+  }
+
+  .vi__left {
+    gap: var(--space-3);
+  }
+
+  .vi__heading {
+    padding-top: 0;
+  }
+
+  .vi__heading h2 {
+    max-width: 20ch;
+  }
+
+  .vi__heading .lead {
+    max-width: 100%;
+  }
+
+  .vi__portrait {
+    min-height: clamp(420px, 90vw, 600px);
+  }
+
+  .vi__card {
+    min-height: 400px;
+  }
+
+  .vi__card .vi__pills {
+    justify-content: flex-start;
+  }
+
+}
+
+
+/* ==================================================
+   SMALL MOBILE
+================================================== */
+
+@media (max-width: 480px) {
+
+  .vi__grid {
+    gap: var(--space-3);
+  }
+
+  .vi .vi__tags {
+    gap: 6px;
+  }
+
+  .vi__tag {
+    min-height: 32px;
+
+    padding: 7px 10px;
+  }
+
+  .vi__portrait {
+    min-height: 420px;
+  }
+
+  .vi__card {
+    padding: 16px;
+  }
+
+  .vi__badge {
+    top: 16px;
+    left: 16px;
+  }
+
+  .vi__portrait-top {
+    left: 16px;
+    right: 16px;
+  }
+
+  .vi__pills--glass {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .vi__pills li {
+    padding: 7px 10px;
+  }
+
+  .vi__cta {
+    gap: 9px;
+
+    padding-left: 10px;
+
+    font-size: 11px;
+  }
+
+  .vi__cta-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+}
+
+
+/* ==================================================
+   TOUCH DEVICES
+================================================== */
+
+@media (hover: none) {
+
+  .vi__portrait:hover .vi__portrait-image,
+  .vi__card-media:hover img {
+    scale: 1;
+  }
+
+}
+
+
+/* ==================================================
+   REDUCED MOTION
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .vi *,
+  .vi *::before,
+  .vi *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .vi--js:not(.vi--visible) .vi-reveal,
+  .vi--js:not(.vi--visible) .vi__tag {
+    opacity: 1;
+
+    transform: none;
+  }
+
+}

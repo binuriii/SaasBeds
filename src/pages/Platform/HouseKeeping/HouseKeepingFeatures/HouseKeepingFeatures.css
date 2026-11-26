@@ -1,0 +1,1449 @@
+/* ==================================================
+   HOUSEKEEPING FEATURES SECTION
+
+   Section padding, container width, H2, H3 and
+   lead typography come from global CSS.
+================================================== */
+
+.hkf-section {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.hkf {
+  --hkf-blue: var(--color-blue-dark, #153c94);
+
+  --hkf-gap: clamp(12px, 1.6vw, 24px);
+  --hkf-radius: clamp(24px, 3vw, 42px);
+  --hkf-padding: clamp(20px, 2.5vw, 38px);
+
+  --hkf-soft: #f2f4f6;
+
+  width: 100%;
+  min-width: 0;
+
+  font-family: var(--font-primary);
+}
+
+.hkf *,
+.hkf *::before,
+.hkf *::after {
+  box-sizing: border-box;
+}
+
+
+/* ==================================================
+   SECTION HEADING
+================================================== */
+
+.hkf__heading {
+  margin-bottom: clamp(24px, 4vw, 56px);
+  text-align: center;
+}
+
+.hkf__heading > * {
+  margin-inline: auto;
+}
+
+.hkf__heading h2 {
+  margin: 0 auto var(--space-2);
+}
+
+.hkf__heading .lead {
+  max-width: 52ch;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+/* ==================================================
+   BENTO GRID
+================================================== */
+
+.hkf__grid {
+  display: grid;
+
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+
+  grid-template-areas:
+    "board board board board board board cleaners cleaners cleaners cleaners cleaners cleaners"
+    "priority priority priority priority maintenance maintenance maintenance maintenance reports reports reports reports";
+
+  grid-template-rows: auto auto;
+
+  gap: var(--hkf-gap);
+  padding: var(--hkf-gap);
+
+  background: #e9edf1;
+
+  border-radius: calc(var(--hkf-radius) + 10px);
+}
+
+
+/* ==================================================
+   SHARED CARD
+================================================== */
+
+.hkf-card {
+  position: relative;
+
+  isolation: isolate;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  padding: var(--hkf-padding);
+
+  background: var(--color-white);
+  color: var(--color-black);
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: var(--hkf-radius);
+}
+
+.hkf-card__head {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.hkf-card__head > div {
+  min-width: 0;
+}
+
+.hkf-card__head h3 {
+  margin: 0;
+  text-align: left;
+}
+
+.hkf-card__head p {
+  margin: var(--space-1) 0 0;
+
+  font-size: clamp(12px, 1vw, 15px);
+  line-height: 1.5;
+
+  text-align: left;
+}
+
+
+/* ==================================================
+   SHARED ICONS
+================================================== */
+
+.hkf-icon {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 38px;
+
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--hkf-blue);
+
+  border-radius: 50%;
+}
+
+.hkf-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.hkf-card:hover .hkf-icon {
+  animation: hkf-icon-enter 500ms var(--ease);
+}
+
+@keyframes hkf-icon-enter {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(-12deg);
+  }
+}
+
+
+/* ==================================================
+   SHARED PILLS
+================================================== */
+
+.hkf-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  gap: 7px;
+  padding: 9px 13px;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  border: 1px solid rgba(0, 0, 0, 0.035);
+  border-radius: var(--radius-pill, 999px);
+
+  font-size: clamp(10px, 0.85vw, 12px);
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.hkf-pill--soft {
+  background: var(--hkf-soft);
+  border-color: transparent;
+}
+
+
+/* ==================================================
+   BRAND COLOURS
+================================================== */
+
+.hkf-tone--blue,
+.hkf-dot--blue {
+  background: var(--color-blue-light, #D3F4FF);
+}
+
+.hkf-tone--pink,
+.hkf-dot--pink {
+  background: var(--color-pink, #F7E1F6);
+}
+
+.hkf-tone--green,
+.hkf-dot--green {
+  background: var(--color-green-light, #D1F9D6);
+}
+
+.hkf-tone--lime,
+.hkf-dot--lime {
+  background: var(--color-lime, #EFFD90);
+}
+
+
+/* ==================================================
+   SCROLL REVEAL
+================================================== */
+
+.hkf--animated [data-hkf-reveal] {
+  opacity: 0;
+
+  transform: translateY(30px) scale(0.985);
+
+  transition:
+    opacity 800ms var(--ease),
+    transform 900ms var(--ease);
+
+  transition-delay: 0ms;
+}
+
+.hkf--animated [data-hkf-reveal].is-visible {
+  opacity: 1;
+
+  transform: translateY(0) scale(1);
+
+  transition-delay: var(--delay, 0ms);
+}
+
+
+/* Staggered animations */
+
+.hkf--animated .hkf-stagger {
+  opacity: 0;
+
+  translate: 0 10px;
+
+  transition:
+    opacity 500ms var(--ease),
+    translate 500ms var(--ease),
+    background 650ms var(--ease),
+    scale 350ms var(--ease);
+}
+
+.hkf--animated .is-visible .hkf-stagger {
+  opacity: 1;
+
+  translate: 0 0;
+
+  transition-delay:
+    calc(250ms + var(--index, 0) * 85ms),
+    calc(250ms + var(--index, 0) * 85ms),
+    0ms,
+    0ms;
+}
+
+
+/* ==================================================
+   01 — ROOM STATUS BOARD (CLEAN, DARK)
+
+   Black card, segmented filter, one summary bar and
+   quiet room tiles. Colour is used only for the
+   status dots and the bar, so the board stays calm.
+================================================== */
+
+.hkf-board {
+  grid-area: board;
+
+  min-height: 420px;
+
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.hkf-board .hkf-card__head h3 {
+  color: var(--color-white);
+}
+
+.hkf-board .hkf-card__head p {
+  max-width: 44ch;
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hkf-board .hkf-pill--soft {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+
+/* Live status dot */
+
+.hkf-live-dot {
+  width: 7px;
+  height: 7px;
+
+  background: var(--color-green-light);
+
+  border-radius: 50%;
+}
+
+.hkf--animated .hkf-board.is-visible .hkf-live-dot {
+  animation: hkf-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes hkf-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(209, 249, 214, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 7px rgba(209, 249, 214, 0);
+  }
+}
+
+
+/* Segmented filters */
+
+.hkf-board__filters {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-self: flex-start;
+
+  gap: 2px;
+
+  margin-top: var(--space-3);
+  padding: 4px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border-radius: 12px;
+}
+
+.hkf-board__filter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 30px;
+  padding: 6px 14px;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  border-radius: 9px;
+
+  font-size: clamp(10px, 0.85vw, 12px);
+  font-weight: 500;
+}
+
+.hkf-board__filter.is-active {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+
+/* Summary bar + legend with counts */
+
+.hkf-board__summary {
+  margin-top: var(--space-3);
+}
+
+.hkf-board__bar {
+  display: flex;
+
+  gap: 4px;
+
+  height: 10px;
+}
+
+.hkf-board__bar span {
+  flex-basis: 0;
+
+  min-width: 0;
+
+  border-radius: 100px;
+
+  transition: flex-grow 600ms var(--ease);
+}
+
+.hkf-board__legend {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px 18px;
+
+  margin-top: 14px;
+}
+
+.hkf-board__legend span {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: clamp(10px, 0.85vw, 12px);
+}
+
+.hkf-board__legend i {
+  flex-shrink: 0;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+}
+
+.hkf-board__legend b {
+  color: var(--color-white);
+  font-weight: 500;
+}
+
+
+/* Room grid: fills the remaining height evenly */
+
+.hkf-board__rooms {
+  display: grid;
+
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+
+  flex: 1;
+
+  gap: 8px;
+
+  margin-top: 22px;
+}
+
+.hkf-room {
+  --tone: var(--color-green-light);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-width: 0;
+  min-height: 88px;
+
+  padding: 12px;
+
+  background: #ffffff;
+  color: var(--color-black);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+}
+
+.hkf-room--green { --tone: var(--color-green-light); }
+.hkf-room--pink  { --tone: var(--color-pink); }
+.hkf-room--blue  { --tone: var(--color-blue-light); }
+.hkf-room--lime  { --tone: var(--color-lime); }
+
+.hkf-room:hover {
+  background: #b7b8b8;
+}
+
+.hkf-room__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+.hkf-room__top svg {
+  flex-shrink: 0;
+
+  width: 18px;
+  height: 18px;
+
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.hkf-room__dot {
+  flex-shrink: 0;
+
+  width: 9px;
+  height: 9px;
+
+  background: var(--tone);
+
+  border-radius: 50%;
+}
+
+.hkf-room__info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.hkf-room strong {
+  font-size: clamp(16px, 1.5vw, 22px);
+  font-weight: 500;
+
+  line-height: 1.1;
+
+  letter-spacing: -0.03em;
+}
+
+.hkf-room small {
+  color: rgba(10, 9, 9, 0.6);
+
+  font-size: clamp(9px, 0.75vw, 11px);
+  line-height: 1.3;
+
+  overflow-wrap: anywhere;
+}
+
+.hkf-room.is-changing {
+  border-color: var(--tone);
+
+  box-shadow: 0 0 0 2px var(--tone);
+}
+
+
+/* ==================================================
+   02 — CLEANER ASSIGNMENT
+================================================== */
+
+.hkf-cleaners {
+  grid-area: cleaners;
+
+  background: var(--color-blue-light);
+}
+
+.hkf-cleaners__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  flex: 1;
+
+  gap: 10px;
+
+  margin-block: var(--space-3);
+}
+
+.hkf-cleaner {
+  padding: clamp(12px, 1.3vw, 18px);
+
+  background: rgba(255, 255, 255, 0.85);
+
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+}
+
+.hkf-cleaner__top {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.hkf-cleaner__avatar {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.hkf-cleaner__name {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  min-width: 0;
+
+  gap: 4px;
+}
+
+.hkf-cleaner__name strong {
+  font-size: clamp(12px, 1vw, 15px);
+  font-weight: 500;
+}
+
+.hkf-cleaner__name small {
+  color: var(--color-text-muted);
+
+  font-size: clamp(10px, 0.85vw, 12px);
+}
+
+.hkf-cleaner__percent {
+  color: var(--hkf-blue);
+
+  font-size: clamp(15px, 1.4vw, 20px);
+  font-weight: 500;
+
+  letter-spacing: -0.04em;
+}
+
+
+/* Animated cleaner progress */
+
+.hkf-progress {
+  position: relative;
+
+  overflow: hidden;
+
+  height: 7px;
+
+  margin-top: 12px;
+
+  background: #e5edf3;
+
+  border-radius: 100px;
+}
+
+.hkf-progress span {
+  position: relative;
+
+  display: block;
+
+  width: var(--progress);
+  height: 100%;
+
+  background: var(--hkf-blue);
+
+  border-radius: inherit;
+
+  transform-origin: left center;
+}
+
+.hkf--animated .hkf-progress span {
+  transform: scaleX(0);
+}
+
+.hkf--animated .hkf-cleaners.is-visible .hkf-progress span {
+  animation: hkf-progress-grow 1.4s var(--ease) both;
+
+  animation-delay: calc(350ms + var(--index) * 150ms);
+}
+
+@keyframes hkf-progress-grow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hkf-progress span::after {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+
+  transform: translateX(-100%);
+}
+
+.hkf--animated .hkf-cleaners.is-visible .hkf-progress span::after {
+  animation: hkf-progress-shine 3s ease-in-out infinite;
+}
+
+@keyframes hkf-progress-shine {
+  0%,
+  40% {
+    transform: translateX(-100%);
+  }
+
+  80%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.hkf-cleaners__footer {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: auto;
+}
+
+.hkf-status-dot {
+  width: 7px;
+  height: 7px;
+
+  background: var(--hkf-blue);
+
+  border-radius: 50%;
+}
+
+
+/* ==================================================
+   03 — CLEAR PRIORITIES
+================================================== */
+
+.hkf-priorities {
+  grid-area: priority;
+
+  background: var(--color-pink);
+}
+
+.hkf-priorities__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  flex: 1;
+
+  gap: 9px;
+
+  margin-top: var(--space-3);
+}
+
+.hkf-priority {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-height: 64px;
+
+  padding: 10px;
+
+  background: rgba(255, 255, 255, 0.8);
+
+  border-radius: 12px;
+
+  transition:
+    background var(--t-base),
+    scale 350ms var(--ease);
+}
+
+.hkf-priority:hover {
+  background: var(--color-white);
+
+  scale: 1.025;
+}
+
+.hkf-priority__number {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hkf-priority__info {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  min-width: 0;
+
+  gap: 4px;
+}
+
+.hkf-priority__info strong {
+  font-size: clamp(12px, 1vw, 14px);
+  font-weight: 500;
+}
+
+.hkf-priority__info small {
+  color: var(--color-text-muted);
+
+  font-size: 10px;
+}
+
+.hkf-priority__time {
+  flex-shrink: 0;
+
+  color: var(--color-text-muted);
+
+  font-size: 10px;
+}
+
+.hkf--animated .hkf-priorities.is-visible .hkf-priority:first-child {
+  animation: hkf-priority-highlight 3.5s ease-in-out 1s infinite;
+}
+
+@keyframes hkf-priority-highlight {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(21, 60, 148, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 0 3px rgba(21, 60, 148, 0.12);
+  }
+}
+
+
+/* ==================================================
+   04 — MAINTENANCE
+================================================== */
+
+.hkf-maintenance {
+  grid-area: maintenance;
+
+  background: var(--color-lime);
+}
+
+.hkf-maintenance__visual {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  flex: 1;
+
+  min-height: 190px;
+
+  margin-block: 18px;
+}
+
+.hkf-maintenance__orbit {
+  position: absolute;
+
+  width: 150px;
+  height: 150px;
+
+  border: 1px dashed rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+}
+
+.hkf-maintenance__orbit::before {
+  content: '';
+
+  position: absolute;
+
+  top: 15px;
+  right: 13px;
+
+  width: 11px;
+  height: 11px;
+
+  background: var(--hkf-blue);
+
+  border-radius: 50%;
+}
+
+.hkf-maintenance__orbit::after {
+  content: '';
+
+  position: absolute;
+
+  bottom: 5px;
+  left: 35px;
+
+  width: 7px;
+  height: 7px;
+
+  background: var(--color-white);
+
+  border-radius: 50%;
+}
+
+.hkf--animated .hkf-maintenance.is-visible .hkf-maintenance__orbit {
+  animation: hkf-orbit 14s linear infinite;
+}
+
+@keyframes hkf-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hkf-maintenance__room {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  width: 118px;
+  height: 118px;
+
+  background: var(--color-white);
+
+  border-radius: 24px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.hkf-maintenance__room svg {
+  width: 24px;
+  height: 24px;
+}
+
+.hkf-maintenance__room strong {
+  font-size: clamp(24px, 2.4vw, 34px);
+  font-weight: 400;
+
+  line-height: 1;
+
+  letter-spacing: -0.05em;
+}
+
+.hkf-maintenance__room small {
+  font-size: 10px;
+}
+
+.hkf--animated .hkf-maintenance.is-visible .hkf-maintenance__room {
+  animation: hkf-maintenance-enter 900ms var(--ease) 250ms both;
+}
+
+@keyframes hkf-maintenance-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hkf-maintenance__issue {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  padding: 8px 12px;
+
+  background: var(--color-black);
+  color: var(--color-white);
+
+  border-radius: 8px;
+
+  font-size: clamp(10px, 0.85vw, 12px);
+}
+
+.hkf--animated .hkf-maintenance.is-visible .hkf-maintenance__issue {
+  animation: hkf-issue-enter 1s var(--ease) 750ms both;
+}
+
+@keyframes hkf-issue-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hkf-maintenance__steps {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: auto;
+}
+
+.hkf-maintenance__step {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: clamp(11px, 0.9vw, 13px);
+}
+
+.hkf-step-dot {
+  position: relative;
+
+  flex-shrink: 0;
+
+  width: 11px;
+  height: 11px;
+
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  border-radius: 50%;
+}
+
+.hkf-maintenance__step.is-complete .hkf-step-dot {
+  background: var(--color-black);
+  border-color: var(--color-black);
+}
+
+.hkf-maintenance__step.is-current .hkf-step-dot {
+  background: var(--hkf-blue);
+  border-color: var(--hkf-blue);
+}
+
+.hkf--animated .hkf-maintenance.is-visible .is-current .hkf-step-dot {
+  animation: hkf-step-pulse 2s ease-in-out infinite;
+}
+
+@keyframes hkf-step-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(21, 60, 148, 0.25);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(21, 60, 148, 0);
+  }
+}
+
+
+/* ==================================================
+   05 — HOUSEKEEPING REPORTS
+================================================== */
+
+.hkf-reports {
+  grid-area: reports;
+
+  background: var(--color-green-light);
+}
+
+.hkf-reports .hkf-card__head {
+  flex-wrap: wrap;
+}
+
+.hkf-reports__metrics {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+
+  margin-top: var(--space-3);
+}
+
+.hkf-metric {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  gap: 8px;
+
+  padding: 13px;
+
+  background: rgba(255, 255, 255, 0.65);
+
+  border-radius: 12px;
+}
+
+.hkf-metric > span {
+  color: var(--color-text-muted);
+
+  font-size: clamp(10px, 0.85vw, 12px);
+
+  overflow-wrap: anywhere;
+}
+
+.hkf-metric strong {
+  font-size: clamp(30px, 3.2vw, 48px);
+  font-weight: 400;
+
+  line-height: 1;
+
+  letter-spacing: -0.06em;
+}
+
+.hkf-chart {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+
+  align-items: end;
+
+  gap: 7px;
+
+  min-height: 160px;
+
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.hkf-chart__lines {
+  position: absolute;
+
+  inset: 24px 0 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  pointer-events: none;
+}
+
+.hkf-chart__lines span {
+  border-top: 1px dashed rgba(0, 0, 0, 0.12);
+}
+
+.hkf-chart__column {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  gap: 10px;
+}
+
+.hkf-chart__bars {
+  display: flex;
+  align-items: flex-end;
+
+  height: 130px;
+
+  gap: 3px;
+}
+
+.hkf-chart__bar {
+  flex: 1;
+
+  height: var(--height);
+
+  border-radius: 100px;
+
+  transform-origin: bottom center;
+}
+
+.hkf-chart__bar--completed {
+  background: var(--hkf-blue);
+}
+
+.hkf-chart__bar--pending {
+  background: var(--color-white);
+}
+
+.hkf-chart__column small {
+  font-size: clamp(9px, 0.75vw, 11px);
+
+  text-align: center;
+}
+
+.hkf--animated .hkf-chart__bar {
+  transform: scaleY(0);
+}
+
+.hkf--animated .hkf-reports.is-visible .hkf-chart__bar {
+  animation: hkf-chart-grow 1.2s var(--ease) both;
+
+  animation-delay: calc(450ms + var(--index) * 85ms);
+}
+
+@keyframes hkf-chart-grow {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.hkf-reports__legend {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px 14px;
+
+  margin-top: 18px;
+}
+
+.hkf-reports__legend span {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 10px;
+}
+
+.hkf-reports__legend i {
+  flex-shrink: 0;
+
+  width: 8px;
+  height: 8px;
+
+  background: var(--hkf-blue);
+
+  border-radius: 50%;
+}
+
+.hkf-reports__legend span:last-child i {
+  background: var(--color-white);
+}
+
+
+/* ==================================================
+   ACCESSIBILITY
+================================================== */
+
+.hkf--animated [data-hkf-reveal]:focus-within,
+.hkf--animated .hkf-stagger:focus-visible {
+  opacity: 1;
+
+  transform: none;
+  translate: none;
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 1100px) {
+  .hkf__grid {
+    grid-template-areas:
+      "board board board board board board cleaners cleaners cleaners cleaners cleaners cleaners"
+      "priority priority priority priority priority priority maintenance maintenance maintenance maintenance maintenance maintenance"
+      "reports reports reports reports reports reports reports reports reports reports reports reports";
+  }
+
+  .hkf-card__head {
+    flex-wrap: wrap;
+  }
+
+  .hkf-board__rooms {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .hkf-reports__metrics {
+    max-width: 400px;
+  }
+
+  .hkf-chart__bars {
+    height: 160px;
+  }
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 700px) {
+  .hkf {
+    --hkf-radius: 25px;
+    --hkf-gap: 12px;
+    --hkf-padding: 22px;
+  }
+
+  .hkf__grid {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "board"
+      "cleaners"
+      "priority"
+      "maintenance"
+      "reports";
+
+    grid-template-rows: auto;
+
+    padding: 10px;
+
+    border-radius: 32px;
+  }
+
+  .hkf-card__head {
+    align-items: flex-start;
+  }
+
+  .hkf-board {
+    min-height: auto;
+  }
+
+  .hkf-board__rooms {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hkf-room {
+    min-height: 80px;
+  }
+
+  .hkf-priority {
+    min-height: 60px;
+  }
+
+  .hkf-chart__bars {
+    height: 140px;
+  }
+
+  .hkf-maintenance__visual {
+    min-height: 210px;
+  }
+}
+
+
+/* ==================================================
+   SMALL MOBILE
+================================================== */
+
+@media (max-width: 380px) {
+  .hkf-card {
+    padding: 18px;
+  }
+
+  .hkf-board__filters {
+    align-self: stretch;
+  }
+
+  .hkf-board__rooms {
+    gap: 6px;
+  }
+
+  .hkf-room {
+    padding: 10px;
+  }
+
+  .hkf-priority {
+    gap: 7px;
+    padding: 8px;
+  }
+
+  .hkf-priority__time {
+    font-size: 9px;
+  }
+
+  .hkf-pill {
+    font-size: 10px;
+  }
+
+  .hkf-cleaner__avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hkf-cleaner__top {
+    gap: 7px;
+  }
+
+  .hkf-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 340px) {
+  .hkf-board__rooms {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* ==================================================
+   TOUCH DEVICES
+================================================== */
+
+@media (hover: none) {
+  .hkf-priority:hover {
+    scale: 1;
+  }
+
+  .hkf-card:hover .hkf-icon {
+    animation: none;
+  }
+}
+
+
+/* ==================================================
+   REDUCED MOTION
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hkf *,
+  .hkf *::before,
+  .hkf *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .hkf--animated [data-hkf-reveal],
+  .hkf--animated .hkf-stagger {
+    opacity: 1;
+
+    transform: none;
+    translate: none;
+  }
+
+  .hkf--animated .hkf-progress span,
+  .hkf--animated .hkf-chart__bar {
+    transform: none;
+  }
+}

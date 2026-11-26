@@ -1,7 +1,7 @@
 export const hero = {
   firstLine: 'Every tool your hotel needs,',
   secondLine: 'in one platform',
-  rotatingLines: ['front desk', 'channels', 'housekeeping', 'restaurant', 'reports'],
+  rotatingLines: ['in one platform', 'front desk', 'channels', 'housekeeping'],
   description:
     'From reservations to reporting, SaaSBeds runs your whole property from one admin console.',
   primaryText: 'Book a demo',

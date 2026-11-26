@@ -2,6 +2,13 @@ export const hero = {
   firstLine: 'Know which rooms are ready,',
   secondLine: 'without walking the corridors',
 
+  rotatingLines: [
+    'without walking the corridors',
+    'without extra effort',
+    'with live updates',
+    'before guests arrive',
+  ],
+
   description:
     'A live board shows every room as Clean, Dirty or In Progress. Assign cleaners, set priorities and mark rooms out of order, so the front desk always knows what it can sell.',
 
@@ -9,15 +16,12 @@ export const hero = {
   primaryHref: 'https://saasbeds.com/book-a-demo/',
 
   secondaryText: 'See pricing',
-  secondaryHref: '/pricing'
+  secondaryHref: 'https://saasbeds.com/pricing/'
 }
 
-export const housekeepingFaq = {
+export const houseKeepingFaq = {
   title: 'Frequently Asked Questions',
-
-  description:
-    'Everything you need to know about SaaSBeds housekeeping.',
-
+  description: 'Everything you need to know about SaaSBeds housekeeping.',
   items: [
     {
       id: 'housekeeping-1',
@@ -45,8 +49,7 @@ export const housekeepingFaq = {
     },
     {
       id: 'housekeeping-5',
-      question:
-        'What do clean, dirty, in progress and out of order mean?',
+      question: 'What do clean, dirty, in progress and out of order mean?',
       answer:
         'Clean rooms are ready to sell, dirty rooms need cleaning, in progress means a cleaner is working on the room, and out of order rooms are taken off sale for maintenance.'
     },
@@ -78,8 +81,7 @@ export const housekeepingFaq = {
       id: 'housekeeping-10',
       question: 'Does it work on a phone or tablet?',
       answer:
-        'Contact the SaaSBeds team to confirm mobile and tablet access for cleaners.',
-      pending: true
+        'Mobile access for cleaners is pending confirmation.'
     }
   ]
 }
