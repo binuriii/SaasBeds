@@ -6,6 +6,8 @@ import FAQ from '../../../components/FAQ/FAQ.vue'
 import { hero, allFeaturesFaq } from './AllFeatures.js'
 import FeatureDirectory from './FeatureDirectory/FeatureDirectory.vue';
 import FeaturesShowcase from './FeaturesShowcase/FeaturesShowcase.vue';
+import AppShowcase from '../../../components/AppShowcase/AppShowcase.vue'
+
 </script>
 
 <template>
@@ -15,6 +17,7 @@ import FeaturesShowcase from './FeaturesShowcase/FeaturesShowcase.vue';
     <FeaturesShowcase/>
     <FeatureDirectory/>
     <TestimonialsSection/>
+    <AppShowcase/>
     <FAQ v-bind="allFeaturesFaq" />
 
   </div>
