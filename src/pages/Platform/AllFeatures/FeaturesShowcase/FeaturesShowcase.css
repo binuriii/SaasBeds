@@ -1,11 +1,3 @@
-/* ==================================================
-   FEATURES SHOWCASE
-
-   Section padding, container width,
-   h2, h3, .lead and spacing are inherited
-   from the existing global stylesheet.
-================================================== */
-
 .fsh {
   --fsh-gap: clamp(16px, 2vw, 32px);
   --fsh-radius: clamp(18px, 1.7vw, 29px);
@@ -28,10 +20,6 @@
   box-sizing: border-box;
 }
 
-/* ==================================================
-   MAIN GRID
-================================================== */
-
 .fsh__grid {
   display: grid;
 
@@ -44,22 +32,12 @@
   gap: clamp(24px, 4vw, 64px);
 }
 
-/* ==================================================
-   LEFT SIDE
-================================================== */
-
 .fsh__left {
   display: flex;
   flex-direction: column;
 
   min-width: 0;
 }
-
-/* ==================================================
-   HEADING
-
-   Font sizes inherited from global CSS.
-================================================== */
 
 .fsh__heading {
   padding-top: 5vh;
@@ -102,14 +80,10 @@
   color: var(--color-text-muted);
 }
 
-/* ==================================================
-   FEATURE TAGS
-================================================== */
-
 .fsh__tags {
   display: flex;
   flex-wrap: wrap;
-
+  padding-bottom: 5vh;
   gap: 8px;
 
   margin-top: var(--space-3);
@@ -128,7 +102,6 @@
 
   border: 1px solid rgba(0, 0, 0, 0.025);
   border-radius: 7px;
-
   color: var(--color-black);
 
   font-size: clamp(11px, 0.9vw, 14px);
@@ -136,12 +109,6 @@
 
   line-height: 1.3;
 }
-
-/* ==================================================
-   BOTTOM LEFT GRID
-
-   Portrait image + supporting content
-================================================== */
 
 .fsh__bottom {
   display: grid;
@@ -155,13 +122,8 @@
   gap: clamp(18px, 3vw, 42px);
 
   margin-top: auto;
-
   padding-top: var(--section-gap);
 }
-
-/* ==================================================
-   SMALL PORTRAIT IMAGE
-================================================== */
 
 .fsh__portrait {
   position: relative;
@@ -311,10 +273,6 @@
   }
 }
 
-/* ==================================================
-   SUPPORTING CONTENT
-================================================== */
-
 .fsh__info {
   display: flex;
   flex-direction: column;
@@ -335,15 +293,11 @@
   text-wrap: balance;
 }
 
-/* Subtitle */
-
 .fsh__subtitle {
   margin: var(--space-1) 0 0;
 
   color: var(--color-text-muted);
 }
-
-/* Connected status */
 
 .fsh__highlight {
   display: flex;
@@ -366,8 +320,6 @@
   height: 18px;
 }
 
-/* Supporting paragraph */
-
 .fsh__info-description {
   max-width: 32ch;
 
@@ -375,10 +327,6 @@
 
   color: var(--color-text-muted);
 }
-
-/* ==================================================
-   BUTTONS
-================================================== */
 
 .fsh__actions {
   display: flex;
@@ -465,10 +413,6 @@
   color: var(--color-blue-dark);
 }
 
-/* ==================================================
-   RIGHT SIDE — LARGE PHOTO
-================================================== */
-
 .fsh__visual {
   position: relative;
 
@@ -522,38 +466,20 @@
   pointer-events: none;
 }
 
-/* ==================================================
-   FLOATING DASHBOARD
-
-   Only one floating card, like the reference.
-================================================== */
-
 .fsh__dashboard {
   position: absolute;
-
   z-index: 3;
-
   top: clamp(24px, 4vw, 60px);
-
   left: 50%;
-
   width: 80%;
-
   padding: clamp(18px, 2vw, 30px);
-
   background: rgba(255, 255, 255, 0.96);
-
   border: 1px solid rgba(255, 255, 255, 0.75);
-
   border-radius: calc(var(--fsh-radius) * 0.8);
-
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
-
   box-shadow: var(--shadow-md);
-
   opacity: 0;
-
   transform:
     translate(-50%, 24px)
     scale(0.95);
@@ -585,10 +511,6 @@
       scale(1);
   }
 }
-
-/* ==================================================
-   DASHBOARD METRICS
-================================================== */
 
 .fsh__metrics {
   display: grid;
@@ -646,10 +568,6 @@
   font-size: clamp(9px, 0.75vw, 11px);
   font-weight: 400;
 }
-
-/* ==================================================
-   DASHBOARD BAR ANIMATION
-================================================== */
 
 .fsh__chart {
   margin-top: var(--space-3);
@@ -718,8 +636,8 @@
   background:
     linear-gradient(
       180deg,
-      #8cec92,
-      #56c45d
+      #acfbb1,
+      #eff171
     );
 }
 
@@ -745,10 +663,6 @@
     transform: scaleY(1);
   }
 }
-
-/* ==================================================
-   SCROLL REVEAL
-================================================== */
 
 .fsh-reveal {
   opacity: 0;
@@ -802,10 +716,6 @@
   transition-delay:
     calc(120ms + var(--index) * 65ms);
 }
-
-/* ==================================================
-   KEYBOARD ACCESSIBILITY
-================================================== */
 
 .fsh-reveal:focus-within {
   opacity: 1;

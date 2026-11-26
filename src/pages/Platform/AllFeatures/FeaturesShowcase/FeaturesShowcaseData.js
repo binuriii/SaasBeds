@@ -12,7 +12,6 @@ export const showcase = {
     'Night Audit',
     'Restaurant POS',
     'HRM',
-    'AI'
   ],
 
   primaryText: 'Book a demo',
@@ -22,12 +21,9 @@ export const showcase = {
   secondaryHref: '/pricing'
 }
 
-/* =========================================
-   SMALL LEFT IMAGE
-========================================= */
 
 export const teamImage = {
-  src: 'https://images.unsplash.com/photo-1794825960857-dfefeb70091c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
+  src: 'https://images.unsplash.com/photo-1591898621509-888e2551ba48?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
 
   alt: 'Hotel management professional',
 
@@ -36,19 +32,11 @@ export const teamImage = {
   caption: 'One platform. More possibilities.'
 }
 
-/* =========================================
-   LARGE RIGHT IMAGE
-========================================= */
-
 export const hotelImage = {
-  src: 'https://images.unsplash.com/photo-1794868232438-45a0261db454?w=1400&auto=format&fit=crop&q=85',
+  src: 'https://images.unsplash.com/photo-1782203601089-55f664badd93?w=1400&auto=format&fit=crop&q=85',
 
   alt: 'Luxury hotel and resort'
 }
-
-/* =========================================
-   SUPPORTING CONTENT
-========================================= */
 
 export const platformInfo = {
   title: 'One connected platform',
@@ -60,10 +48,6 @@ export const platformInfo = {
   description:
     'Manage your entire property with connected tools that simplify daily operations and help your business grow.'
 }
-
-/* =========================================
-   FLOATING DASHBOARD
-========================================= */
 
 export const dashboard = {
   metrics: [
