@@ -1,7 +1,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import heroBg from '../../assets/saasbeds/Soft Periwinkle Gradient Background.png'
+import heroBg from '../../assets/saasbeds/Soft Sky-Blue Luminous Gradient.png'
 
 const props = defineProps({
   backgroundImage: {
@@ -159,34 +159,6 @@ onBeforeUnmount(() => {
   color: #1a202b;
   font-family: var(--font-primary, 'Outfit', sans-serif);
   text-align: center;
-}
-
-.sb-inner-hero__glow {
-  position: absolute;
-  z-index: -1;
-  width: 45vw;
-  max-width: 650px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(18px);
-  opacity: .64;
-}
-
-.sb-inner-hero__glow--left {
-  top: 4%;
-  left: -26%;
-  background: radial-gradient(
-    circle, #a9d9ff 0%, transparent 66%
-  );
-}
-
-.sb-inner-hero__glow--right {
-  right: -26%;
-  bottom: -34%;
-  background: radial-gradient(
-    circle, #fff 0%, transparent 67%
-  );
 }
 
 .sb-inner-hero__content {
