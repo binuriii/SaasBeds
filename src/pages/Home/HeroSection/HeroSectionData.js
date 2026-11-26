@@ -1,8 +1,8 @@
 import { ref, onMounted, onBeforeUnmount, h } from 'vue'
 
-// Central place for all dashboard content. Replace image URLs with local assets if you prefer.
-export const POOL_IMAGE =
-  'https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/8b/46/36/0b/19/v1_E10/E109KHUM.jpg?w=1600&cf_fit=scale-down&q=85&format=auto&s=304fa2f6eefdb298b91a03736d42754a8403c2d7a2e956affcb212c1d9974a58'
+import heroImage from '../../../assets/HomePage/HeroImage.jpg'
+
+export const POOL_IMAGE = heroImage
 export const GUEST_PHOTO = 'https://i.pravatar.cc/120?img=47'
 
 export const brand = 'SaasBeds' // swap for your own generic brand

@@ -4,57 +4,103 @@ export const impactHeading = {
     'Smarter systems lead to stronger performance. Hotels using SaaSBeds see the difference in revenue, efficiency and guest satisfaction.',
 }
 
-// Local files: put them in src/assets/impact (path is relative to this file)
-const local = import.meta.glob('../../../assets/impact/*.{png,jpg,jpeg,webp,avif,svg}', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-})
+// Local images from src/assets/HomePage
+const local = import.meta.glob(
+  '../../../assets/HomePage/*.{png,jpg,jpeg,webp,avif,svg}',
+  {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }
+)
 
-/*
-  `image` can be:
-  1. a web link:           'https://images.unsplash.com/photo-123?w=1200'
-  2. a local file name:    'guesthouse.jpg'  (from src/assets/impact)
-  3. a path from /public:  '/images/guesthouse.jpg'
-*/
-const isRemote = (v) => /^(https?:)?\/\//i.test(v) || /^(data|blob):/i.test(v)
+// Supports local images, external URLs and public paths
+const isRemote = (v) =>
+  /^(https?:)?\/\//i.test(v) || /^(data|blob):/i.test(v)
+
 const resolveImage = (value) => {
   if (!value) return ''
-  if (isRemote(value) || value.startsWith('/')) return value
+
+  if (isRemote(value)) return value
+
+  if (value.startsWith('/')) {
+    return `${import.meta.env.BASE_URL}${value.slice(1)}`
+  }
+
   const name = value.split('/').pop()
-  return local[`../../../assets/impact/${name}`] || ''
+
+  return local[`../../../assets/HomePage/${name}`] || ''
 }
 
-// h = bar height in % when closed     tone: lime | blue | black | pink  (global palette)
+// h = bar height in % when closed
+// tone: lime | blue | black | pink
+
 const list = [
   {
-    id: 'calls', tone: 'black', h: 68,
-    value: '93%', label: 'Reduction in calls',
+    id: 'calls',
+    tone: 'black',
+    h: 68,
+
+    value: '93%',
+    label: 'Reduction in calls',
+
     title: 'Resorts answer guests faster with the AI Receptionist',
-    link: '#', image: 'https://images.unsplash.com/photo-1783121603058-821abeaca1ea?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', alt: 'Resort reception',
-  },
-  {
-    id: 'revpar', tone: 'blue', h: 52,
-    value: '39%', label: 'Increase in RevPAR',
-    title: 'Boutique hotels lift RevPAR with separate direct and OTA rates',
-    link: '#', image: 'https://images.unsplash.com/photo-1793363605725-f4dc80e33a34?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', alt: 'Boutique hotel room',
-  },
-  {
-    id: 'direct', tone: 'lime', h: 34,
-    value: '45%', label: 'Increase in direct bookings',
-    title: 'Guest houses grow direct bookings with SaaSBeds',
-    link: '#', image: 'https://images.unsplash.com/photo-1533540227548-9fd63a4415fb?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', alt: 'Guest house lounge',
-  },
-  {
-    id: 'payments', tone: 'pink', h: 84,
-    value: '100%', label: 'Automated payments',
-    title: 'Villas automate payments and balances in LKR and USD',
-    link: '#', image: 'https://images.unsplash.com/photo-1780453401974-238fe8615599?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', alt: 'Villa pool',
+
+    link: '#',
+    image: 'Impact1.jpeg',
+    alt: 'Resort reception',
   },
 
-  
+  {
+    id: 'revpar',
+    tone: 'blue',
+    h: 52,
+
+    value: '39%',
+    label: 'Increase in RevPAR',
+
+    title: 'Boutique hotels lift RevPAR with separate direct and OTA rates',
+
+    link: '#',
+    image: 'Impact2.jpeg',
+    alt: 'Boutique hotel room',
+  },
+
+  {
+    id: 'direct',
+    tone: 'lime',
+    h: 34,
+
+    value: '45%',
+    label: 'Increase in direct bookings',
+
+    title: 'Guest houses grow direct bookings with SaaSBeds',
+
+    link: '#',
+    image: 'Impact3.jpeg',
+    alt: 'Guest house lounge',
+  },
+
+  {
+    id: 'payments',
+    tone: 'pink',
+    h: 84,
+
+    value: '100%',
+    label: 'Automated payments',
+
+    title: 'Villas automate payments and balances in LKR and USD',
+
+    link: '#',
+    image: 'Impact4.jpeg',
+    alt: 'Villa pool',
+  },
 ]
 
-export const stats = list.map((s) => ({ ...s, src: resolveImage(s.image) }))
+export const stats = list.map((s) => ({
+  ...s,
+  src: resolveImage(s.image),
+}))
 
-export const impactNote = 'Sample figures. Replace with verified customer results.'
+export const impactNote =
+  'Sample figures. Replace with verified customer results.'
