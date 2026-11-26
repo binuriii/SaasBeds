@@ -33,11 +33,6 @@ export const hiw = {
     'From check-out to ready to sell in three simple steps.'
 }
 
-/*
-  tone: pink = Dirty, blue = In progress / assigned,
-        green = Clean / Ready to sell, lime = highlight
-*/
-
 export const steps = [
   {
     tone: 'pink',

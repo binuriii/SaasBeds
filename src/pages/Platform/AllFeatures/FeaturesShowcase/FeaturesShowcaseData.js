@@ -1,3 +1,31 @@
+const local = import.meta.glob(
+  '../../../../assets/Platform/AllFeatures/*.{png,jpg,jpeg,webp,avif,svg}',
+  {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }
+)
+
+// Supports local images, external URLs and public paths
+const isRemote = (v) =>
+  /^(https?:)?\/\//i.test(v) || /^(data|blob):/i.test(v)
+
+const resolveImage = (value) => {
+  if (!value) return ''
+
+  if (isRemote(value)) return value
+
+  if (value.startsWith('/')) {
+    return `${import.meta.env.BASE_URL}${value.slice(1)}`
+  }
+
+  const name = value.split('/').pop()
+
+  return local[`../../../../assets/Platform/AllFeatures/${name}`] || ''
+}
+
+
 export const showcase = {
   title: 'Every feature you need to run your property',
 
@@ -23,7 +51,7 @@ export const showcase = {
 
 
 export const teamImage = {
-  src: 'https://images.unsplash.com/photo-1591898621509-888e2551ba48?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
+  src: resolveImage('FeaturesShowcase1.jpeg'),
 
   alt: 'Hotel management professional',
 
@@ -33,7 +61,7 @@ export const teamImage = {
 }
 
 export const hotelImage = {
-  src: 'https://images.unsplash.com/photo-1782203601089-55f664badd93?w=1400&auto=format&fit=crop&q=85',
+  src: resolveImage('FeaturesShowcase2.jpeg'),
 
   alt: 'Luxury hotel and resort'
 }
