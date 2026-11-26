@@ -1,6 +1,8 @@
 <script setup>
 import { computed, ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
+import './AppHeader.css'
+
 import {
   logo,
   announcement,
@@ -74,6 +76,12 @@ function closeAll() {
   mobileSub.value = null
   searchOpen.value = false
 }
+
+// Close the navigation whenever the current route changes.
+watch(
+  () => router.currentRoute.value.fullPath,
+  () => closeAll()
+)
 
 function toggleDrawer() {
   measureMobileHeader()
@@ -166,7 +174,7 @@ function mobileGroups(menu) {
     '--sb-mobile-header-height': `${mobileHeaderHeight}px`,
     '--sb-mobile-viewport': mobileViewportHeight
   }">
-  <component class="sb-announcement" :is="isInternalRoute(announcement.href) ? RouterLink : 'a'" v-bind="linkProps(announcement.href)" aria-label="Discover our new SaaSBeds Channel Manager">
+  <component class="sb-announcement" :is="isInternalRoute(announcement.href) ? RouterLink : 'a'" v-bind="linkProps(announcement.href)" aria-label="Discover our new SaaSBeds Channel Manager" @click="closeAll">
     <span class="sb-container sb-announcement-inner">
       <span class="sb-announcement-logo" aria-hidden="true">S</span>
       <strong class="sb-announcement-label">{{ announcement.tag }}</strong>
@@ -195,8 +203,8 @@ function mobileGroups(menu) {
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="6.2"/><path d="m15.3 15.3 5.2 5.2"/></svg>
             Search
           </button>
-          <component class="sb-utility-link" :is="isInternalRoute('/contact-us/') ? RouterLink : 'a'" v-bind="linkProps('/contact-us/')">Contact us</component>
-          <component v-if="login" class="sb-utility-link" :is="isInternalRoute(login.href) ? RouterLink : 'a'" v-bind="linkProps(login.href)">{{ login.label }}</component>
+          <component class="sb-utility-link" :is="isInternalRoute('/contact-us/') ? RouterLink : 'a'" v-bind="linkProps('/contact-us/')" @click="closeAll">Contact us</component>
+          <component v-if="login" class="sb-utility-link" :is="isInternalRoute(login.href) ? RouterLink : 'a'" v-bind="linkProps(login.href)" @click="closeAll">{{ login.label }}</component>
         </div>
       </div>
 
@@ -209,7 +217,7 @@ function mobileGroups(menu) {
 
           <ul class="sb-nav-list">
             <li v-for="item in desktopItems" :key="item.label" @mouseenter="openMenu(item.menu || null)">
-              <component v-if="!item.menu" class="sb-nav-link" :is="isInternalRoute(item.href) ? RouterLink : 'a'" v-bind="linkProps(item.href)" @focus="open = null">{{ item.label }}</component>
+              <component v-if="!item.menu" class="sb-nav-link" :is="isInternalRoute(item.href) ? RouterLink : 'a'" v-bind="linkProps(item.href)" @focus="open = null" @click="closeAll">{{ item.label }}</component>
               <button
                 v-else
                 class="sb-nav-link sb-nav-dropdown"
@@ -224,7 +232,7 @@ function mobileGroups(menu) {
 
           <!-- One CTA only: restore Book a Demo with blue background. -->
           <div class="sb-actions">
-            <component class="sb-btn sb-btn-blue" :is="isInternalRoute(ctas.primaryHref) ? RouterLink : 'a'" v-bind="linkProps(ctas.primaryHref)">{{ ctas.primary }}</component>
+            <component class="sb-btn sb-btn-blue" :is="isInternalRoute(ctas.primaryHref) ? RouterLink : 'a'" v-bind="linkProps(ctas.primaryHref)" @click="closeAll">{{ ctas.primary }}</component>
           </div>
 
           <button ref="mobileToggle" class="sb-menu-toggle" type="button" aria-label="Toggle navigation" :aria-expanded="drawer" aria-controls="sb-mobile-drawer" @click="toggleDrawer">
@@ -279,7 +287,7 @@ function mobileGroups(menu) {
               <p class="sb-section-description">{{ section.sub }}</p>
               <div v-for="(group, gi) in section.groups" :key="gi">
                 <span v-if="group.label" class="sb-eyebrow">{{ group.label }}</span>
-                <component v-for="entry in group.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
+                <component v-for="entry in group.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)" @click="closeAll">{{ entry.label }}</component>
               </div>
             </section>
           </div>
@@ -289,22 +297,22 @@ function mobileGroups(menu) {
           <div v-for="(column, i) in solutions.cols" :key="i" class="sb-mega-column">
             <section v-for="section in column.sections" :key="section.label" class="sb-link-section sb-section-spaced">
               <h2 class="sb-eyebrow">{{ section.label }}</h2>
-              <component v-for="entry in section.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
+              <component v-for="entry in section.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)" @click="closeAll">{{ entry.label }}</component>
             </section>
           </div>
-          <component class="sb-mega-column sb-editorial" :is="isInternalRoute(solutions.article.href) ? RouterLink : 'a'" v-bind="linkProps(solutions.article.href)">
+          <component class="sb-mega-column sb-editorial" :is="isInternalRoute(solutions.article.href) ? RouterLink : 'a'" v-bind="linkProps(solutions.article.href)" @click="closeAll">
             <span class="sb-pills"><span class="sb-pill sb-pill-highlight"><span class="sb-pink-dot"></span>{{ solutions.article.tag }}</span><span class="sb-editorial-type">{{ solutions.article.category }}</span></span>
             <strong class="sb-editorial-title">{{ solutions.article.title }}</strong>
             <img v-if="solutions.article.image" class="sb-editorial-image" :src="solutions.article.image" :alt="solutions.article.alt" loading="lazy" />
           </component>
-          <component class="sb-mega-column sb-stat-column" :is="isInternalRoute(solutions.feature.href) ? RouterLink : 'a'" v-bind="linkProps(solutions.feature.href)">
+          <component class="sb-mega-column sb-stat-column" :is="isInternalRoute(solutions.feature.href) ? RouterLink : 'a'" v-bind="linkProps(solutions.feature.href)" @click="closeAll">
             <span class="sb-stat-card"><img v-if="solutions.feature.image" :src="solutions.feature.image" :alt="solutions.feature.alt" loading="lazy" /><span class="sb-pill sb-stat-pill"><span class="sb-pink-dot"></span>{{ solutions.feature.tag }}</span></span>
           </component>
         </div>
 
         <div v-else-if="open === 'resources'" class="sb-container sb-mega-grid sb-mega-resources">
           <div class="sb-mega-column sb-resource-intro">
-            <component :is="isInternalRoute(resources.feature.href) ? RouterLink : 'a'" v-bind="linkProps(resources.feature.href)" class="sb-resource-card">
+            <component :is="isInternalRoute(resources.feature.href) ? RouterLink : 'a'" v-bind="linkProps(resources.feature.href)" class="sb-resource-card" @click="closeAll">
               <span class="sb-resource-tag">{{ resources.feature.tag }}</span>
               <strong>Resource Center</strong>
               <span>A library of hospitality insights.</span>
@@ -313,16 +321,16 @@ function mobileGroups(menu) {
           <div class="sb-mega-column">
             <section v-for="column in resources.cols.slice(0, 2)" :key="column.label" class="sb-link-section sb-section-spaced">
               <h2 class="sb-eyebrow">{{ column.label }}</h2>
-              <component v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
+              <component v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)" @click="closeAll">{{ entry.label }}</component>
             </section>
           </div>
           <div class="sb-mega-column">
             <section v-for="column in resources.cols.slice(2)" :key="column.label" class="sb-link-section sb-section-spaced">
               <h2 class="sb-eyebrow">{{ column.label }}</h2>
-              <component v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
+              <component v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)" @click="closeAll">{{ entry.label }}</component>
             </section>
           </div>
-          <component class="sb-mega-column sb-editorial sb-resource-editorial" :is="isInternalRoute(resources.feature.href) ? RouterLink : 'a'" v-bind="linkProps(resources.feature.href)">
+          <component class="sb-mega-column sb-editorial sb-resource-editorial" :is="isInternalRoute(resources.feature.href) ? RouterLink : 'a'" v-bind="linkProps(resources.feature.href)" @click="closeAll">
             <span class="sb-pill sb-pill-highlight"><span class="sb-pink-dot"></span>{{ resources.feature.tag }}</span>
             <strong class="sb-editorial-title">{{ resources.feature.title }}</strong>
             <img v-if="resources.feature.image" class="sb-editorial-image" :src="resources.feature.image" :alt="resources.feature.alt" loading="lazy" />
@@ -331,7 +339,7 @@ function mobileGroups(menu) {
 
         <div v-else-if="open === 'company'" class="sb-container sb-mega-grid sb-mega-company">
           <div class="sb-mega-column sb-resource-intro">
-            <component class="sb-resource-card sb-company-card" :is="isInternalRoute(company.feature.href) ? RouterLink : 'a'" v-bind="linkProps(company.feature.href)">
+            <component class="sb-resource-card sb-company-card" :is="isInternalRoute(company.feature.href) ? RouterLink : 'a'" v-bind="linkProps(company.feature.href)" @click="closeAll">
               <span class="sb-resource-tag">{{ company.feature.tag }}</span>
               <strong>{{ company.feature.title }}</strong>
               <span>Get to know the team behind SaaSBeds.</span>
@@ -341,14 +349,14 @@ function mobileGroups(menu) {
           <div v-for="column in company.cols" :key="column.label" class="sb-mega-column">
             <section class="sb-link-section">
               <h2 class="sb-eyebrow">{{ column.label }}</h2>
-              <component v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
+              <component v-for="entry in column.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)" @click="closeAll">{{ entry.label }}</component>
             </section>
           </div>
         </div>
 
         <div v-else-if="open === 'ai-agents'" class="sb-container sb-mega-grid sb-mega-ai">
           <div class="sb-mega-column sb-resource-intro">
-            <component class="sb-resource-card sb-ai-card" :is="isInternalRoute(aiAgents.feature.href) ? RouterLink : 'a'" v-bind="linkProps(aiAgents.feature.href)">
+            <component class="sb-resource-card sb-ai-card" :is="isInternalRoute(aiAgents.feature.href) ? RouterLink : 'a'" v-bind="linkProps(aiAgents.feature.href)" @click="closeAll">
               <span class="sb-resource-tag">{{ aiAgents.feature.tag }}</span>
               <strong>{{ aiAgents.feature.title }}</strong>
               <span class="sb-ai-card-description">{{ aiAgents.feature.text }}</span>
@@ -358,10 +366,10 @@ function mobileGroups(menu) {
           <div class="sb-mega-column">
             <section class="sb-link-section">
               <h2 class="sb-eyebrow">AI Agents</h2>
-              <component v-for="entry in aiAgents.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)">{{ entry.label }}</component>
+              <component v-for="entry in aiAgents.items" :key="entry.label" class="sb-mega-link" :is="isInternalRoute(entry.href) ? RouterLink : 'a'" v-bind="linkProps(entry.href)" @click="closeAll">{{ entry.label }}</component>
             </section>
           </div>
-          <component class="sb-mega-column sb-editorial sb-ai-editorial" :is="isInternalRoute(aiAgents.feature.href) ? RouterLink : 'a'" v-bind="linkProps(aiAgents.feature.href)">
+          <component class="sb-mega-column sb-editorial sb-ai-editorial" :is="isInternalRoute(aiAgents.feature.href) ? RouterLink : 'a'" v-bind="linkProps(aiAgents.feature.href)" @click="closeAll">
             <span class="sb-pill sb-pill-highlight">
               <span class="sb-pink-dot" aria-hidden="true"></span>{{ aiAgents.feature.tag }}
             </span>
@@ -413,6 +421,4 @@ function mobileGroups(menu) {
   </div>
   </div>
 </template>
-
-<style scoped src="./AppHeader.css"></style>
 
